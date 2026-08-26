@@ -1,0 +1,69 @@
+<a class="sr-only-focusable top-4 left-4 z-[70] btn btn-primary" href="#main">Skip to content</a>
+
+<header class="site-header" data-header>
+  <div class="container-page">
+    <div class="flex items-center justify-between gap-6 py-3">
+
+      <a href="/" class="flex items-center gap-2.5 shrink-0" aria-label="{{site.name}} - home">
+        <img src="/img/logo.svg" alt="" width="44" height="44" class="w-10 h-10 lg:w-11 lg:h-11">
+        <span class="font-heading font-bold leading-[1.05] text-brand-800 text-[0.9375rem] lg:text-base tracking-tight">
+          GANGOTRI<br><span class="text-brand-600 font-semibold tracking-[0.08em] text-[0.75em]">EXPEDITIONS</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Primary">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/yatras.html">Yatras</a>
+        <a class="nav-link" href="/about.html">About Us</a>
+        <a class="nav-link" href="/services.html">Services</a>
+        <a class="nav-link" href="/gallery.html">Gallery</a>
+        <a class="nav-link" href="/contact.html">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a class="hidden md:inline-flex btn btn-outline btn-sm" href="tel:{{site.phoneRaw}}">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg>
+          {{site.phone}}
+        </a>
+        <a class="hidden sm:inline-flex btn btn-gold btn-sm" href="/contact.html">Book Now</a>
+
+        <button type="button" class="lg:hidden slider-arrow w-11 h-11" data-nav-toggle
+                aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+          <svg class="icon text-xl" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<div class="nav-panel lg:hidden" id="nav-panel" data-nav-panel hidden>
+  <div class="container-page h-full flex flex-col">
+    <div class="flex items-center justify-between py-3">
+      <span class="font-heading font-bold text-brand-800">Menu</span>
+      <button type="button" class="slider-arrow w-11 h-11" data-nav-close aria-label="Close menu">
+        <svg class="icon text-xl" aria-hidden="true"><use href="#i-x"/></svg>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-1 pt-4" aria-label="Mobile">
+      <a class="py-3 text-lg font-heading font-medium text-brand-800 border-b border-brand-100" href="/">Home</a>
+      <a class="py-3 text-lg font-heading font-medium text-brand-800 border-b border-brand-100" href="/yatras.html">Yatras</a>
+      <a class="py-3 text-lg font-heading font-medium text-brand-800 border-b border-brand-100" href="/about.html">About Us</a>
+      <a class="py-3 text-lg font-heading font-medium text-brand-800 border-b border-brand-100" href="/services.html">Services</a>
+      <a class="py-3 text-lg font-heading font-medium text-brand-800 border-b border-brand-100" href="/gallery.html">Gallery</a>
+      <a class="py-3 text-lg font-heading font-medium text-brand-800 border-b border-brand-100" href="/contact.html">Contact</a>
+    </nav>
+
+    <div class="mt-auto pb-8 pt-6 grid gap-3">
+      <a class="btn btn-primary btn-lg" href="tel:{{site.phoneRaw}}">
+        <svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg>
+        Call {{site.phone}}
+      </a>
+      <a class="btn btn-gold btn-lg" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+        WhatsApp Us
+      </a>
+    </div>
+  </div>
+</div>

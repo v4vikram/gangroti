@@ -1,0 +1,114 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+    branches: [develop, main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Every push and PR builds. A broken build never reaches a server.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # develop -> dev build (noindex, unminified for debugging)
+      # main    -> prod build (minified, indexable)
+      - name: Build
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            npm run build:prod
+          else
+            npm run build
+          fi
+
+      - name: Guard - dev build must not be indexable
+        if: github.ref != 'refs/heads/main'
+        run: |
+          grep -q "Disallow: /" dist/robots.txt
+          grep -q "noindex" dist/index.html
+          echo "dev build is noindex - ok"
+
+      - name: Guard - prod build must be indexable
+        if: github.ref == 'refs/heads/main'
+        run: |
+          grep -q "Allow: /" dist/robots.txt
+          ! grep -q "noindex" dist/index.html
+          echo "prod build is indexable - ok"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ github.sha }}
+          path: dist
+          retention-days: 7
+
+  # gangotri.codevani.com - auto-deploys on every push to develop
+  deploy-dev:
+    needs: build
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: development
+      url: https://www.gangotri.codevani.com
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-${{ github.sha }}
+          path: dist
+
+      - name: Deploy over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.DEV_FTP_SERVER }}
+          username: ${{ secrets.DEV_FTP_USERNAME }}
+          password: ${{ secrets.DEV_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ${{ secrets.DEV_FTP_PATH }}
+          # Keeps anything the build does not own (e.g. WordPress in Phase 7).
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+  # gangotriexpeditions.in - requires a manual approval on the
+  # `production` environment (set required reviewers in repo settings).
+  deploy-prod:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://gangotriexpeditions.in
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist-${{ github.sha }}
+          path: dist
+
+      - name: Deploy over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.PROD_FTP_SERVER }}
+          username: ${{ secrets.PROD_FTP_USERNAME }}
+          password: ${{ secrets.PROD_FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./dist/
+          server-dir: ${{ secrets.PROD_FTP_PATH }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**

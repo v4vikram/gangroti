@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+  <title>{{site.name}} - {{site.tagline}}</title>
+  <meta name="description" content="{{site.description}}">
+  <link rel="canonical" href="%%SITE_URL%%/">
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1">
+  <section class="section">
+    <div class="container-page max-w-3xl">
+      <span class="eyebrow">
+        <svg class="icon" aria-hidden="true"><use href="#i-trishul"/></svg>
+        Phase 0 complete
+      </span>
+      <h1 class="text-4xl lg:text-5xl mt-3">Foundation is in place.</h1>
+      <p class="mt-4 text-lg leading-relaxed text-brand-800/70">
+        Design tokens, self-hosted fonts, the icon sprite, the custom slider and the
+        build pipeline are all wired up. The real home page gets built in Phase 2 -
+        review the components first.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a class="btn btn-primary btn-lg" href="/styleguide.html">
+          Open the Style Guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+        <a class="btn btn-outline btn-lg" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--@include footer.html-->
+</body>
+</html>

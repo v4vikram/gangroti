@@ -1,0 +1,450 @@
+<html lang="en">
+<head>
+  <title>Style Guide - {{site.name}}</title>
+  <meta name="description" content="Component and design token reference for the Gangotri Expeditions website.">
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1">
+
+  <section class="bg-mist border-b border-brand-100">
+    <div class="container-page py-12 lg:py-16">
+      <span class="eyebrow">
+        <svg class="icon" aria-hidden="true"><use href="#i-mountain"/></svg>
+        Phase 0
+      </span>
+      <h1 class="text-4xl lg:text-5xl mt-3">Style Guide</h1>
+      <p class="mt-4 max-w-2xl text-brand-800/70 leading-relaxed">
+        Every token and component the site is built from. Approve this once and the
+        rest of the pages assemble from these pieces - no rework later.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ COLOUR -->
+  <section class="section">
+    <div class="container-page">
+      <h2 class="text-2xl lg:text-3xl">Colour</h2>
+      <p class="mt-2 text-sm text-brand-800/60">Usage split from the brand guide: 60 / 20 / 10 / 5 / 5.</p>
+
+      <div class="mt-8 space-y-8">
+        <div>
+          <div class="flex items-baseline justify-between mb-3">
+            <h3 class="text-base">Primary Green <code class="text-xs font-sans text-brand-800/50">brand</code></h3>
+            <span class="text-xs text-brand-800/50">60% - backgrounds, headings, primary buttons</span>
+          </div>
+          <div class="grid grid-cols-5 lg:grid-cols-10 gap-1.5">
+            <div class="h-16 rounded-md bg-brand-50 border border-brand-100 flex items-end p-1.5 text-[10px] text-brand-800">50</div>
+            <div class="h-16 rounded-md bg-brand-100 flex items-end p-1.5 text-[10px] text-brand-800">100</div>
+            <div class="h-16 rounded-md bg-brand-200 flex items-end p-1.5 text-[10px] text-brand-800">200</div>
+            <div class="h-16 rounded-md bg-brand-300 flex items-end p-1.5 text-[10px] text-brand-800">300</div>
+            <div class="h-16 rounded-md bg-brand-400 flex items-end p-1.5 text-[10px] text-white">400</div>
+            <div class="h-16 rounded-md bg-brand-500 flex items-end p-1.5 text-[10px] text-white">500</div>
+            <div class="h-16 rounded-md bg-brand-600 flex items-end p-1.5 text-[10px] text-white ring-2 ring-gold-500 ring-offset-2">600</div>
+            <div class="h-16 rounded-md bg-brand-700 flex items-end p-1.5 text-[10px] text-white">700</div>
+            <div class="h-16 rounded-md bg-brand-800 flex items-end p-1.5 text-[10px] text-white">800</div>
+            <div class="h-16 rounded-md bg-brand-900 flex items-end p-1.5 text-[10px] text-white">900</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-baseline justify-between mb-3">
+            <h3 class="text-base">Deep Blue <code class="text-xs font-sans text-brand-800/50">deep</code></h3>
+            <span class="text-xs text-brand-800/50">20% - secondary sections, footers, contrast blocks</span>
+          </div>
+          <div class="grid grid-cols-5 lg:grid-cols-10 gap-1.5">
+            <div class="h-16 rounded-md bg-deep-50 border border-deep-100 flex items-end p-1.5 text-[10px] text-deep-800">50</div>
+            <div class="h-16 rounded-md bg-deep-100 flex items-end p-1.5 text-[10px] text-deep-800">100</div>
+            <div class="h-16 rounded-md bg-deep-200 flex items-end p-1.5 text-[10px] text-deep-800">200</div>
+            <div class="h-16 rounded-md bg-deep-300 flex items-end p-1.5 text-[10px] text-deep-800">300</div>
+            <div class="h-16 rounded-md bg-deep-400 flex items-end p-1.5 text-[10px] text-white">400</div>
+            <div class="h-16 rounded-md bg-deep-500 flex items-end p-1.5 text-[10px] text-white">500</div>
+            <div class="h-16 rounded-md bg-deep-600 flex items-end p-1.5 text-[10px] text-white ring-2 ring-gold-500 ring-offset-2">600</div>
+            <div class="h-16 rounded-md bg-deep-700 flex items-end p-1.5 text-[10px] text-white">700</div>
+            <div class="h-16 rounded-md bg-deep-800 flex items-end p-1.5 text-[10px] text-white">800</div>
+            <div class="h-16 rounded-md bg-deep-900 flex items-end p-1.5 text-[10px] text-white">900</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-baseline justify-between mb-3">
+            <h3 class="text-base">Accent Gold <code class="text-xs font-sans text-brand-800/50">gold</code></h3>
+            <span class="text-xs text-brand-800/50">10% - CTAs and highlights only</span>
+          </div>
+          <div class="grid grid-cols-5 lg:grid-cols-10 gap-1.5">
+            <div class="h-16 rounded-md bg-gold-50 border border-gold-100 flex items-end p-1.5 text-[10px] text-gold-900">50</div>
+            <div class="h-16 rounded-md bg-gold-100 flex items-end p-1.5 text-[10px] text-gold-900">100</div>
+            <div class="h-16 rounded-md bg-gold-200 flex items-end p-1.5 text-[10px] text-gold-900">200</div>
+            <div class="h-16 rounded-md bg-gold-300 flex items-end p-1.5 text-[10px] text-gold-900">300</div>
+            <div class="h-16 rounded-md bg-gold-400 flex items-end p-1.5 text-[10px] text-ink">400</div>
+            <div class="h-16 rounded-md bg-gold-500 flex items-end p-1.5 text-[10px] text-ink ring-2 ring-brand-600 ring-offset-2">500</div>
+            <div class="h-16 rounded-md bg-gold-600 flex items-end p-1.5 text-[10px] text-white">600</div>
+            <div class="h-16 rounded-md bg-gold-700 flex items-end p-1.5 text-[10px] text-white">700</div>
+            <div class="h-16 rounded-md bg-gold-800 flex items-end p-1.5 text-[10px] text-white">800</div>
+            <div class="h-16 rounded-md bg-gold-900 flex items-end p-1.5 text-[10px] text-white">900</div>
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4 max-w-lg">
+          <div class="h-20 rounded-md bg-mist border border-brand-100 flex items-end p-3 text-xs text-ink">mist &middot; #F2F4F7</div>
+          <div class="h-20 rounded-md bg-ink flex items-end p-3 text-xs text-white">ink &middot; #222222</div>
+        </div>
+      </div>
+
+      <div class="mt-8 card p-4 flex gap-3 bg-gold-50 border-gold-200">
+        <svg class="icon text-gold-700 text-lg shrink-0" aria-hidden="true"><use href="#i-triangle-alert"/></svg>
+        <p class="text-sm text-gold-900 leading-relaxed">
+          <strong>Contrast rule:</strong> white text on gold-500 is about 1.9:1 and fails WCAG AA.
+          Gold buttons always use ink text. Gold on white is for large display text only.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== TYPOGRAPHY -->
+  <section class="section bg-mist">
+    <div class="container-page">
+      <h2 class="text-2xl lg:text-3xl">Typography</h2>
+      <p class="mt-2 text-sm text-brand-800/60">Poppins for headings, Inter for body. Both self-hosted, latin subset, 62 KB total.</p>
+
+      <div class="mt-8 grid lg:grid-cols-2 gap-8">
+        <div class="card p-6 lg:p-8 space-y-5">
+          <p class="text-xs uppercase tracking-widest text-brand-800/50 font-heading font-semibold">Poppins &middot; headings</p>
+          <div><span class="block text-xs text-brand-800/40 mb-1">h1 &middot; 48px / 700</span><h1 class="text-5xl">Spiritual Journeys</h1></div>
+          <div><span class="block text-xs text-brand-800/40 mb-1">h2 &middot; 30px / 700</span><h2 class="text-3xl">Popular Yatras</h2></div>
+          <div><span class="block text-xs text-brand-800/40 mb-1">h3 &middot; 20px / 700</span><h3 class="text-xl">Kedarnath Yatra</h3></div>
+          <div><span class="block text-xs text-brand-800/40 mb-1">eyebrow &middot; 13px / 600</span><span class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-trishul"/></svg> Char Dham</span></div>
+        </div>
+
+        <div class="card p-6 lg:p-8 space-y-5">
+          <p class="text-xs uppercase tracking-widest text-brand-800/50 font-heading font-semibold">Inter &middot; body</p>
+          <div>
+            <span class="block text-xs text-brand-800/40 mb-1">lead &middot; 18px / 400</span>
+            <p class="text-lg leading-relaxed text-brand-800/80">Curated Char Dham yatras and Himalayan treks across Uttarakhand, run by guides who have walked these trails for years.</p>
+          </div>
+          <div>
+            <span class="block text-xs text-brand-800/40 mb-1">body &middot; 16px / 400</span>
+            <p class="leading-relaxed text-brand-800/70">The Kedarnath trek covers 16 km from Gaurikund at an altitude of 3,583 m. Most pilgrims complete the walk in six to eight hours, with pony and palki options available at fixed government rates.</p>
+          </div>
+          <div>
+            <span class="block text-xs text-brand-800/40 mb-1">small &middot; 14px / 500</span>
+            <p class="text-sm font-medium text-brand-800/60">Best season: May to June, September to October</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================== BUTTONS -->
+  <section class="section">
+    <div class="container-page">
+      <h2 class="text-2xl lg:text-3xl">Buttons &amp; Badges</h2>
+
+      <div class="mt-8 grid gap-6">
+        <div class="card p-6">
+          <p class="text-xs uppercase tracking-widest text-brand-800/50 font-heading font-semibold mb-4">Variants</p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button class="btn btn-primary">Explore Yatras</button>
+            <button class="btn btn-gold"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Book Now</button>
+            <button class="btn btn-outline"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> Call Us</button>
+            <button class="btn btn-primary btn-lg">Large <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+            <button class="btn btn-outline btn-sm">Small</button>
+          </div>
+        </div>
+
+        <div class="card p-6 bg-brand-800 border-brand-800">
+          <p class="text-xs uppercase tracking-widest text-brand-100/60 font-heading font-semibold mb-4">On dark / over imagery</p>
+          <div class="flex flex-wrap items-center gap-3">
+            <button class="btn btn-gold">Book Now</button>
+            <button class="btn btn-ghost-light">View Itinerary</button>
+          </div>
+        </div>
+
+        <div class="card p-6">
+          <p class="text-xs uppercase tracking-widest text-brand-800/50 font-heading font-semibold mb-4">Badges</p>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> 6 Days</span>
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-trending-up"/></svg> 3,583 m</span>
+            <span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg> Group</span>
+            <span class="badge badge-gold"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Bestseller</span>
+            <span class="badge badge-gold">Fixed Departure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= CARDS -->
+  <section class="section bg-mist">
+    <div class="container-page">
+      <h2 class="text-2xl lg:text-3xl">Yatra Card</h2>
+      <p class="mt-2 text-sm text-brand-800/60">This is the listing unit. In WordPress it becomes <code class="text-xs">template-parts/card-yatra.php</code>.</p>
+
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <article class="card card-hover flex flex-col">
+          <div class="media-4-3 relative">
+            <picture>
+              <source srcset="/img/yatras/kedarnath-yatra.webp" type="image/webp">
+              <img src="/img/yatras/kedarnath-yatra.jpg" alt="Kedarnath Temple against the Himalayan range" width="800" height="600" loading="lazy" decoding="async">
+            </picture>
+            <span class="badge badge-gold absolute top-3 left-3"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg> Bestseller</span>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="text-lg">Kedarnath Yatra</h3>
+            <div class="flex flex-wrap gap-x-4 gap-y-1.5 mt-2.5 text-xs text-brand-800/60">
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> 6 Days / 5 Nights</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg> From Haridwar</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-trending-up"/></svg> 3,583 m</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-brand-800/70 flex-1">
+              The 16 km trek from Gaurikund to one of the twelve Jyotirlingas, with acclimatisation stops and comfortable stays.
+            </p>
+            <div class="mt-5 pt-4 border-t border-brand-100 flex items-center justify-between gap-3">
+              <div>
+                <span class="block text-[11px] text-brand-800/50">Starting from</span>
+                <span class="font-heading font-bold text-lg text-brand-700">&#8377;14,500</span>
+                <span class="text-xs text-brand-800/50">/ person</span>
+              </div>
+              <a class="btn btn-primary btn-sm" href="#">Details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card card-hover flex flex-col">
+          <div class="media-4-3">
+            <picture>
+              <source srcset="/img/yatras/badrinath-yatra.webp" type="image/webp">
+              <img src="/img/yatras/badrinath-yatra.jpg" alt="Badrinath Temple in Uttarakhand" width="800" height="600" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="text-lg">Badrinath Yatra</h3>
+            <div class="flex flex-wrap gap-x-4 gap-y-1.5 mt-2.5 text-xs text-brand-800/60">
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> 5 Days / 4 Nights</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg> From Rishikesh</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-trending-up"/></svg> 3,300 m</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-brand-800/70 flex-1">
+              Road-accessible dham beside the Alaknanda, with Mana village and Vasudhara Falls on the itinerary.
+            </p>
+            <div class="mt-5 pt-4 border-t border-brand-100 flex items-center justify-between gap-3">
+              <div>
+                <span class="block text-[11px] text-brand-800/50">Starting from</span>
+                <span class="font-heading font-bold text-lg text-brand-700">&#8377;12,900</span>
+                <span class="text-xs text-brand-800/50">/ person</span>
+              </div>
+              <a class="btn btn-primary btn-sm" href="#">Details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card card-hover flex flex-col">
+          <div class="media-4-3">
+            <picture>
+              <source srcset="/img/yatras/chopta-tungnath-yatra.webp" type="image/webp">
+              <img src="/img/yatras/chopta-tungnath-yatra.jpg" alt="Tungnath and Chandrashila trail near Chopta" width="800" height="600" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <h3 class="text-lg">Chopta - Tungnath</h3>
+            <div class="flex flex-wrap gap-x-4 gap-y-1.5 mt-2.5 text-xs text-brand-800/60">
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg> 3 Days / 2 Nights</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg> From Dehradun</span>
+              <span class="inline-flex items-center gap-1.5"><svg class="icon" aria-hidden="true"><use href="#i-trending-up"/></svg> 3,690 m</span>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-brand-800/70 flex-1">
+              The world's highest Shiva temple, plus the Chandrashila summit sunrise over Nanda Devi and Trishul.
+            </p>
+            <div class="mt-5 pt-4 border-t border-brand-100 flex items-center justify-between gap-3">
+              <div>
+                <span class="block text-[11px] text-brand-800/50">Starting from</span>
+                <span class="font-heading font-bold text-lg text-brand-700">&#8377;7,499</span>
+                <span class="text-xs text-brand-800/50">/ person</span>
+              </div>
+              <a class="btn btn-primary btn-sm" href="#">Details <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ SLIDER -->
+  <section class="section">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 class="text-2xl lg:text-3xl">Slider</h2>
+          <p class="mt-2 text-sm text-brand-800/60">
+            Custom, no jQuery, no library. Drag it, use the arrows, or press the left/right keys.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="slider-arrow" data-slider-prev aria-label="Previous">
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+          </button>
+          <button type="button" class="slider-arrow" data-slider-next aria-label="Next">
+            <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slider mt-8" data-slider data-per-view="1" data-per-view-sm="2" data-per-view-lg="3"
+           data-gap="24" data-autoplay="4500" data-loop aria-label="Gallery slider">
+        <div class="slider-viewport">
+          <ul class="slider-track">
+            <li class="slider-slide"><figure class="card overflow-hidden"><div class="media-4-3"><picture><source srcset="/img/gallery/gallery-1.webp" type="image/webp"><img src="/img/gallery/gallery-1.jpg" alt="Yamunotri temple" width="800" height="800" loading="lazy" decoding="async"></picture></div></figure></li>
+            <li class="slider-slide"><figure class="card overflow-hidden"><div class="media-4-3"><picture><source srcset="/img/gallery/gallery-2.webp" type="image/webp"><img src="/img/gallery/gallery-2.jpg" alt="Trekking in the Uttarakhand Himalaya" width="800" height="800" loading="lazy" decoding="async"></picture></div></figure></li>
+            <li class="slider-slide"><figure class="card overflow-hidden"><div class="media-4-3"><picture><source srcset="/img/gallery/gallery-3.webp" type="image/webp"><img src="/img/gallery/gallery-3.jpg" alt="The Ganga at Rishikesh" width="800" height="800" loading="lazy" decoding="async"></picture></div></figure></li>
+            <li class="slider-slide"><figure class="card overflow-hidden"><div class="media-4-3"><picture><source srcset="/img/gallery/gallery-4.webp" type="image/webp"><img src="/img/gallery/gallery-4.jpg" alt="Deoria Tal" width="800" height="800" loading="lazy" decoding="async"></picture></div></figure></li>
+            <li class="slider-slide"><figure class="card overflow-hidden"><div class="media-4-3"><picture><source srcset="/img/gallery/gallery-5.webp" type="image/webp"><img src="/img/gallery/gallery-5.jpg" alt="Nanda Devi peak" width="800" height="800" loading="lazy" decoding="async"></picture></div></figure></li>
+            <li class="slider-slide"><figure class="card overflow-hidden"><div class="media-4-3"><picture><source srcset="/img/gallery/gallery-6.webp" type="image/webp"><img src="/img/gallery/gallery-6.jpg" alt="Auli in Uttarakhand" width="800" height="800" loading="lazy" decoding="async"></picture></div></figure></li>
+          </ul>
+        </div>
+        <div class="slider-dots mt-6" data-slider-dots></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= FORMS -->
+  <section class="section bg-mist">
+    <div class="container-page">
+      <h2 class="text-2xl lg:text-3xl">Form Fields</h2>
+      <p class="mt-2 text-sm text-brand-800/60">The enquiry form pattern - the site's only conversion point.</p>
+
+      <div class="mt-8 card p-6 lg:p-8 max-w-3xl">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="label" for="sg-name">Full Name</label>
+            <input class="field" id="sg-name" type="text" placeholder="Amrit Vatsa">
+          </div>
+          <div>
+            <label class="label" for="sg-phone">Phone / WhatsApp</label>
+            <input class="field" id="sg-phone" type="tel" placeholder="+91 70100 33899">
+          </div>
+          <div>
+            <label class="label" for="sg-yatra">Yatra</label>
+            <select class="field" id="sg-yatra">
+              <option>Kedarnath Yatra</option>
+              <option>Badrinath Yatra</option>
+              <option>Chopta - Tungnath</option>
+              <option>Char Dham Yatra</option>
+            </select>
+          </div>
+          <div>
+            <label class="label" for="sg-date">Travel Month</label>
+            <input class="field" id="sg-date" type="month">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="label" for="sg-msg">Message</label>
+            <textarea class="field" id="sg-msg" rows="4" placeholder="Group size, pickup city, anything else we should know"></textarea>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button class="btn btn-primary"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> Send Enquiry</button>
+          <a class="btn btn-gold" href="https://wa.me/{{site.whatsapp}}" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp Instead</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= ACCORDION -->
+  <section class="section">
+    <div class="container-page max-w-3xl">
+      <h2 class="text-2xl lg:text-3xl">Accordion</h2>
+      <p class="mt-2 text-sm text-brand-800/60">Used for FAQ and day-by-day itineraries. Carries FAQPage schema on the FAQ page.</p>
+
+      <div class="mt-8 card divide-y divide-brand-100" data-accordion data-accordion-single>
+        <div>
+          <h3>
+            <button type="button" class="w-full flex items-center justify-between gap-4 p-5 text-left font-heading font-semibold text-brand-800"
+                    data-accordion-trigger aria-expanded="true" aria-controls="sg-faq-1">
+              What is the best time for the Kedarnath Yatra?
+              <svg class="icon accordion-chevron text-brand-600" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="sg-faq-1" style="height:auto">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-brand-800/70">
+              May to June and September to October. The temple opens on Akshaya Tritiya and closes on Bhai Dooj.
+              July and August bring heavy monsoon rain and the risk of landslides on the Gaurikund route.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3>
+            <button type="button" class="w-full flex items-center justify-between gap-4 p-5 text-left font-heading font-semibold text-brand-800"
+                    data-accordion-trigger aria-expanded="false" aria-controls="sg-faq-2">
+              Do I need to register for the Char Dham Yatra?
+              <svg class="icon accordion-chevron text-brand-600" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="sg-faq-2">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-brand-800/70">
+              Yes. Uttarakhand Tourism requires a registration for every pilgrim. We complete it for you once
+              your booking is confirmed and share the QR pass before departure.
+            </p>
+          </div>
+        </div>
+        <div>
+          <h3>
+            <button type="button" class="w-full flex items-center justify-between gap-4 p-5 text-left font-heading font-semibold text-brand-800"
+                    data-accordion-trigger aria-expanded="false" aria-controls="sg-faq-3">
+              How difficult is the trek for senior citizens?
+              <svg class="icon accordion-chevron text-brand-600" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="sg-faq-3">
+            <p class="px-5 pb-5 text-sm leading-relaxed text-brand-800/70">
+              The 16 km Gaurikund route is moderate. Ponies, palkis and helicopter transfers are all available,
+              and our itineraries build in an acclimatisation night before the climb.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================= ICONS -->
+  <section class="section bg-mist">
+    <div class="container-page">
+      <h2 class="text-2xl lg:text-3xl">Icons</h2>
+      <p class="mt-2 text-sm text-brand-800/60">
+        52 icons in one inlined sprite - about 4 KB gzipped, zero extra requests.
+        FontAwesome's kit would have been roughly 90 KB.
+      </p>
+
+      <div class="mt-8 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-10 gap-3">
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-mountain"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">mountain</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-trishul"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">trishul</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-tent"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">tent</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-footprints"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">footprints</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-backpack"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">backpack</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-compass"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">compass</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-route"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">route</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-shield-check"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">shield</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-badge-check"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">verified</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-award"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">award</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-calendar"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">calendar</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-clock"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">clock</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-trending-up"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">altitude</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-indian-rupee"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">rupee</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-bed"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">stay</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-utensils"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">meals</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-bus"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">transport</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-map-pin"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">location</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-brand-600" aria-hidden="true"><use href="#i-phone"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">phone</span></div>
+        <div class="card p-3 grid place-items-center gap-1.5 aspect-square"><svg class="icon text-2xl text-[#25D366]" aria-hidden="true"><use href="#i-whatsapp"/></svg><span class="text-[9px] text-brand-800/50 text-center leading-tight">whatsapp</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--@include footer.html-->
+</body>
+</html>

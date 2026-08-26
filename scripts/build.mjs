@@ -1,0 +1,247 @@
+/**
+ * Static build for the Gangotri Expeditions front end.
+ *
+ *   node scripts/build.mjs            dev build  (unminified, noindex)
+ *   node scripts/build.mjs --prod     prod build (minified, indexable)
+ *   node scripts/build.mjs --watch --serve
+ *
+ * HTML authoring features:
+ *   <!--@include header.html-->   inlines src/partials/header.html (recursive)
+ *   <!--@sprite-->                inlines the SVG icon sprite
+ *   {{site.phone}}                substitutes from site.config.mjs
+ *   %%CSS%% / %%JS%%              content-hashed asset paths (cache busting)
+ *   %%ROBOTS%%                    noindex meta on dev, nothing on prod
+ */
+import { readFile, writeFile, mkdir, rm, cp, readdir } from 'node:fs/promises';
+import { existsSync, watch } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { createServer } from 'node:http';
+import { extname, join } from 'node:path';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+import { minify as minifyHtml } from 'html-minifier-terser';
+import * as esbuild from 'esbuild';
+import { site } from './site.config.mjs';
+
+const run = promisify(execFile);
+const args = process.argv.slice(2);
+const PROD = args.includes('--prod');
+const WATCH = args.includes('--watch');
+const SERVE = args.includes('--serve');
+
+const SRC = 'src';
+const OUT = 'dist';
+const env = PROD ? site.prod : site.dev;
+
+const hash = (buf) => createHash('sha256').update(buf).digest('hex').slice(0, 8);
+
+/* ------------------------------------------------------------------ steps */
+
+async function buildCss() {
+  const out = join(OUT, 'css/main.css');
+  await run(process.execPath, [
+    'node_modules/@tailwindcss/cli/dist/index.mjs',
+    '-i', join(SRC, 'css/main.css'),
+    '-o', out,
+    ...(PROD ? ['--minify'] : []),
+  ]);
+  const buf = await readFile(out);
+  const name = `main.${hash(buf)}.css`;
+  await writeFile(join(OUT, 'css', name), buf);
+  await rm(out);
+  return { path: `/css/${name}`, size: buf.length };
+}
+
+async function buildJs() {
+  const result = await esbuild.build({
+    entryPoints: [join(SRC, 'js/main.js')],
+    bundle: true,
+    format: 'esm',
+    target: ['chrome111', 'firefox128', 'safari16.4'],
+    minify: PROD,
+    sourcemap: !PROD,
+    entryNames: 'main.[hash]', // esbuild appends the .js itself
+    outdir: join(OUT, 'js'),
+    metafile: true,
+    legalComments: 'none',
+  });
+  const [file] = Object.keys(result.metafile.outputs).filter((f) => f.endsWith('.js'));
+  const buf = await readFile(file);
+  return { path: '/' + file.split('/').slice(1).join('/'), size: buf.length };
+}
+
+async function copyStatic() {
+  // Notes that live beside the assets (CREDITS.md, README.txt) stay out of dist.
+  const shipped = (src) => !/\.(md|txt)$/i.test(src);
+
+  for (const dir of ['fonts', 'img']) {
+    if (existsSync(join(SRC, dir))) {
+      await cp(join(SRC, dir), join(OUT, dir), { recursive: true, filter: shipped });
+    }
+  }
+  if (existsSync(join(SRC, 'icons'))) {
+    await cp(join(SRC, 'icons'), join(OUT, 'icons'), { recursive: true });
+  }
+}
+
+async function expandIncludes(html, depth = 0) {
+  if (depth > 5) throw new Error('@include nested more than 5 deep - probably a loop');
+  const re = /<!--\s*@include\s+([\w./-]+)\s*-->/g;
+  if (!re.test(html)) return html;
+  re.lastIndex = 0;
+
+  let out = html;
+  for (const [tag, file] of [...html.matchAll(re)]) {
+    const partial = await readFile(join(SRC, 'partials', file), 'utf8');
+    out = out.replace(tag, await expandIncludes(partial, depth + 1));
+  }
+  return out;
+}
+
+async function buildHtml(assets) {
+  const sprite = existsSync(join(SRC, 'icons/sprite.svg'))
+    ? await readFile(join(SRC, 'icons/sprite.svg'), 'utf8')
+    : '';
+
+  const pages = (await readdir(SRC)).filter((f) => f.endsWith('.html'));
+  let total = 0;
+
+  for (const page of pages) {
+    let html = await readFile(join(SRC, page), 'utf8');
+    html = await expandIncludes(html);
+
+    html = html
+      .replace(/<!--\s*@sprite\s*-->/g, sprite)
+      .replace(/%%CSS%%/g, assets.css.path)
+      .replace(/%%JS%%/g, assets.js.path)
+      .replace(/%%SITE_URL%%/g, env.url)
+      .replace(/%%ROBOTS%%/g, PROD ? '' : '<meta name="robots" content="noindex, nofollow">')
+      .replace(/\{\{site\.(\w+)\}\}/g, (m, key) => site[key] ?? m);
+
+    if (WATCH && SERVE) html = html.replace('</body>', `${LIVE_RELOAD}</body>`);
+
+    if (PROD) {
+      html = await minifyHtml(html, {
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyCSS: true,
+        minifyJS: true,
+        removeRedundantAttributes: true,
+        sortAttributes: true,
+        sortClassName: true,
+      });
+    }
+
+    await writeFile(join(OUT, page), html);
+    total += Buffer.byteLength(html);
+  }
+
+  return { pages: pages.length, size: total };
+}
+
+async function buildRobots() {
+  // The dev mirror must never be indexable - two live copies of the same
+  // content would split rankings between codevani and the real domain.
+  const robots = PROD
+    ? `User-agent: *\nAllow: /\n\nSitemap: ${env.url}/sitemap.xml\n`
+    : `User-agent: *\nDisallow: /\n`;
+  await writeFile(join(OUT, 'robots.txt'), robots);
+
+  if (!PROD) {
+    // Apache (cPanel) also sends the header, so noindex survives non-HTML files.
+    await writeFile(join(OUT, '.htaccess'), 'Header set X-Robots-Tag "noindex, nofollow"\n');
+  }
+}
+
+/* ------------------------------------------------------------------ build */
+
+async function build() {
+  const t0 = Date.now();
+  await rm(OUT, { recursive: true, force: true });
+  await mkdir(join(OUT, 'css'), { recursive: true });
+
+  const [css, js] = await Promise.all([buildCss(), buildJs()]);
+  await copyStatic();
+  const html = await buildHtml({ css, js });
+  await buildRobots();
+
+  const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
+  console.log(
+    `${PROD ? 'prod' : 'dev '} build  ${Date.now() - t0}ms  |  ` +
+    `html ${html.pages}p ${kb(html.size)}  css ${kb(css.size)}  js ${kb(js.size)}` +
+    `${PROD ? '' : '  |  noindex'}`
+  );
+}
+
+/* ------------------------------------------------- watch + dev server ---- */
+
+const LIVE_RELOAD = `<script>new EventSource('/__reload').onmessage=()=>location.reload()</script>`;
+
+const MIME = {
+  '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml',
+  '.woff2': 'font/woff2', '.json': 'application/json', '.webp': 'image/webp',
+  '.avif': 'image/avif', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
+  '.png': 'image/png', '.ico': 'image/x-icon', '.txt': 'text/plain; charset=utf-8',
+  '.map': 'application/json',
+};
+
+function serve(port = 3000) {
+  const clients = new Set();
+
+  createServer(async (req, res) => {
+    const url = decodeURIComponent(req.url.split('?')[0]);
+
+    if (url === '/__reload') {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream',
+        'Cache-Control': 'no-cache',
+        Connection: 'keep-alive',
+      });
+      res.write('\n');
+      clients.add(res);
+      req.on('close', () => clients.delete(res));
+      return;
+    }
+
+    // /about -> /about.html, / -> /index.html
+    const candidates = url.endsWith('/')
+      ? [join(OUT, url, 'index.html')]
+      : [join(OUT, url), join(OUT, `${url}.html`)];
+
+    for (const file of candidates) {
+      if (!existsSync(file) || !extname(file)) continue;
+      res.writeHead(200, { 'Content-Type': MIME[extname(file)] ?? 'application/octet-stream' });
+      return res.end(await readFile(file));
+    }
+
+    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+    res.end(existsSync(join(OUT, '404.html')) ? await readFile(join(OUT, '404.html')) : 'Not found');
+  }).listen(port, () => console.log(`\n  dev server  http://localhost:${port}\n`));
+
+  return () => {
+    for (const c of clients) c.write('data: reload\n\n');
+  };
+}
+
+/* ------------------------------------------------------------------- boot */
+
+await build();
+
+if (WATCH) {
+  const reload = SERVE ? serve() : () => {};
+  let timer;
+  watch(SRC, { recursive: true }, (_, file) => {
+    if (file?.includes('fonts.css')) return; // generated, would loop
+    clearTimeout(timer);
+    timer = setTimeout(async () => {
+      try {
+        await build();
+        reload();
+      } catch (err) {
+        console.error('build failed:', err.message);
+      }
+    }, 60);
+  });
+  console.log('  watching src/ ...');
+}

@@ -1,0 +1,25 @@
+{
+  "name": "gangotri-expeditions",
+  "version": "0.1.0",
+  "description": "Gangotri Expeditions - static front end, converts to a WordPress theme in Phase 7.",
+  "scripts": {
+    "dev": "node scripts/build.mjs --watch --serve",
+    "build": "node scripts/build.mjs",
+    "build:prod": "node scripts/build.mjs --prod",
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "icons": "node scripts/build-icons.mjs",
+    "images": "node scripts/fetch-images.mjs",
+    "assets": "npm run fonts && npm run icons && npm run images"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "esbuild": "^0.28.2",
+    "html-minifier-terser": "^7.2.0",
+    "lucide-static": "^1.34.0",
+    "sharp": "^0.35.4",
+    "simple-icons": "^16.28.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "private": true
+}

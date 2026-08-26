@@ -1,0 +1,92 @@
+<footer class="bg-brand-800 text-brand-100 mt-auto">
+  <div class="container-page py-14 lg:py-16">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2.5 mb-4">
+          <img src="/img/logo.svg" alt="" width="44" height="44" class="w-11 h-11 brightness-0 invert opacity-90">
+          <span class="font-heading font-bold text-white leading-[1.05] tracking-tight">
+            GANGOTRI<br><span class="font-semibold tracking-[0.08em] text-[0.75em] text-gold-400">EXPEDITIONS</span>
+          </span>
+        </div>
+        <p class="text-sm leading-relaxed text-brand-200">
+          Curated Char Dham yatras and Himalayan treks across Uttarakhand, run by local guides who
+          have walked these trails for years.
+        </p>
+        <div class="flex gap-3 mt-5">
+          <a href="{{site.instagram}}" class="slider-arrow w-10 h-10 bg-brand-700 border-brand-700 text-brand-100 hover:bg-gold-500 hover:text-ink hover:border-gold-500" aria-label="Instagram" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
+          </a>
+          <a href="{{site.facebook}}" class="slider-arrow w-10 h-10 bg-brand-700 border-brand-700 text-brand-100 hover:bg-gold-500 hover:text-ink hover:border-gold-500" aria-label="Facebook" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg>
+          </a>
+          <a href="{{site.youtube}}" class="slider-arrow w-10 h-10 bg-brand-700 border-brand-700 text-brand-100 hover:bg-gold-500 hover:text-ink hover:border-gold-500" aria-label="YouTube" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-semibold text-white text-base mb-4">Explore</h2>
+        <ul class="space-y-2.5 text-sm">
+          <li><a class="hover:text-gold-400 transition-colors" href="/yatras.html">All Yatras</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/about.html">About Us</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/services.html">Our Services</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/gallery.html">Gallery</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/faq.html">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-semibold text-white text-base mb-4">Popular Yatras</h2>
+        <ul class="space-y-2.5 text-sm">
+          <li><a class="hover:text-gold-400 transition-colors" href="/yatras.html">Kedarnath Yatra</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/yatras.html">Badrinath Yatra</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/yatras.html">Chopta - Tungnath</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/yatras.html">Har Ki Dun Trek</a></li>
+          <li><a class="hover:text-gold-400 transition-colors" href="/yatras.html">Do Dham &amp; Char Dham</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-heading font-semibold text-white text-base mb-4">Get in Touch</h2>
+        <ul class="space-y-3 text-sm">
+          <li class="flex gap-3">
+            <svg class="icon text-gold-400 mt-0.5" aria-hidden="true"><use href="#i-map-pin"/></svg>
+            <span>{{site.address}}</span>
+          </li>
+          <li class="flex gap-3">
+            <svg class="icon text-gold-400 mt-0.5" aria-hidden="true"><use href="#i-phone"/></svg>
+            <a class="hover:text-gold-400 transition-colors" href="tel:{{site.phoneRaw}}">{{site.phone}}</a>
+          </li>
+          <li class="flex gap-3">
+            <svg class="icon text-gold-400 mt-0.5" aria-hidden="true"><use href="#i-mail"/></svg>
+            <a class="hover:text-gold-400 transition-colors" href="mailto:{{site.email}}">{{site.email}}</a>
+          </li>
+        </ul>
+        <a class="btn btn-gold btn-sm mt-5" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+          Enquire on WhatsApp
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="border-t border-brand-700">
+    <div class="container-page py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brand-300">
+      <p>&copy; <span data-year>2026</span> {{site.name}}. All rights reserved.</p>
+      <div class="flex gap-5">
+        <a class="hover:text-gold-400 transition-colors" href="/privacy.html">Privacy Policy</a>
+        <a class="hover:text-gold-400 transition-colors" href="/terms.html">Terms</a>
+        <a class="hover:text-gold-400 transition-colors" href="/cancellation.html">Cancellation Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/{{site.whatsapp}}" rel="noopener"
+   class="fixed bottom-5 right-5 z-40 w-14 h-14 rounded-full bg-[#25D366] text-white grid place-items-center shadow-lg hover:scale-105 transition-transform"
+   aria-label="Chat on WhatsApp">
+  <svg class="icon text-2xl" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+</a>
