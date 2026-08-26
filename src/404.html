@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+  <title>Page Not Found - {{site.name}}</title>
+  <meta name="description" content="That page does not exist. Browse our Char Dham yatras and Himalayan treks instead.">
+  <meta name="robots" content="noindex">
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1 grid place-items-center">
+  <div class="container-page max-w-xl text-center py-20">
+    <span class="trust-icon mx-auto text-3xl">
+      <svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg>
+    </span>
+
+    <p class="eyebrow mt-6 justify-center">Error 404</p>
+    <h1 class="text-3xl lg:text-4xl mt-3">This trail does not go anywhere</h1>
+    <p class="mt-4 text-ink/70 leading-relaxed">
+      The page you were looking for has moved or never existed. Here are the ways back.
+    </p>
+
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a class="btn btn-primary btn-lg" href="/">
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-left"/></svg> Back to Home
+      </a>
+      <a class="btn btn-outline btn-lg" href="/yatras.html">Browse Yatras</a>
+    </div>
+
+    <ul class="mt-10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+      <li><a class="text-brand-600 hover:underline underline-offset-4" href="/about.html">About Us</a></li>
+      <li><a class="text-brand-600 hover:underline underline-offset-4" href="/services.html">Services</a></li>
+      <li><a class="text-brand-600 hover:underline underline-offset-4" href="/gallery.html">Gallery</a></li>
+      <li><a class="text-brand-600 hover:underline underline-offset-4" href="/faq.html">FAQ</a></li>
+      <li><a class="text-brand-600 hover:underline underline-offset-4" href="/contact.html">Contact</a></li>
+    </ul>
+  </div>
+</main>
+
+<!--@include footer.html-->
+</body>
+</html>

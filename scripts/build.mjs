@@ -107,6 +107,20 @@ async function loadData(name) {
       if (typeof item.price === 'number') {
         item.priceFormatted = item.price.toLocaleString('en-IN');
       }
+
+      // Built here rather than in the template: a repeated block cannot emit a
+      // comma-separated JSON array without a trailing comma, and invalid
+      // JSON-LD is silently dropped by search engines.
+      if (Array.isArray(item.itinerary)) {
+        item.itineraryLd = JSON.stringify(
+          item.itinerary.map((day, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: day.title,
+            description: day.text,
+          })),
+        );
+      }
     }
     dataCache.set(name, items);
   }
@@ -184,8 +198,11 @@ async function buildHtml(assets) {
     .map((file) => ({ out: file, src: join(SRC, file) }));
 
   for (const { data, template, path } of COLLECTIONS) {
+    const src = join(SRC, 'templates', template);
+    if (!existsSync(src)) continue; // template not written yet - skip, don't crash
+
     for (const item of await loadData(data)) {
-      jobs.push({ out: path(item), src: join(SRC, 'templates', template), item });
+      jobs.push({ out: path(item), src, item });
     }
   }
 
