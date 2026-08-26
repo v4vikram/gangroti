@@ -1,0 +1,64 @@
+<article class="card card-hover flex flex-col group" data-yatra
+         data-type="{{item.type}}" data-destination="{{item.destination}}"
+         data-days="{{item.days}}" data-price="{{item.price}}"
+         data-title="{{item.title}}">
+
+  <div class="media-4-3 relative">
+    <img src="/img/yatras/{{item.image}}.webp" alt="{{item.alt}}"
+         width="800" height="600" loading="lazy" decoding="async"
+         class="transition-transform duration-500 group-hover:scale-105">
+
+    <span class="absolute top-3 left-3 badge bg-white/95 backdrop-blur-sm shadow-sm">
+      <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg>
+      {{item.type}}
+    </span>
+  </div>
+
+  <div class="p-5 flex flex-col flex-1">
+    <h3 class="text-lg">
+      <a href="/yatras/{{item.slug}}.html" class="after:absolute after:inset-0 relative">
+        {{item.title}}
+      </a>
+    </h3>
+
+    <p class="mt-2 text-sm leading-relaxed text-ink/70 line-clamp-3">{{item.summary}}</p>
+
+    <dl class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-ink/75">
+      <div class="flex items-center gap-1.5">
+        <svg class="icon text-brand-600" aria-hidden="true"><use href="#i-clock"/></svg>
+        <dt class="sr-only">Duration</dt>
+        <dd>{{item.days}}D / {{item.nights}}N</dd>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="icon text-brand-600" aria-hidden="true"><use href="#i-trending-up"/></svg>
+        <dt class="sr-only">Difficulty</dt>
+        <dd>{{item.difficulty}}</dd>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="icon text-brand-600" aria-hidden="true"><use href="#i-mountain-snow"/></svg>
+        <dt class="sr-only">Maximum altitude</dt>
+        <dd>{{item.altitude}}</dd>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <svg class="icon text-brand-600" aria-hidden="true"><use href="#i-calendar"/></svg>
+        <dt class="sr-only">Best season</dt>
+        <dd>{{item.season}}</dd>
+      </div>
+    </dl>
+
+    <div class="mt-5 pt-4 border-t border-brand-100 flex items-end justify-between gap-3">
+      <p class="leading-tight">
+        <span class="block text-[0.6875rem] uppercase tracking-wider text-ink/50">From</span>
+        <span class="font-heading font-bold text-xl text-brand-700">
+          <svg class="icon text-[0.7em]" aria-hidden="true"><use href="#i-indian-rupee"/></svg>{{item.priceFormatted}}
+        </span>
+        <span class="text-[0.6875rem] text-ink/50">/ person</span>
+      </p>
+
+      <span class="btn btn-outline btn-sm group-hover:border-brand-600 group-hover:bg-brand-50">
+        View Details
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </span>
+    </div>
+  </div>
+</article>

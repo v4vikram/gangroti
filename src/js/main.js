@@ -4,6 +4,9 @@
  * they actually use.
  */
 import { initSliders } from './slider.js';
+import { initFilter } from './filter.js';
+import { initGallery } from './gallery.js';
+import { initForms } from './form.js';
 
 /* ------------------------------------------------------------------ header */
 
@@ -151,4 +154,7 @@ initMobileNav();
 initAccordions();
 initReveal();
 initSliders();
+initFilter();
+initGallery();
+initForms();
 initYear();

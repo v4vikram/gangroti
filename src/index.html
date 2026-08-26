@@ -1,8 +1,20 @@
 <html lang="en">
 <head>
-  <title>{{site.name}} - {{site.tagline}}</title>
+  <title>{{site.name}} - Char Dham Yatra &amp; Himalayan Treks in Uttarakhand</title>
   <meta name="description" content="{{site.description}}">
   <link rel="canonical" href="%%SITE_URL%%/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{site.name}} - {{site.tagline}}">
+  <meta property="og:description" content="{{site.description}}">
+  <meta property="og:url" content="%%SITE_URL%%/">
+  <meta property="og:image" content="%%SITE_URL%%/img/hero/hero-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- The hero is the LCP element, so its image starts downloading before the
+       CSS has even finished parsing. -->
+  <link rel="preload" as="image" href="/img/hero/hero-1.webp" fetchpriority="high">
+
   <!--@include head-assets.html-->
 </head>
 <body class="min-h-screen flex flex-col">
@@ -10,30 +22,542 @@
 <!--@include header.html-->
 
 <main id="main" class="flex-1">
-  <section class="section">
-    <div class="container-page max-w-3xl">
-      <span class="eyebrow">
-        <svg class="icon" aria-hidden="true"><use href="#i-trishul"/></svg>
-        Phase 0 complete
-      </span>
-      <h1 class="text-4xl lg:text-5xl mt-3">Foundation is in place.</h1>
-      <p class="mt-4 text-lg leading-relaxed text-brand-800/70">
-        Design tokens, self-hosted fonts, the icon sprite, the custom slider and the
-        build pipeline are all wired up. The real home page gets built in Phase 2 -
-        review the components first.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a class="btn btn-primary btn-lg" href="/styleguide.html">
-          Open the Style Guide <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+
+  <!-- ==================================================== hero ============ -->
+  <section class="relative" aria-label="Featured journeys">
+    <div class="slider" data-slider data-per-view="1" data-autoplay="6000" data-loop>
+      <div class="slider-viewport">
+        <ul class="slider-track">
+
+          <li class="slider-slide w-full relative">
+            <div class="media-16-9 md:aspect-auto md:h-[38rem]">
+              <img src="/img/hero/hero-1.webp" alt="Kedarnath temple below the snow-covered Kedarnath peak"
+                   width="1920" height="1080" fetchpriority="high" decoding="async">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <span class="eyebrow text-gold-400">
+                <svg class="icon" aria-hidden="true"><use href="#i-trishul"/></svg>
+                Char Dham 2026
+              </span>
+              <h1 class="hero-title">Spiritual Journeys.<br>Timeless Memories.</h1>
+              <p class="hero-text">
+                Curated yatras to the most sacred destinations in the Himalayas, led by guides
+                who have walked these trails for years.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-gold btn-lg" href="/yatras.html">
+                  Explore Yatras <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+                <a class="btn btn-ghost-light btn-lg" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+                  <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Enquire Now
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="slider-slide w-full relative">
+            <div class="media-16-9 md:aspect-auto md:h-[38rem]">
+              <img src="/img/hero/hero-2.webp" alt="The ridge trail to Chandrashila summit above Chopta"
+                   width="1920" height="1080" loading="lazy" decoding="async">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <span class="eyebrow text-gold-400">
+                <svg class="icon" aria-hidden="true"><use href="#i-footprints"/></svg>
+                Weekend Treks
+              </span>
+              <p class="hero-title">Chopta - Tungnath<br>&amp; Chandrashila</p>
+              <p class="hero-text">
+                The world's highest Shiva temple, and a sunrise summit with Nanda Devi,
+                Trishul and Chaukhamba on the horizon.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-gold btn-lg" href="/yatras/chopta-tungnath-yatra.html">
+                  View Itinerary <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li class="slider-slide w-full relative">
+            <div class="media-16-9 md:aspect-auto md:h-[38rem]">
+              <img src="/img/hero/hero-3.webp" alt="The Bhagirathi river below the Himalayan range at Gangotri"
+                   width="1920" height="1080" loading="lazy" decoding="async">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <span class="eyebrow text-gold-400">
+                <svg class="icon" aria-hidden="true"><use href="#i-mountain-snow"/></svg>
+                Small Groups
+              </span>
+              <p class="hero-title">Where the Ganga<br>Begins.</p>
+              <p class="hero-text">
+                Gangotri, Yamunotri and everything between - planned at a pace that leaves
+                room to actually be there.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-gold btn-lg" href="/yatras.html">
+                  All Journeys <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+                </a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="hidden md:flex absolute bottom-8 right-8 z-20 gap-2">
+        <button type="button" class="slider-arrow bg-white/15 border-white/30 text-white backdrop-blur-sm hover:bg-white hover:text-brand-700" data-slider-prev aria-label="Previous slide">
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+        </button>
+        <button type="button" class="slider-arrow bg-white/15 border-white/30 text-white backdrop-blur-sm hover:bg-white hover:text-brand-700" data-slider-next aria-label="Next slide">
+          <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+        </button>
+      </div>
+
+      <div class="slider-dots absolute bottom-8 left-1/2 -translate-x-1/2 z-20 md:left-8 md:translate-x-0" data-slider-dots></div>
+    </div>
+
+    <!-- Search sits half over the hero on desktop, below it on mobile. -->
+    <div class="container-page relative z-30 md:-mt-14">
+      <form class="search-bar" action="/yatras.html" method="get" role="search">
+        <div class="search-field">
+          <label class="label" for="s-destination">Destination</label>
+          <select class="field" id="s-destination" name="destination">
+            <option value="">Any destination</option>
+            <option value="Kedarnath">Kedarnath</option>
+            <option value="Badrinath">Badrinath</option>
+            <option value="Chopta">Chopta - Tungnath</option>
+            <option value="Har Ki Dun">Har Ki Dun</option>
+            <option value="Valley of Flowers">Valley of Flowers</option>
+            <option value="Char Dham">Char Dham</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label class="label" for="s-duration">Duration</label>
+          <select class="field" id="s-duration" name="duration">
+            <option value="">Any length</option>
+            <option value="1-3">1 - 3 days</option>
+            <option value="4-6">4 - 6 days</option>
+            <option value="7-99">7 days or more</option>
+          </select>
+        </div>
+
+        <div class="search-field">
+          <label class="label" for="s-month">Month</label>
+          <select class="field" id="s-month" name="month">
+            <option value="">Any month</option>
+            <option>April</option><option>May</option><option>June</option>
+            <option>July</option><option>August</option><option>September</option>
+            <option>October</option><option>November</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary btn-lg w-full md:w-auto md:self-end" type="submit">
+          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+          Search
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==================================================== trust =========== -->
+  <section class="section pt-10 md:pt-14" aria-label="Why travel with us">
+    <div class="container-page">
+      <ul class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8">
+        <li class="flex flex-col items-center text-center gap-3" data-reveal>
+          <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg></span>
+          <h2 class="text-base">Expert Guides</h2>
+          <p class="text-sm text-ink/65">Local leaders, certified in high-altitude first aid.</p>
+        </li>
+        <li class="flex flex-col items-center text-center gap-3" data-reveal>
+          <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-trishul"/></svg></span>
+          <h2 class="text-base">Spiritual Experience</h2>
+          <p class="text-sm text-ink/65">Darshan timed to avoid the crush, priests arranged.</p>
+        </li>
+        <li class="flex flex-col items-center text-center gap-3" data-reveal>
+          <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-bed"/></svg></span>
+          <h2 class="text-base">Comfortable Stays</h2>
+          <p class="text-sm text-ink/65">Vetted hotels and camps, never a last-minute room.</p>
+        </li>
+        <li class="flex flex-col items-center text-center gap-3" data-reveal>
+          <span class="trust-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
+          <h2 class="text-base">Safe &amp; Memorable</h2>
+          <p class="text-sm text-ink/65">Oxygen, medical kit and evacuation plan on every trip.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================================================== yatras ========== -->
+  <section class="section bg-mist" aria-labelledby="popular-yatras">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div class="max-w-2xl">
+          <span class="eyebrow">
+            <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg> Popular Yatras
+          </span>
+          <h2 id="popular-yatras" class="text-3xl lg:text-4xl mt-3">Journeys people come back for</h2>
+          <p class="mt-3 text-ink/70 leading-relaxed">
+            Fixed departures with published itineraries, real altitudes and honest difficulty
+            ratings - so you know what you are signing up for before you pay.
+          </p>
+        </div>
+        <a class="btn btn-outline" href="/yatras.html">
+          View All Yatras <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
         </a>
-        <a class="btn btn-outline btn-lg" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
-          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!--@each yatras:yatra-card.html limit=6-->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== why us ========== -->
+  <section class="section" aria-labelledby="why-us">
+    <div class="container-page grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="media-4-3 rounded-card row-span-2 h-full">
+          <img src="/img/gallery/gallery-2.webp" alt="Trekkers crossing a Himalayan trail in Uttarakhand"
+               width="800" height="800" loading="lazy" decoding="async">
+        </div>
+        <div class="media-4-3 rounded-card">
+          <img src="/img/gallery/gallery-4.webp" alt="Deoria Tal reflecting the surrounding peaks"
+               width="800" height="800" loading="lazy" decoding="async">
+        </div>
+        <div class="media-4-3 rounded-card">
+          <img src="/img/gallery/gallery-6.webp" alt="Snow-covered slopes at Auli in Uttarakhand"
+               width="800" height="800" loading="lazy" decoding="async">
+        </div>
+      </div>
+
+      <div data-reveal>
+        <span class="eyebrow">
+          <svg class="icon" aria-hidden="true"><use href="#i-mountain"/></svg> Why Gangotri Expeditions
+        </span>
+        <h2 id="why-us" class="text-3xl lg:text-4xl mt-3">We live here. That is the whole difference.</h2>
+        <p class="mt-4 text-ink/70 leading-relaxed">
+          Our team is based in Uttarakhand, not in a call centre. We know which stretch of the
+          Kedarnath trail turns slippery after rain, which dhaba is worth stopping at, and when
+          the darshan queue actually thins out.
+        </p>
+
+        <ul class="mt-8 space-y-5">
+          <li class="flex gap-4">
+            <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-badge-check"/></svg></span>
+            <div>
+              <h3 class="text-base">No hidden costs</h3>
+              <p class="mt-1 text-sm text-ink/65">Inclusions and exclusions are listed in full on every itinerary page. The price you see is the price you pay.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
+            <div>
+              <h3 class="text-base">Small groups</h3>
+              <p class="mt-1 text-sm text-ink/65">Capped at 15 people, so nobody is left behind on a climb and everyone gets a seat at dinner.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-shield-check"/></svg></span>
+            <div>
+              <h3 class="text-base">Altitude taken seriously</h3>
+              <p class="mt-1 text-sm text-ink/65">Acclimatisation days are built into the schedule, and every group carries oxygen and a pulse oximeter.</p>
+            </div>
+          </li>
+        </ul>
+
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-brand-100 pt-6">
+          <div><dt class="text-sm text-ink/60">Yatris hosted</dt><dd class="stat">8,500+</dd></div>
+          <div><dt class="text-sm text-ink/60">Years running</dt><dd class="stat">12</dd></div>
+          <div><dt class="text-sm text-ink/60">Repeat guests</dt><dd class="stat">40%</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== gallery ========= -->
+  <section class="section bg-mist" aria-labelledby="gallery-preview">
+    <div class="container-page">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+        <div class="max-w-2xl">
+          <span class="eyebrow">
+            <svg class="icon" aria-hidden="true"><use href="#i-camera"/></svg> Gallery
+          </span>
+          <h2 id="gallery-preview" class="text-3xl lg:text-4xl mt-3">From our recent departures</h2>
+        </div>
+        <a class="btn btn-outline" href="/gallery.html">
+          Open Gallery <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+
+      <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <li class="media-4-3 aspect-square rounded-card"><img src="/img/gallery/gallery-1.webp" alt="Yamunotri temple in the Garhwal Himalaya" width="800" height="800" loading="lazy" decoding="async"></li>
+        <li class="media-4-3 aspect-square rounded-card"><img src="/img/gallery/gallery-2.webp" alt="A trekking group on a Himalayan trail" width="800" height="800" loading="lazy" decoding="async"></li>
+        <li class="media-4-3 aspect-square rounded-card"><img src="/img/gallery/gallery-3.webp" alt="The Ganga at Rishikesh" width="800" height="800" loading="lazy" decoding="async"></li>
+        <li class="media-4-3 aspect-square rounded-card"><img src="/img/gallery/gallery-4.webp" alt="Deoria Tal at first light" width="800" height="800" loading="lazy" decoding="async"></li>
+        <li class="media-4-3 aspect-square rounded-card"><img src="/img/gallery/gallery-5.webp" alt="Nanda Devi peak" width="800" height="800" loading="lazy" decoding="async"></li>
+        <li class="media-4-3 aspect-square rounded-card"><img src="/img/gallery/gallery-6.webp" alt="Snow at Auli" width="800" height="800" loading="lazy" decoding="async"></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================================================== reviews ========= -->
+  <section class="section" aria-labelledby="reviews">
+    <div class="container-page">
+      <div class="max-w-2xl mb-10">
+        <span class="eyebrow">
+          <svg class="icon" aria-hidden="true"><use href="#i-quote"/></svg> Yatri Stories
+        </span>
+        <h2 id="reviews" class="text-3xl lg:text-4xl mt-3">What our travellers say</h2>
+      </div>
+
+      <div class="slider" data-slider data-per-view="1" data-per-view-md="2" data-per-view-lg="3" data-gap="24" data-loop>
+        <div class="slider-viewport">
+          <ul class="slider-track">
+            <li class="slider-slide"><figure class="review-card">
+              <div class="review-stars" aria-label="Rated 5 out of 5">
+                <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+              </div>
+              <blockquote class="mt-4 text-sm leading-relaxed text-ink/75">
+                My parents are both over sixty and I was nervous about Kedarnath. The team paced
+                the whole climb around them and arranged a palki without me even asking twice.
+              </blockquote>
+              <figcaption class="review-by">Anjali Sharma <span>Kedarnath Yatra, June 2025</span></figcaption>
+            </figure></li>
+
+            <li class="slider-slide"><figure class="review-card">
+              <div class="review-stars" aria-label="Rated 5 out of 5">
+                <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+              </div>
+              <blockquote class="mt-4 text-sm leading-relaxed text-ink/75">
+                Third trek with them. What I appreciate is that nothing is oversold - the
+                difficulty rating on the site is exactly what you get on the ground.
+              </blockquote>
+              <figcaption class="review-by">Rohit Menon <span>Har Ki Dun Trek, May 2025</span></figcaption>
+            </figure></li>
+
+            <li class="slider-slide"><figure class="review-card">
+              <div class="review-stars" aria-label="Rated 5 out of 5">
+                <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+              </div>
+              <blockquote class="mt-4 text-sm leading-relaxed text-ink/75">
+                Weather turned on us at Chandrashila and they called it off an hour from the top.
+                Disappointing at the time, obviously right in hindsight.
+              </blockquote>
+              <figcaption class="review-by">Priya Nair <span>Chopta - Tungnath, Feb 2025</span></figcaption>
+            </figure></li>
+
+            <li class="slider-slide"><figure class="review-card">
+              <div class="review-stars" aria-label="Rated 5 out of 5">
+                <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+              </div>
+              <blockquote class="mt-4 text-sm leading-relaxed text-ink/75">
+                Booked the full Char Dham circuit for eleven days. Hotels were clean, drivers
+                were calm on those roads, and the rest days made all the difference.
+              </blockquote>
+              <figcaption class="review-by">Suresh Iyer <span>Char Dham Yatra, Sept 2025</span></figcaption>
+            </figure></li>
+          </ul>
+        </div>
+
+        <div class="mt-8 flex items-center justify-between">
+          <div class="slider-dots" data-slider-dots></div>
+          <div class="flex gap-2">
+            <button type="button" class="slider-arrow" data-slider-prev aria-label="Previous reviews">
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+            </button>
+            <button type="button" class="slider-arrow" data-slider-next aria-label="Next reviews">
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== faq ============= -->
+  <section class="section bg-mist" aria-labelledby="faq">
+    <div class="container-page grid gap-10 lg:grid-cols-[22rem_1fr] lg:gap-16">
+      <div>
+        <span class="eyebrow">
+          <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg> FAQ
+        </span>
+        <h2 id="faq" class="text-3xl lg:text-4xl mt-3">Before you book</h2>
+        <p class="mt-3 text-ink/70 leading-relaxed">
+          Anything not covered here, message us on WhatsApp - a real person answers.
+        </p>
+        <a class="btn btn-primary mt-6" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Ask a Question
+        </a>
+      </div>
+
+      <div data-accordion data-accordion-single class="divide-y divide-brand-100 border-y border-brand-100">
+        <div>
+          <h3>
+            <button type="button" class="accordion-trigger" data-accordion-trigger aria-expanded="false" aria-controls="faq-1">
+              <span>What is the best time for the Char Dham Yatra?</span>
+              <svg class="icon accordion-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="faq-1">
+            <p class="accordion-body">The portals open around late April or early May and close in the first week of November. May to June and September to October are the most comfortable. July and August bring heavy monsoon rain and a real risk of landslides on the Kedarnath and Badrinath routes.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>
+            <button type="button" class="accordion-trigger" data-accordion-trigger aria-expanded="false" aria-controls="faq-2">
+              <span>How difficult is the Kedarnath trek?</span>
+              <svg class="icon accordion-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="faq-2">
+            <p class="accordion-body">It is 16 km each way from Gaurikund, climbing to 3,583 m, and most people take 6 to 8 hours going up. It is a well-made stone path rather than technical terrain, so ordinary fitness is enough - but the altitude is real. Ponies, palkis and helicopter transfers can all be arranged in advance.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>
+            <button type="button" class="accordion-trigger" data-accordion-trigger aria-expanded="false" aria-controls="faq-3">
+              <span>Do I need to register for the yatra?</span>
+              <svg class="icon accordion-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="faq-3">
+            <p class="accordion-body">Yes. Uttarakhand requires every Char Dham traveller to carry a registration with a Yatra e-pass. We complete it for you once you send a photo ID, so there is nothing to queue for on arrival.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>
+            <button type="button" class="accordion-trigger" data-accordion-trigger aria-expanded="false" aria-controls="faq-4">
+              <span>What is included in the package price?</span>
+              <svg class="icon accordion-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="faq-4">
+            <p class="accordion-body">Accommodation, breakfast and dinner, all transfers in a private vehicle, a guide throughout, permits and registration, and first-aid and oxygen support. Airfare, lunches, pony or palki charges, and anything personal are not included - each itinerary page lists both sides in full.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3>
+            <button type="button" class="accordion-trigger" data-accordion-trigger aria-expanded="false" aria-controls="faq-5">
+              <span>Can senior citizens do the yatra?</span>
+              <svg class="icon accordion-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </button>
+          </h3>
+          <div class="accordion-panel" id="faq-5">
+            <p class="accordion-body">Regularly, yes. Badrinath, Gangotri and Yamunotri are largely road journeys. For Kedarnath we arrange a pony, palki or helicopter. We do ask anyone over 60, or with a heart or respiratory condition, to bring a doctor's clearance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== cta ============= -->
+  <section class="cta-band">
+    <div class="container-page text-center max-w-3xl">
+      <span class="eyebrow text-gold-400">
+        <svg class="icon" aria-hidden="true"><use href="#i-trishul"/></svg> Har Har Mahadev
+      </span>
+      <p class="text-3xl lg:text-4xl font-heading font-bold text-white mt-3 text-balance">
+        Planning a yatra for 2026?
+      </p>
+      <p class="mt-4 text-brand-100 leading-relaxed">
+        Tell us your dates and who is travelling. We will send back an itinerary and a
+        straight price - usually within a few hours.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a class="btn btn-gold btn-lg" href="/contact.html">
+          <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> Get a Free Quote
+        </a>
+        <a class="btn btn-ghost-light btn-lg" href="tel:{{site.phoneRaw}}">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg> {{site.phone}}
         </a>
       </div>
     </div>
   </section>
+
 </main>
 
 <!--@include footer.html-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TravelAgency",
+      "@id": "%%SITE_URL%%/#org",
+      "name": "{{site.name}}",
+      "url": "%%SITE_URL%%/",
+      "logo": "%%SITE_URL%%/img/logo-lockup.png",
+      "image": "%%SITE_URL%%/img/hero/hero-1.jpg",
+      "description": "{{site.description}}",
+      "telephone": "{{site.phoneRaw}}",
+      "email": "{{site.email}}",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "{{site.locality}}",
+        "addressRegion": "{{site.region}}",
+        "postalCode": "{{site.postalCode}}",
+        "addressCountry": "{{site.country}}"
+      },
+      "areaServed": { "@type": "State", "name": "Uttarakhand" },
+      "priceRange": "INR 6500 - INR 32900"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "%%SITE_URL%%/#website",
+      "url": "%%SITE_URL%%/",
+      "name": "{{site.name}}",
+      "publisher": { "@id": "%%SITE_URL%%/#org" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "%%SITE_URL%%/yatras.html?destination={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "%%SITE_URL%%/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the best time for the Char Dham Yatra?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The portals open around late April or early May and close in the first week of November. May to June and September to October are the most comfortable. July and August bring heavy monsoon rain and a real risk of landslides on the Kedarnath and Badrinath routes." }
+        },
+        {
+          "@type": "Question",
+          "name": "How difficult is the Kedarnath trek?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It is 16 km each way from Gaurikund, climbing to 3,583 m, and most people take 6 to 8 hours going up. It is a well-made stone path rather than technical terrain, so ordinary fitness is enough, but the altitude is real. Ponies, palkis and helicopter transfers can all be arranged in advance." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to register for the yatra?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Uttarakhand requires every Char Dham traveller to carry a registration with a Yatra e-pass. We complete it for you once you send a photo ID, so there is nothing to queue for on arrival." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is included in the package price?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Accommodation, breakfast and dinner, all transfers in a private vehicle, a guide throughout, permits and registration, and first-aid and oxygen support. Airfare, lunches, pony or palki charges, and anything personal are not included." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can senior citizens do the yatra?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Regularly, yes. Badrinath, Gangotri and Yamunotri are largely road journeys. For Kedarnath we arrange a pony, palki or helicopter. We do ask anyone over 60, or with a heart or respiratory condition, to bring a doctor's clearance." }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </body>
 </html>

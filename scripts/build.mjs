@@ -16,7 +16,7 @@ import { readFile, writeFile, mkdir, rm, cp, readdir } from 'node:fs/promises';
 import { existsSync, watch } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { createServer } from 'node:http';
-import { extname, join } from 'node:path';
+import { dirname, extname, join } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { minify as minifyHtml } from 'html-minifier-terser';
@@ -32,6 +32,11 @@ const SERVE = args.includes('--serve');
 const SRC = 'src';
 const OUT = 'dist';
 const env = PROD ? site.prod : site.dev;
+
+/** Data-driven pages: one output per entry, rendered from a shared template. */
+const COLLECTIONS = [
+  { data: 'yatras', template: 'yatra.html', path: (item) => `yatras/${item.slug}.html` },
+];
 
 const hash = (buf) => createHash('sha256').update(buf).digest('hex').slice(0, 8);
 
@@ -84,6 +89,75 @@ async function copyStatic() {
   }
 }
 
+/**
+ * `<!--@each yatras:yatra-card.html limit=3-->` renders src/partials/yatra-card.html
+ * once per entry in src/data/yatras.json, substituting {{item.key}}.
+ *
+ * This exists so a card is authored once. In Phase 7 the same partial becomes
+ * the WordPress template part and the JSON becomes the `yatra` post type, so
+ * the loop is the only thing that changes.
+ */
+const dataCache = new Map();
+
+async function loadData(name) {
+  if (!dataCache.has(name)) {
+    const items = JSON.parse(await readFile(join(SRC, 'data', `${name}.json`), 'utf8'));
+
+    for (const item of items) {
+      if (typeof item.price === 'number') {
+        item.priceFormatted = item.price.toLocaleString('en-IN');
+      }
+    }
+    dataCache.set(name, items);
+  }
+  return dataCache.get(name);
+}
+
+async function expandEach(html) {
+  const re = /<!--\s*@each\s+(\w+):([\w.-]+)(?:\s+limit=(\d+))?\s*-->/g;
+  let out = html;
+
+  for (const [tag, name, partial, limit] of [...html.matchAll(re)]) {
+    const items = await loadData(name);
+    const tpl = await readFile(join(SRC, 'partials', partial), 'utf8');
+    const slice = limit ? items.slice(0, Number(limit)) : items;
+
+    out = out.replace(tag, slice.map((item) => renderItem(tpl, item)).join('\n'));
+  }
+  return out;
+}
+
+/**
+ * `<!--@list itinerary-->...<!--@endlist-->` repeats its body once per entry in
+ * that array on the current item, exposing each entry as {{it.key}} (or {{it}}
+ * for an array of plain strings) and its 1-based position as {{n}}.
+ */
+function expandLists(tpl, item) {
+  return tpl.replace(
+    /<!--\s*@list\s+(\w+)\s*-->([\s\S]*?)<!--\s*@endlist\s*-->/g,
+    (_, key, body) => {
+      const entries = item[key];
+      if (!Array.isArray(entries)) return '';
+
+      return entries
+        .map((entry, i) =>
+          body
+            .replace(/\{\{it\.(\w+)\}\}/g, (m, k) => entry?.[k] ?? '')
+            .replace(/\{\{it\}\}/g, typeof entry === 'string' ? entry : '')
+            .replace(/\{\{n\}\}/g, String(i + 1)),
+        )
+        .join('');
+    },
+  );
+}
+
+function renderItem(tpl, item) {
+  return expandLists(tpl, item).replace(
+    /\{\{item\.(\w+)\}\}/g,
+    (m, key) => (item[key] == null ? '' : item[key]),
+  );
+}
+
 async function expandIncludes(html, depth = 0) {
   if (depth > 5) throw new Error('@include nested more than 5 deep - probably a loop');
   const re = /<!--\s*@include\s+([\w./-]+)\s*-->/g;
@@ -103,11 +177,25 @@ async function buildHtml(assets) {
     ? await readFile(join(SRC, 'icons/sprite.svg'), 'utf8')
     : '';
 
-  const pages = (await readdir(SRC)).filter((f) => f.endsWith('.html'));
+  // Standalone pages, plus one page per entry in a data collection. The
+  // collection templates are the ones that become single-*.php in Phase 7.
+  const jobs = (await readdir(SRC))
+    .filter((f) => f.endsWith('.html'))
+    .map((file) => ({ out: file, src: join(SRC, file) }));
+
+  for (const { data, template, path } of COLLECTIONS) {
+    for (const item of await loadData(data)) {
+      jobs.push({ out: path(item), src: join(SRC, 'templates', template), item });
+    }
+  }
+
   let total = 0;
 
-  for (const page of pages) {
-    let html = await readFile(join(SRC, page), 'utf8');
+  for (const job of jobs) {
+    let html = await readFile(job.src, 'utf8');
+
+    if (job.item) html = renderItem(html, job.item);
+    html = await expandEach(html);
     html = await expandIncludes(html);
 
     html = html
@@ -132,11 +220,13 @@ async function buildHtml(assets) {
       });
     }
 
-    await writeFile(join(OUT, page), html);
+    const dest = join(OUT, job.out);
+    await mkdir(dirname(dest), { recursive: true });
+    await writeFile(dest, html);
     total += Buffer.byteLength(html);
   }
 
-  return { pages: pages.length, size: total };
+  return { pages: jobs.length, size: total };
 }
 
 async function buildRobots() {

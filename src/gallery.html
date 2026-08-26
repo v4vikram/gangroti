@@ -1,0 +1,201 @@
+<html lang="en">
+<head>
+  <title>Gallery - Photos from Our Yatras &amp; Treks | {{site.name}}</title>
+  <meta name="description" content="Photographs from our Char Dham yatras and Himalayan treks across Uttarakhand - Kedarnath, Badrinath, Chopta Tungnath, Har Ki Dun, Valley of Flowers, Deoria Tal and Auli.">
+  <link rel="canonical" href="%%SITE_URL%%/gallery.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gallery - {{site.name}}">
+  <meta property="og:url" content="%%SITE_URL%%/gallery.html">
+  <meta property="og:image" content="%%SITE_URL%%/img/gallery/gallery-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1">
+
+  <section class="page-head">
+    <div class="container-page">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Gallery</li>
+        </ol>
+      </nav>
+      <h1 class="text-3xl lg:text-5xl mt-3 text-white">Gallery</h1>
+      <p class="mt-4 max-w-2xl text-brand-100 leading-relaxed">
+        Temples, trails and the people who walk them. Photographs from recent departures
+        across Garhwal.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+
+      <!-- Tabs filter the grid in place. Without JS every item stays visible. -->
+      <div class="gallery-tabs" data-gallery-tabs role="tablist" aria-label="Filter photos">
+        <button type="button" class="gallery-tab is-active" data-gallery-filter="all" role="tab" aria-selected="true">All</button>
+        <button type="button" class="gallery-tab" data-gallery-filter="temples" role="tab" aria-selected="false">Temples</button>
+        <button type="button" class="gallery-tab" data-gallery-filter="treks" role="tab" aria-selected="false">Treks</button>
+        <button type="button" class="gallery-tab" data-gallery-filter="landscape" role="tab" aria-selected="false">Landscapes</button>
+      </div>
+
+      <ul class="gallery-grid mt-8" data-gallery-grid>
+        <li data-cat="temples">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/gallery/gallery-1.webp"
+                  data-caption="Yamunotri temple, Garhwal Himalaya">
+            <img src="/img/gallery/gallery-1.webp" alt="Yamunotri temple in the Garhwal Himalaya" width="800" height="800" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="treks">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/gallery/gallery-2.webp"
+                  data-caption="On the trail in Uttarakhand">
+            <img src="/img/gallery/gallery-2.webp" alt="A trekking group on a Himalayan trail in Uttarakhand" width="800" height="800" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="landscape">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/gallery/gallery-3.webp"
+                  data-caption="The Ganga at Rishikesh">
+            <img src="/img/gallery/gallery-3.webp" alt="The Ganga flowing past Rishikesh" width="800" height="800" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="landscape">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/gallery/gallery-4.webp"
+                  data-caption="Deoria Tal at first light">
+            <img src="/img/gallery/gallery-4.webp" alt="Deoria Tal reflecting the surrounding peaks" width="800" height="800" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="landscape">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/gallery/gallery-5.webp"
+                  data-caption="Nanda Devi from the east">
+            <img src="/img/gallery/gallery-5.webp" alt="The Nanda Devi peak in Uttarakhand" width="800" height="800" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="treks">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/gallery/gallery-6.webp"
+                  data-caption="Snow at Auli">
+            <img src="/img/gallery/gallery-6.webp" alt="Snow-covered slopes at Auli in Uttarakhand" width="800" height="800" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="temples">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/yatras/kedarnath-yatra.webp"
+                  data-caption="Kedarnath temple below the peak">
+            <img src="/img/yatras/kedarnath-yatra.webp" alt="Kedarnath temple with the Kedarnath peak behind it" width="800" height="600" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="temples">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/yatras/badrinath-yatra.webp"
+                  data-caption="Badrinath temple">
+            <img src="/img/yatras/badrinath-yatra.webp" alt="The painted facade of Badrinath temple" width="800" height="600" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="treks">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/yatras/chopta-tungnath-yatra.webp"
+                  data-caption="The ridge to Chandrashila">
+            <img src="/img/yatras/chopta-tungnath-yatra.webp" alt="Trekkers on the ridge trail to Chandrashila summit" width="800" height="600" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="landscape">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/yatras/har-ki-dun-trek.webp"
+                  data-caption="The Har Ki Dun valley">
+            <img src="/img/yatras/har-ki-dun-trek.webp" alt="The green cradle of the Har Ki Dun valley" width="800" height="600" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="landscape">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/yatras/valley-of-flowers.webp"
+                  data-caption="Valley of Flowers in bloom">
+            <img src="/img/yatras/valley-of-flowers.webp" alt="Alpine flowers in the Valley of Flowers national park" width="800" height="600" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+        <li data-cat="temples">
+          <button type="button" class="gallery-item" data-lightbox
+                  data-full="/img/yatras/char-dham-yatra.webp"
+                  data-caption="Gangotri temple on the Bhagirathi">
+            <img src="/img/yatras/char-dham-yatra.webp" alt="Gangotri temple beside the Bhagirathi river" width="800" height="600" loading="lazy" decoding="async">
+            <span class="gallery-zoom"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+          </button>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container-page text-center max-w-3xl">
+      <p class="text-3xl lg:text-4xl font-heading font-bold text-white text-balance">
+        Your photos could be next
+      </p>
+      <p class="mt-4 text-brand-100 leading-relaxed">
+        Pick a departure, and we will handle everything between the airport and the summit.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a class="btn btn-gold btn-lg" href="/yatras.html">
+          Browse Yatras <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+        </a>
+        <a class="btn btn-ghost-light btn-lg" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--@include footer.html-->
+
+<!-- Lightbox shell. Populated on click, so it costs nothing until used. -->
+<dialog class="lightbox" data-lightbox-dialog aria-label="Photo viewer">
+  <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">
+    <svg class="icon text-xl" aria-hidden="true"><use href="#i-x"/></svg>
+  </button>
+  <button type="button" class="lightbox-nav left-3" data-lightbox-prev aria-label="Previous photo">
+    <svg class="icon text-xl" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+  </button>
+  <figure class="lightbox-figure">
+    <img alt="" data-lightbox-img width="1200" height="900">
+    <figcaption data-lightbox-caption></figcaption>
+  </figure>
+  <button type="button" class="lightbox-nav right-3" data-lightbox-next aria-label="Next photo">
+    <svg class="icon text-xl" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+  </button>
+</dialog>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "%%SITE_URL%%/" },
+    { "@type": "ListItem", "position": 2, "name": "Gallery", "item": "%%SITE_URL%%/gallery.html" }
+  ]
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<html lang="en">
+<head>
+  <title>Contact Us - Plan Your Yatra | {{site.name}}</title>
+  <meta name="description" content="Talk to Gangotri Expeditions about your Char Dham yatra or Himalayan trek. Call {{site.phone}}, message us on WhatsApp, or send an enquiry and we will reply with an itinerary and a price.">
+  <link rel="canonical" href="%%SITE_URL%%/contact.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact {{site.name}}">
+  <meta property="og:url" content="%%SITE_URL%%/contact.html">
+  <meta property="og:image" content="%%SITE_URL%%/img/hero/hero-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1">
+
+  <section class="page-head">
+    <div class="container-page">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Contact</li>
+        </ol>
+      </nav>
+      <h1 class="text-3xl lg:text-5xl mt-3 text-white">Contact Us</h1>
+      <p class="mt-4 max-w-2xl text-brand-100 leading-relaxed">
+        Tell us your dates and who is travelling. We usually reply within a few hours with a
+        suggested itinerary and a straight price.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page grid gap-10 lg:grid-cols-[1fr_22rem] lg:gap-14">
+
+      <div>
+        <h2 class="text-2xl lg:text-3xl">Send an enquiry</h2>
+        <p class="mt-2 text-ink/70 leading-relaxed">
+          No obligation, and we will not add you to a mailing list.
+        </p>
+
+        <!-- Posts to the WordPress AJAX handler in Phase 7. Until then the
+             submit is intercepted and the values are handed to WhatsApp. -->
+        <form class="mt-8 grid gap-5 sm:grid-cols-2" data-enquiry-form novalidate>
+
+          <!-- Honeypot: hidden from people, irresistible to bots. -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div>
+            <label class="label" for="name">Your name <span class="req">*</span></label>
+            <input class="field" type="text" id="name" name="name" required autocomplete="name" placeholder="Ramesh Kumar">
+          </div>
+
+          <div>
+            <label class="label" for="phone">Phone / WhatsApp <span class="req">*</span></label>
+            <input class="field" type="tel" id="phone" name="phone" required autocomplete="tel"
+                   inputmode="tel" pattern="[0-9+ ()-]{7,}" placeholder="+91 98765 43210">
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="label" for="email">Email</label>
+            <input class="field" type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com">
+          </div>
+
+          <div>
+            <label class="label" for="yatra">Which yatra?</label>
+            <select class="field" id="yatra" name="yatra">
+              <option value="">Not decided yet</option>
+              <option>Kedarnath Yatra</option>
+              <option>Badrinath Yatra</option>
+              <option>Chopta - Tungnath Trek</option>
+              <option>Har Ki Dun Trek</option>
+              <option>Valley of Flowers</option>
+              <option>Char Dham Yatra</option>
+              <option>Custom itinerary</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="label" for="travellers">Number of travellers</label>
+            <input class="field" type="number" id="travellers" name="travellers" min="1" max="60" placeholder="4">
+          </div>
+
+          <div>
+            <label class="label" for="date">Preferred start date</label>
+            <input class="field" type="date" id="date" name="date">
+          </div>
+
+          <div>
+            <label class="label" for="budget">Budget per person</label>
+            <select class="field" id="budget" name="budget">
+              <option value="">No fixed budget</option>
+              <option>Under &#8377; 10,000</option>
+              <option>&#8377; 10,000 - 20,000</option>
+              <option>&#8377; 20,000 - 35,000</option>
+              <option>Above &#8377; 35,000</option>
+            </select>
+          </div>
+
+          <div class="sm:col-span-2">
+            <label class="label" for="message">Anything we should know?</label>
+            <textarea class="field" id="message" name="message" rows="4"
+                      placeholder="Travelling with elderly parents, need a helicopter transfer for Kedarnath..."></textarea>
+          </div>
+
+          <div class="sm:col-span-2 flex flex-wrap items-center gap-4">
+            <button class="btn btn-primary btn-lg" type="submit">
+              <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> Send Enquiry
+            </button>
+            <p class="text-xs text-ink/55">
+              Or message us directly on
+              <a class="text-brand-600 font-medium underline underline-offset-2" href="https://wa.me/{{site.whatsapp}}" rel="noopener">WhatsApp</a>.
+            </p>
+          </div>
+
+          <p class="sm:col-span-2 form-status" data-form-status role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+
+      <aside class="grid gap-4 content-start">
+        <a class="contact-card" href="tel:{{site.phoneRaw}}">
+          <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg></span>
+          <span>
+            <strong>Call us</strong>
+            {{site.phone}}
+            <small>Daily, 7am - 9pm IST</small>
+          </span>
+        </a>
+
+        <a class="contact-card" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+          <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></span>
+          <span>
+            <strong>WhatsApp</strong>
+            {{site.phone}}
+            <small>Fastest way to reach us</small>
+          </span>
+        </a>
+
+        <a class="contact-card" href="mailto:{{site.email}}">
+          <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+          <span>
+            <strong>Email</strong>
+            {{site.email}}
+            <small>Replies within a day</small>
+          </span>
+        </a>
+
+        <div class="contact-card !cursor-default">
+          <span class="feature-icon"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
+          <span>
+            <strong>Office</strong>
+            {{site.address}}
+            <small>Visits by appointment</small>
+          </span>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- Map loads only on click: a live embed costs the best part of a megabyte
+       and would sink the LCP for a page most people scroll past. -->
+  <section class="pb-16 lg:pb-20">
+    <div class="container-page">
+      <div class="map-embed" data-map
+           data-src="https://www.google.com/maps?q=Rishikesh,Uttarakhand&output=embed">
+        <img src="/img/gallery/gallery-3.webp" alt="" width="800" height="800" loading="lazy" decoding="async">
+        <button type="button" class="btn btn-primary btn-lg" data-map-load>
+          <svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg> Load map
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--@include footer.html-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "%%SITE_URL%%/contact.html",
+      "url": "%%SITE_URL%%/contact.html",
+      "name": "Contact {{site.name}}"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "%%SITE_URL%%/" },
+        { "@type": "ListItem", "position": 2, "name": "Contact", "item": "%%SITE_URL%%/contact.html" }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<html lang="en">
+<head>
+  <title>All Yatras &amp; Treks in Uttarakhand - {{site.name}}</title>
+  <meta name="description" content="Browse every Char Dham yatra and Himalayan trek we run - Kedarnath, Badrinath, Chopta Tungnath, Har Ki Dun, Valley of Flowers and the full Char Dham circuit. Filter by destination, duration and price.">
+  <link rel="canonical" href="%%SITE_URL%%/yatras.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="All Yatras &amp; Treks in Uttarakhand">
+  <meta property="og:url" content="%%SITE_URL%%/yatras.html">
+  <meta property="og:image" content="%%SITE_URL%%/img/hero/hero-1.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1">
+
+  <section class="page-head">
+    <div class="container-page">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="/">Home</a></li>
+          <li aria-current="page">Yatras</li>
+        </ol>
+      </nav>
+      <h1 class="text-3xl lg:text-5xl mt-3 text-white">Yatras &amp; Treks</h1>
+      <p class="mt-4 max-w-2xl text-brand-100 leading-relaxed">
+        Every journey below is a fixed departure with a published itinerary, a real altitude
+        figure and an honest difficulty rating. Filter to what suits you, then ask us anything.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page">
+
+      <form class="filter-bar" data-filter method="get" role="search" aria-label="Filter yatras">
+        <div>
+          <label class="label" for="f-destination">Destination</label>
+          <select class="field" id="f-destination" name="destination">
+            <option value="">All destinations</option>
+            <option value="Kedarnath">Kedarnath</option>
+            <option value="Badrinath">Badrinath</option>
+            <option value="Chopta">Chopta - Tungnath</option>
+            <option value="Har Ki Dun">Har Ki Dun</option>
+            <option value="Valley of Flowers">Valley of Flowers</option>
+            <option value="Char Dham">Char Dham</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="label" for="f-type">Type</label>
+          <select class="field" id="f-type" name="type">
+            <option value="">All types</option>
+            <option value="Char Dham">Char Dham</option>
+            <option value="Trek">Trek</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="label" for="f-duration">Duration</label>
+          <select class="field" id="f-duration" name="duration">
+            <option value="">Any length</option>
+            <option value="1-3">1 - 3 days</option>
+            <option value="4-6">4 - 6 days</option>
+            <option value="7-99">7 days or more</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="label" for="f-sort">Sort by</label>
+          <select class="field" id="f-sort" name="sort">
+            <option value="">Featured</option>
+            <option value="price-asc">Price, low to high</option>
+            <option value="price-desc">Price, high to low</option>
+            <option value="duration-asc">Duration, short to long</option>
+            <option value="duration-desc">Duration, long to short</option>
+          </select>
+        </div>
+
+        <noscript>
+          <button class="btn btn-primary w-full md:self-end" type="submit">Apply</button>
+        </noscript>
+      </form>
+
+      <div class="flex items-center justify-between gap-4 mt-8 mb-6">
+        <p class="text-sm text-ink/60" data-filter-count aria-live="polite">6 yatras</p>
+        <button type="button" class="btn btn-outline btn-sm" data-filter-reset>
+          <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg> Clear filters
+        </button>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-filter-grid>
+        <!--@each yatras:yatra-card.html-->
+      </div>
+
+      <div class="empty-state" data-filter-empty hidden>
+        <span class="trust-icon mx-auto"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg></span>
+        <p class="mt-4 font-heading font-semibold text-brand-800">Nothing matches those filters</p>
+        <p class="mt-2 text-sm text-ink/65">
+          Try widening the duration, or tell us what you are looking for - we build custom
+          itineraries too.
+        </p>
+        <a class="btn btn-primary mt-6" href="https://wa.me/{{site.whatsapp}}" rel="noopener">
+          <svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg> Ask for a custom yatra
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container-page text-center max-w-3xl">
+      <p class="text-3xl lg:text-4xl font-heading font-bold text-white text-balance">
+        Not sure which one to pick?
+      </p>
+      <p class="mt-4 text-brand-100 leading-relaxed">
+        Tell us who is travelling, how many days you have, and what you want out of it.
+        We will suggest the right yatra - and say so if none of ours fits.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a class="btn btn-gold btn-lg" href="/contact.html">
+          <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> Get a Free Quote
+        </a>
+        <a class="btn btn-ghost-light btn-lg" href="tel:{{site.phoneRaw}}">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg> {{site.phone}}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!--@include footer.html-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "%%SITE_URL%%/" },
+    { "@type": "ListItem", "position": 2, "name": "Yatras", "item": "%%SITE_URL%%/yatras.html" }
+  ]
+}
+</script>
+</body>
+</html>
