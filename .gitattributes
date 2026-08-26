@@ -1,0 +1,9 @@
+# Keep LF in the repo so the Linux CI runner builds byte-identical output.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary
+*.ico binary
