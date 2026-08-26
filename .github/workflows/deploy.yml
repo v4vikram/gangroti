@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: development
-      url: https://www.gangotri.codevani.com
+      url: https://www.gangroti.codevani.com
     steps:
       - uses: actions/download-artifact@v4
         with:

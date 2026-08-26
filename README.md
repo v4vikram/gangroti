@@ -3,7 +3,7 @@
 Static front end for [gangotriexpeditions.in](https://gangotriexpeditions.in).
 Converts to a custom WordPress theme in Phase 7.
 
-- **Dev:** https://www.gangotri.codevani.com (auto-deploys from `develop`, always `noindex`)
+- **Dev:** https://www.gangroti.codevani.com (auto-deploys from `develop`, always `noindex`)
 - **Prod:** https://gangotriexpeditions.in (deploys from `main`, manual approval)
 
 ## Stack
@@ -52,7 +52,7 @@ Options page so the client edits the same values.
 
 ## Why the dev site is noindex
 
-`gangotri.codevani.com` serves the same content as the live domain. If Google
+`www.gangroti.codevani.com` serves the same content as the live domain. If Google
 indexed both, they would compete as duplicates and split rankings. The dev build
 therefore emits `Disallow: /` in `robots.txt`, a `noindex` meta tag, and an
 `X-Robots-Tag` header via `.htaccess`. CI fails the build if any of those go

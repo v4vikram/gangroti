@@ -27,6 +27,20 @@ export const site = {
   facebook: 'https://facebook.com/',
   youtube: 'https://youtube.com/',
 
-  dev: { url: 'https://www.gangotri.codevani.com' },
-  prod: { url: 'https://gangotriexpeditions.in' },
+  // `canonicalHost` is the one hostname the site answers on. Every other
+  // spelling (www / non-www, http) 301s to it, so links and rankings never
+  // split across two versions of the same page.
+  //
+  // prod is non-www on purpose: the live SSL certificate currently covers
+  // gangotriexpeditions.in only, and www fails with a certificate error.
+  // Switch this to www.gangotriexpeditions.in *after* the cert is reissued to
+  // include www - not before.
+  dev: {
+    url: 'https://www.gangroti.codevani.com',
+    canonicalHost: 'www.gangroti.codevani.com',
+  },
+  prod: {
+    url: 'https://gangotriexpeditions.in',
+    canonicalHost: 'gangotriexpeditions.in',
+  },
 };
