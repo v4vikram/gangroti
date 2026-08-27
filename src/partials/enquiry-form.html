@@ -1,0 +1,85 @@
+<!--
+  Reusable enquiry form.
+
+  Include it with a `prefix=` parameter so the ids stay unique when the same
+  form appears more than once on a page (the home page carries it inline and
+  again inside the popup).
+
+  Field names are the ones the WordPress handler will read in Phase 7, so only
+  the submit target changes when there is a server behind it.
+-->
+<form class="grid gap-4 sm:grid-cols-2" data-enquiry-form novalidate>
+
+  <!-- Honeypot: hidden from people, irresistible to bots. -->
+  <div class="hp-field" aria-hidden="true">
+    <label for="{{prefix}}-company">Company</label>
+    <input type="text" id="{{prefix}}-company" name="company" tabindex="-1" autocomplete="off">
+  </div>
+
+  <div>
+    <label class="label" for="{{prefix}}-name">Your name <span class="req">*</span></label>
+    <input class="field" type="text" id="{{prefix}}-name" name="name" required
+           autocomplete="name" placeholder="Ramesh Kumar">
+  </div>
+
+  <div>
+    <label class="label" for="{{prefix}}-phone">Phone / WhatsApp <span class="req">*</span></label>
+    <input class="field" type="tel" id="{{prefix}}-phone" name="phone" required
+           autocomplete="tel" inputmode="tel" pattern="[0-9+ ()-]{7,}" placeholder="+91 98765 43210">
+  </div>
+
+  <div>
+    <label class="label" for="{{prefix}}-email">Email</label>
+    <input class="field" type="email" id="{{prefix}}-email" name="email"
+           autocomplete="email" placeholder="you@example.com">
+  </div>
+
+  <div>
+    <label class="label" for="{{prefix}}-yatra">Which yatra?</label>
+    <select class="field" id="{{prefix}}-yatra" name="yatra">
+      <option value="">Not decided yet</option>
+      <option>Kedarnath Yatra</option>
+      <option>Badrinath Yatra</option>
+      <option>Chopta - Tungnath Trek</option>
+      <option>Har Ki Dun Trek</option>
+      <option>Valley of Flowers</option>
+      <option>Char Dham Yatra</option>
+      <option>Custom itinerary</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="label" for="{{prefix}}-travellers">Travellers</label>
+    <input class="field" type="number" id="{{prefix}}-travellers" name="travellers"
+           min="1" max="60" placeholder="4">
+  </div>
+
+  <div>
+    <label class="label" for="{{prefix}}-date">Preferred start date</label>
+    <input class="field" type="date" id="{{prefix}}-date" name="date">
+  </div>
+
+  <div class="sm:col-span-2">
+    <label class="label" for="{{prefix}}-message">Anything we should know?</label>
+    <textarea class="field" id="{{prefix}}-message" name="message" rows="3"
+              placeholder="Travelling with parents, need a helicopter to Kedarnath..."></textarea>
+  </div>
+
+  <p class="sm:col-span-2 form-status" data-form-status hidden></p>
+
+  <div class="sm:col-span-2 flex flex-wrap gap-3">
+    <button class="btn btn-gold btn-lg" type="submit">
+      <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>
+      Send Enquiry
+    </button>
+    <a class="btn btn-outline btn-lg" href="tel:{{site.phoneRaw}}">
+      <svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg>
+      {{site.phone}}
+    </a>
+  </div>
+
+  <p class="sm:col-span-2 text-xs leading-relaxed text-ink/55">
+    We reply within a few hours, usually sooner. Your details are only used to
+    answer this enquiry - see our <a class="underline underline-offset-2" href="/privacy.html">privacy policy</a>.
+  </p>
+</form>

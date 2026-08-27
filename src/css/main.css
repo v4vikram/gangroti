@@ -314,6 +314,30 @@
   .nav-panel.is-open { opacity: 1; transform: none; }
 
   /* --- Hero ------------------------------------------------------------- */
+  /* Height is driven by the viewport, not by the image aspect ratio. A 16:9
+     box on a 375px phone is only 211px tall - nowhere near enough for the
+     headline, paragraph and two buttons that sit on top of it, which is what
+     made the banner overflow on mobile.
+     `svh` tracks the visible viewport, so mobile browser chrome sliding in and
+     out does not resize the hero mid-scroll. */
+  .hero-media {
+    height: 32rem;
+    max-height: 88svh;
+    overflow: hidden;
+    background: var(--color-brand-800);
+  }
+  .hero-media > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (min-width: 768px) {
+    .hero-media { height: 38rem; max-height: 82svh; }
+  }
+  @media (min-width: 1280px) {
+    .hero-media { height: 42rem; }
+  }
+
   /* The gradient only darkens the side the text sits on, so the photograph
      still reads while the copy keeps its contrast. */
   .hero-overlay {
@@ -512,6 +536,53 @@
     border: 1px dashed var(--color-brand-200);
     border-radius: var(--radius-card);
     background: var(--color-brand-50);
+  }
+
+  /* --- Enquiry modal ---------------------------------------------------- */
+  .enquiry-modal {
+    width: min(42rem, calc(100vw - 2rem));
+    max-height: min(46rem, calc(100svh - 2rem));
+    padding: 0;
+    margin: auto;
+    border: none;
+    border-radius: var(--radius-card);
+    background: #fff;
+    box-shadow: 0 24px 64px rgb(16 43 29 / 0.28);
+    overflow: hidden;
+  }
+  .enquiry-modal::backdrop {
+    background: rgb(16 43 29 / 0.55);
+    backdrop-filter: blur(3px);
+  }
+
+  .enquiry-modal-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-brand-800);
+  }
+
+  .enquiry-modal-close {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    color: #fff;
+    background: rgb(255 255 255 / 0.12);
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .enquiry-modal-close:hover { background: rgb(255 255 255 / 0.24); }
+
+  /* The panel is capped, so the form scrolls rather than the page behind it. */
+  .enquiry-modal-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: calc(min(46rem, 100svh - 2rem) - 5.5rem);
   }
 
   /* --- Legal / long-form copy ------------------------------------------- */

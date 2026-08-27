@@ -11,10 +11,10 @@ export const site = {
   description:
     'Curated Char Dham yatras and Himalayan treks in Uttarakhand - Kedarnath, Badrinath, Chopta Tungnath and Har Ki Dun - with expert guides, comfortable stays and safe, well-planned itineraries.',
 
-  phone: '+91 7010033899',
-  phoneRaw: '+917010033899',
-  whatsapp: '917010033899',
-  email: 'info@gangotriexpeditions.in',
+  phone: '+91 8076 378 331',
+  phoneRaw: '+918076378331',
+  whatsapp: '918076378331',
+  email: 'gangotriexpeditions@gmail.com',
 
   address: 'Rishikesh, Uttarakhand, India',
   locality: 'Rishikesh',
@@ -23,7 +23,7 @@ export const site = {
   country: 'IN',
 
   // Flat on purpose: the {{site.key}} token resolver is one level deep.
-  instagram: 'https://instagram.com/',
+  instagram: 'https://www.instagram.com/gangotri_expeditions',
   facebook: 'https://facebook.com/',
   youtube: 'https://youtube.com/',
 

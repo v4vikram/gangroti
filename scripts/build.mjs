@@ -172,15 +172,29 @@ function renderItem(tpl, item) {
   );
 }
 
+/**
+ * `<!--@include enquiry-form.html prefix=home-->` inlines the partial and
+ * substitutes {{prefix}} inside it.
+ *
+ * The parameters exist so one partial can appear twice on a page without
+ * clashing: element ids have to stay unique, or a <label for> points at the
+ * wrong input and screen readers follow it to the wrong field.
+ */
 async function expandIncludes(html, depth = 0) {
   if (depth > 5) throw new Error('@include nested more than 5 deep - probably a loop');
-  const re = /<!--\s*@include\s+([\w./-]+)\s*-->/g;
+  const re = /<!--\s*@include\s+([\w./-]+)((?:\s+\w+=[\w-]+)*)\s*-->/g;
   if (!re.test(html)) return html;
   re.lastIndex = 0;
 
   let out = html;
-  for (const [tag, file] of [...html.matchAll(re)]) {
-    const partial = await readFile(join(SRC, 'partials', file), 'utf8');
+  for (const [tag, file, rawParams] of [...html.matchAll(re)]) {
+    let partial = await readFile(join(SRC, 'partials', file), 'utf8');
+
+    for (const pair of rawParams.trim().split(/\s+/).filter(Boolean)) {
+      const [key, value] = pair.split('=');
+      partial = partial.replaceAll(`{{${key}}}`, value);
+    }
+
     out = out.replace(tag, await expandIncludes(partial, depth + 1));
   }
   return out;

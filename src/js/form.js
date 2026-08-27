@@ -83,9 +83,7 @@ function compose(form) {
   return lines.join('\n');
 }
 
-function initEnquiryForm() {
-  const form = document.querySelector('[data-enquiry-form]');
-  if (!form) return;
+function initEnquiryForm(form) {
 
   const status = form.querySelector('[data-form-status]');
   const whatsapp = document.querySelector('a[href*="wa.me/"]')?.href.match(/wa\.me\/(\d+)/)?.[1];
@@ -134,7 +132,32 @@ function initMap() {
   });
 }
 
+/**
+ * The enquiry popup. <dialog> gives us the backdrop, focus trapping, inert
+ * background and Escape handling for free, so this only wires the triggers.
+ */
+function initEnquiryModal() {
+  const modal = document.querySelector('[data-enquiry-modal]');
+  if (!modal || typeof modal.showModal !== 'function') return;
+
+  for (const trigger of document.querySelectorAll('[data-enquiry-open]')) {
+    trigger.addEventListener('click', () => {
+      modal.showModal();
+      // Land on the first real field, not on the close button.
+      modal.querySelector('input[name="name"]')?.focus();
+    });
+  }
+
+  modal.querySelector('[data-enquiry-close]')?.addEventListener('click', () => modal.close());
+
+  // Backdrop click closes; a click inside the panel must not.
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.close();
+  });
+}
+
 export function initForms() {
-  initEnquiryForm();
+  for (const form of document.querySelectorAll('[data-enquiry-form]')) initEnquiryForm(form);
+  initEnquiryModal();
   initMap();
 }

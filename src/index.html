@@ -30,7 +30,7 @@
         <ul class="slider-track">
 
           <li class="slider-slide w-full relative">
-            <div class="media-16-9 md:aspect-auto md:h-[38rem]">
+            <div class="hero-media">
               <img src="/img/hero/hero-1.webp" alt="Kedarnath temple below the snow-covered Kedarnath peak"
                    width="1920" height="1080" fetchpriority="high" decoding="async">
             </div>
@@ -57,7 +57,7 @@
           </li>
 
           <li class="slider-slide w-full relative">
-            <div class="media-16-9 md:aspect-auto md:h-[38rem]">
+            <div class="hero-media">
               <img src="/img/hero/hero-2.webp" alt="The ridge trail to Chandrashila summit above Chopta"
                    width="1920" height="1080" loading="lazy" decoding="async">
             </div>
@@ -81,7 +81,7 @@
           </li>
 
           <li class="slider-slide w-full relative">
-            <div class="media-16-9 md:aspect-auto md:h-[38rem]">
+            <div class="hero-media">
               <img src="/img/hero/hero-3.webp" alt="The Bhagirathi river below the Himalayan range at Gangotri"
                    width="1920" height="1080" loading="lazy" decoding="async">
             </div>
@@ -119,48 +119,6 @@
       <div class="slider-dots absolute bottom-8 left-1/2 -translate-x-1/2 z-20 md:left-8 md:translate-x-0" data-slider-dots></div>
     </div>
 
-    <!-- Search sits half over the hero on desktop, below it on mobile. -->
-    <div class="container-page relative z-30 md:-mt-14">
-      <form class="search-bar" action="/yatras.html" method="get" role="search">
-        <div class="search-field">
-          <label class="label" for="s-destination">Destination</label>
-          <select class="field" id="s-destination" name="destination">
-            <option value="">Any destination</option>
-            <option value="Kedarnath">Kedarnath</option>
-            <option value="Badrinath">Badrinath</option>
-            <option value="Chopta">Chopta - Tungnath</option>
-            <option value="Har Ki Dun">Har Ki Dun</option>
-            <option value="Valley of Flowers">Valley of Flowers</option>
-            <option value="Char Dham">Char Dham</option>
-          </select>
-        </div>
-
-        <div class="search-field">
-          <label class="label" for="s-duration">Duration</label>
-          <select class="field" id="s-duration" name="duration">
-            <option value="">Any length</option>
-            <option value="1-3">1 - 3 days</option>
-            <option value="4-6">4 - 6 days</option>
-            <option value="7-99">7 days or more</option>
-          </select>
-        </div>
-
-        <div class="search-field">
-          <label class="label" for="s-month">Month</label>
-          <select class="field" id="s-month" name="month">
-            <option value="">Any month</option>
-            <option>April</option><option>May</option><option>June</option>
-            <option>July</option><option>August</option><option>September</option>
-            <option>October</option><option>November</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary btn-lg w-full md:w-auto md:self-end" type="submit">
-          <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
-          Search
-        </button>
-      </form>
-    </div>
   </section>
 
   <!-- ==================================================== trust =========== -->
@@ -199,7 +157,7 @@
           <span class="eyebrow">
             <svg class="icon" aria-hidden="true"><use href="#i-route"/></svg> Popular Yatras
           </span>
-          <h2 id="popular-yatras" class="text-3xl lg:text-4xl mt-3">Journeys people come back for</h2>
+          <h2 id="popular-yatras" class="text-3xl lg:text-4xl mt-3">Our Packages</h2>
           <p class="mt-3 text-ink/70 leading-relaxed">
             Fixed departures with published itineraries, real altitudes and honest difficulty
             ratings - so you know what you are signing up for before you pay.
@@ -455,6 +413,54 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ==================================================== enquiry ========= -->
+  <section class="section" id="enquiry" aria-labelledby="enquiry-heading">
+    <div class="container-page grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:items-start">
+
+      <div>
+        <span class="eyebrow">
+          <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> Plan your yatra
+        </span>
+        <h2 id="enquiry-heading" class="text-3xl lg:text-4xl mt-3">Tell us your dates</h2>
+        <p class="mt-4 text-ink/70 leading-relaxed">
+          Send us who is travelling and roughly when. We will come back with an itinerary,
+          a straight price, and an honest word on whether the route suits your group.
+        </p>
+
+        <ul class="mt-8 space-y-4">
+          <li class="flex gap-3 text-sm text-ink/75">
+            <svg class="icon text-brand-600 mt-0.5" aria-hidden="true"><use href="#i-circle-check-big"/></svg>
+            <span>No advance needed to hold a seat while dates are confirmed</span>
+          </li>
+          <li class="flex gap-3 text-sm text-ink/75">
+            <svg class="icon text-brand-600 mt-0.5" aria-hidden="true"><use href="#i-circle-check-big"/></svg>
+            <span>Custom itineraries for families and private groups</span>
+          </li>
+          <li class="flex gap-3 text-sm text-ink/75">
+            <svg class="icon text-brand-600 mt-0.5" aria-hidden="true"><use href="#i-circle-check-big"/></svg>
+            <span>A real person replies, not an auto-responder</span>
+          </li>
+        </ul>
+
+        <div class="mt-8 pt-6 border-t border-brand-100 grid gap-3 text-sm">
+          <a class="flex items-center gap-3 hover:text-brand-600" href="tel:{{site.phoneRaw}}">
+            <span class="feature-icon w-10 h-10 text-base"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+            {{site.phone}}
+          </a>
+          <a class="flex items-center gap-3 hover:text-brand-600" href="mailto:{{site.email}}">
+            <span class="feature-icon w-10 h-10 text-base"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+            {{site.email}}
+          </a>
+        </div>
+      </div>
+
+      <div class="card p-6 lg:p-8">
+        <!--@include enquiry-form.html prefix=home-->
+      </div>
+
     </div>
   </section>
 
