@@ -130,6 +130,31 @@ async function loadData(name) {
   return dataCache.get(name);
 }
 
+/**
+ * `<!--@options yatras:destination-->` emits an <option> per distinct value of
+ * that field across the collection.
+ *
+ * Filter and enquiry dropdowns are generated rather than hand-written so they
+ * cannot drift from the packages that actually exist - a filter offering a
+ * destination with no packages behind it just returns an empty grid.
+ */
+async function expandOptions(html) {
+  const re = /<!--\s*@options\s+(\w+):(\w+)\s*-->/g;
+  let out = html;
+
+  for (const [tag, name, field] of [...html.matchAll(re)]) {
+    const values = [...new Set((await loadData(name)).map((item) => item[field]))]
+      .filter(Boolean)
+      .sort();
+
+    out = out.replace(
+      tag,
+      values.map((v) => `<option value="${v}">${v}</option>`).join('\n            '),
+    );
+  }
+  return out;
+}
+
 async function expandEach(html) {
   const re = /<!--\s*@each\s+(\w+):([\w.-]+)(?:\s+limit=(\d+))?\s*-->/g;
   let out = html;
@@ -229,8 +254,12 @@ async function buildHtml(assets) {
     let html = await readFile(job.src, 'utf8');
 
     if (job.item) html = renderItem(html, job.item);
-    html = await expandEach(html);
+    // Order matters: includes first, so that @each and @options directives
+    // living inside a partial (the footer package list, the form's yatra
+    // dropdown) are still expanded rather than shipped as raw comments.
     html = await expandIncludes(html);
+    html = await expandEach(html);
+    html = await expandOptions(html);
 
     html = html
       .replace(/<!--\s*@sprite\s*-->/g, sprite)

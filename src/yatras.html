@@ -1,11 +1,11 @@
 <html lang="en">
 <head>
-  <title>All Yatras &amp; Treks in Uttarakhand - {{site.name}}</title>
-  <meta name="description" content="Browse every Char Dham yatra and Himalayan trek we run - Kedarnath, Badrinath, Chopta Tungnath, Har Ki Dun, Valley of Flowers and the full Char Dham circuit. Filter by destination, duration and price.">
+  <title>Our Packages - Treks &amp; Yatras in Uttarakhand - {{site.name}}</title>
+  <meta name="description" content="Every Himalayan trek and yatra package we run in Uttarakhand, with published itineraries, real altitudes and honest difficulty ratings. Filter by destination, duration and price.">
   <link rel="canonical" href="%%SITE_URL%%/yatras.html">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="All Yatras &amp; Treks in Uttarakhand">
+  <meta property="og:title" content="Our Packages - Treks &amp; Yatras in Uttarakhand">
   <meta property="og:url" content="%%SITE_URL%%/yatras.html">
   <meta property="og:image" content="%%SITE_URL%%/img/hero/hero-1.jpg">
   <meta name="twitter:card" content="summary_large_image">
@@ -23,10 +23,10 @@
       <nav class="breadcrumb" aria-label="Breadcrumb">
         <ol>
           <li><a href="/">Home</a></li>
-          <li aria-current="page">Yatras</li>
+          <li aria-current="page">Packages</li>
         </ol>
       </nav>
-      <h1 class="text-3xl lg:text-5xl mt-3 text-white">Yatras &amp; Treks</h1>
+      <h1 class="text-3xl lg:text-5xl mt-3 text-white">Our Packages</h1>
       <p class="mt-4 max-w-2xl text-brand-100 leading-relaxed">
         Every journey below is a fixed departure with a published itinerary, a real altitude
         figure and an honest difficulty rating. Filter to what suits you, then ask us anything.
@@ -42,12 +42,7 @@
           <label class="label" for="f-destination">Destination</label>
           <select class="field" id="f-destination" name="destination">
             <option value="">All destinations</option>
-            <option value="Kedarnath">Kedarnath</option>
-            <option value="Badrinath">Badrinath</option>
-            <option value="Chopta">Chopta - Tungnath</option>
-            <option value="Har Ki Dun">Har Ki Dun</option>
-            <option value="Valley of Flowers">Valley of Flowers</option>
-            <option value="Char Dham">Char Dham</option>
+            <!--@options yatras:destination-->
           </select>
         </div>
 
@@ -55,8 +50,7 @@
           <label class="label" for="f-type">Type</label>
           <select class="field" id="f-type" name="type">
             <option value="">All types</option>
-            <option value="Char Dham">Char Dham</option>
-            <option value="Trek">Trek</option>
+            <!--@options yatras:type-->
           </select>
         </div>
 
@@ -87,13 +81,13 @@
       </form>
 
       <div class="flex items-center justify-between gap-4 mt-8 mb-6">
-        <p class="text-sm text-ink/60" data-filter-count aria-live="polite">6 yatras</p>
+        <p class="text-sm text-ink/60" data-filter-count aria-live="polite"></p>
         <button type="button" class="btn btn-outline btn-sm" data-filter-reset>
           <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg> Clear filters
         </button>
       </div>
 
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-filter-grid>
+      <div class="card-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3" data-filter-grid>
         <!--@each yatras:yatra-card.html-->
       </div>
 
@@ -142,7 +136,7 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "%%SITE_URL%%/" },
-    { "@type": "ListItem", "position": 2, "name": "Yatras", "item": "%%SITE_URL%%/yatras.html" }
+    { "@type": "ListItem", "position": 2, "name": "Packages", "item": "%%SITE_URL%%/yatras.html" }
   ]
 }
 </script>

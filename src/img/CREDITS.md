@@ -25,3 +25,4 @@ the same name into the same folder - no markup changes needed.
 | `img/gallery/gallery-4` | [Deoria Tal Chandrashila Chaukamba reflection.jpg](https://commons.wikimedia.org/wiki/File:Deoria_Tal_Chandrashila_Chaukamba_reflection.jpg) | Senthilnath G T, XS. Gtsenthilnath at English Wikipedia | CC BY-SA 3.0 |
 | `img/gallery/gallery-5` | [Mt. Nandadevi.JPG](https://commons.wikimedia.org/wiki/File:Mt._Nandadevi.JPG) | Arupamdas | CC BY-SA 4.0 |
 | `img/gallery/gallery-6` | [Himalayas near Auli.jpg](https://commons.wikimedia.org/wiki/File:Himalayas_near_Auli.jpg) | Michael Scalet | CC BY-SA 2.0 |
+| `img/yatras/madmaheshwar-trek` | [Madhyamaheshwar village.JPG](https://commons.wikimedia.org/wiki/File:Madhyamaheshwar_village.JPG) | Bodhisattwa | CC BY-SA 4.0 |

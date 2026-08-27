@@ -9,7 +9,8 @@
  *
  * Re-runnable: `npm run images`
  */
-import { writeFile, mkdir } from 'node:fs/promises';
+import { writeFile, mkdir, readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import sharp from 'sharp';
 
 const UA = 'GangotriExpeditions-SiteBuild/1.0 (contact: info@gangotriexpeditions.in)';
@@ -39,6 +40,9 @@ const WANTED = [
   { slug: 'gallery-4', dir: 'gallery', w: 800, h: 800, q: 'Deoria Tal Uttarakhand' },
   { slug: 'gallery-5', dir: 'gallery', w: 800, h: 800, q: 'Nanda Devi Himalaya peak' },
   { slug: 'gallery-6', dir: 'gallery', w: 800, h: 800, q: 'Auli Uttarakhand snow' },
+
+  // Packages
+  { slug: 'madmaheshwar-trek', dir: 'yatras', w: 800, h: 600, q: 'Madhyamaheshwar temple Uttarakhand' },
 ];
 
 const strip = (html = '') => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
@@ -90,10 +94,42 @@ function pick(pages, minW, minH) {
   return null;
 }
 
+/**
+ * Existing rows are read back in before the table is rewritten. Skipped files
+ * are still on disk and still CC-licensed, so dropping their attribution would
+ * put the site out of licence compliance.
+ */
 const credits = [];
+const CREDITS_PATH = 'src/img/CREDITS.md';
+
+if (existsSync(CREDITS_PATH)) {
+  const ROW = /^\| `img\/([\w-]+)\/([\w-]+)` \| \[([^\]]+)\]\(([^)]+)\) \| ([^|]+) \| ([^|]+) \|/;
+
+  for (const line of (await readFile(CREDITS_PATH, 'utf8')).split('\n')) {
+    const row = line.match(ROW);
+    if (!row) continue;
+
+    credits.push({
+      dir: row[1],
+      slug: row[2],
+      title: row[3],
+      page: row[4],
+      author: row[5].trim(),
+      licence: row[6].trim(),
+    });
+  }
+}
+
 let ok = 0;
 
 for (const item of WANTED) {
+  // Never overwrite artwork that is already there - some of these files have
+  // been replaced by hand with the client's own photography.
+  if (existsSync(`src/img/${item.dir}/${item.slug}.webp`)) {
+    console.log(`  skip ${item.dir}/${item.slug} (already present)`);
+    continue;
+  }
+
   const pages = await search(item.q);
   const hit = pick(pages, item.w, Math.round(item.h * 0.75));
 
@@ -151,5 +187,6 @@ the same name into the same folder - no markup changes needed.
 ${credits.map(c => `| \`img/${c.dir}/${c.slug}\` | [${c.title}](${c.page}) | ${c.author} | ${c.licence} |`).join('\n')}
 `;
 
-await writeFile('src/img/CREDITS.md', md);
+credits.sort((a, b) => (a.dir + a.slug).localeCompare(b.dir + b.slug));
+await writeFile(CREDITS_PATH, md);
 console.log(`\n${ok}/${WANTED.length} images -> src/img/  (credits written to src/img/CREDITS.md)`);

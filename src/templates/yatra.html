@@ -171,16 +171,28 @@
     </div>
   </section>
 
-  <section class="section bg-mist">
-    <div class="container-page">
-      <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
-        <h2 class="text-2xl lg:text-3xl">Other journeys you might like</h2>
-        <a class="btn btn-outline" href="/yatras.html">
-          View All <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+  <!--
+    "Other journeys you might like" lived here. With a single package it would
+    only ever show this same page back to the reader, so it is out until there
+    are more. Restore it with `<!- -@each yatras:yatra-card.html limit=3- ->`
+    once the collection grows - @each will need a way to skip the current slug.
+  -->
+  <section class="cta-band">
+    <div class="container-page text-center max-w-3xl">
+      <p class="text-3xl lg:text-4xl font-heading font-bold text-white text-balance">
+        Questions about this trek?
+      </p>
+      <p class="mt-4 text-brand-100 leading-relaxed">
+        Tell us your dates and who is walking. We will tell you honestly whether
+        the route suits your group.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <button type="button" class="btn btn-gold btn-lg" data-enquiry-open>
+          <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg> Get a Free Quote
+        </button>
+        <a class="btn btn-ghost-light btn-lg" href="tel:{{site.phoneRaw}}">
+          <svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg> {{site.phone}}
         </a>
-      </div>
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <!--@each yatras:yatra-card.html limit=3-->
       </div>
     </div>
   </section>
