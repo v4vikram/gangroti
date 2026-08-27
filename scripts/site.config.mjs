@@ -35,12 +35,20 @@ export const site = {
   // gangotriexpeditions.in only, and www fails with a certificate error.
   // Switch this to www.gangotriexpeditions.in *after* the cert is reissued to
   // include www - not before.
+  //
+  // `formEndpoint` is where enquiry submissions POST to. It is empty while the
+  // site is static, because there is no server to receive them - the form says
+  // so rather than faking a success. In Phase 7 set both to
+  // '/wp-admin/admin-ajax.php'; the markup and field names already match what
+  // the PHP handler will read, so nothing else changes.
   dev: {
     url: 'https://www.gangroti.codevani.com',
     canonicalHost: 'www.gangroti.codevani.com',
+    formEndpoint: '',
   },
   prod: {
     url: 'https://gangotriexpeditions.in',
     canonicalHost: 'gangotriexpeditions.in',
+    formEndpoint: '',
   },
 };

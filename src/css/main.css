@@ -722,6 +722,16 @@
     background: var(--color-brand-50);
     border: 1px solid var(--color-brand-200);
   }
+  .form-status.is-pending {
+    background: var(--color-mist);
+    border: 1px solid var(--color-brand-100);
+    color: rgb(34 34 34 / 0.7);
+  }
+  .form-status.is-error {
+    background: #fef3f2;
+    border: 1px solid #fecdc9;
+    color: #912018;
+  }
 
   /* Honeypot: off-screen rather than display:none, which some bots skip. */
   .hp-field {

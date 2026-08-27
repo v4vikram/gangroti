@@ -56,56 +56,83 @@ function validate(form) {
   return !firstBad;
 }
 
-function compose(form) {
-  const get = (n) => form.elements[n]?.value.trim();
+/**
+ * Where submissions go. Injected at build time.
+ *
+ * On the static build this is empty, because there is no server behind it.
+ * In Phase 7 it becomes the WordPress admin-ajax endpoint and nothing else in
+ * this file changes - the field names below are already the ones the PHP
+ * handler will read out of $_POST.
+ */
+const ENDPOINT = FORM_ENDPOINT;
 
-  const lines = [
-    'Namaste! I would like to enquire about a yatra.',
-    '',
-    `Name: ${get('name')}`,
-    `Phone: ${get('phone')}`,
-  ];
+function setStatus(status, state, message) {
+  status.hidden = false;
+  status.className = `sm:col-span-2 form-status is-${state}`;
+  status.textContent = message;
+}
 
-  const optional = {
-    Email: get('email'),
-    Yatra: get('yatra'),
-    Travellers: get('travellers'),
-    'Start date': get('date'),
-    Budget: get('budget'),
-  };
+async function send(form) {
+  const body = new FormData(form);
+  body.append('action', 'ge_enquiry'); // WordPress dispatches on this
 
-  for (const [label, value] of Object.entries(optional)) {
-    if (value) lines.push(`${label}: ${value}`);
-  }
+  const res = await fetch(ENDPOINT, {
+    method: 'POST',
+    body,
+    headers: { 'X-Requested-With': 'XMLHttpRequest' },
+  });
 
-  if (get('message')) lines.push('', get('message'));
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-  return lines.join('\n');
+  // WP's wp_send_json_success / _error shape.
+  const data = await res.json().catch(() => ({ success: res.ok }));
+  if (data.success === false) throw new Error(data.data?.message ?? 'Rejected');
+
+  return data;
 }
 
 function initEnquiryForm(form) {
-
   const status = form.querySelector('[data-form-status]');
-  const whatsapp = document.querySelector('a[href*="wa.me/"]')?.href.match(/wa\.me\/(\d+)/)?.[1];
+  const submit = form.querySelector('button[type="submit"]');
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // A filled honeypot means a bot: accept silently rather than explaining.
     if (form.elements.company.value) {
-      status.hidden = false;
-      status.textContent = 'Thank you - we will be in touch.';
+      setStatus(status, 'ok', 'Thank you - we will be in touch.');
       return;
     }
 
     if (!validate(form)) return;
 
-    status.hidden = false;
-    status.className = 'sm:col-span-2 form-status is-ok';
-    status.textContent = 'Opening WhatsApp with your details filled in...';
+    submit.disabled = true;
+    setStatus(status, 'pending', 'Sending your enquiry...');
 
-    if (whatsapp) {
-      window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(compose(form))}`, '_blank', 'noopener');
+    // No endpoint yet: the static build has no server. Say so plainly rather
+    // than showing a success message for a submission that went nowhere.
+    if (!ENDPOINT) {
+      submit.disabled = false;
+      setStatus(
+        status,
+        'pending',
+        'Form is not connected yet - this gets wired up when the site moves to WordPress.',
+      );
+      return;
+    }
+
+    try {
+      await send(form);
+      form.reset();
+      setStatus(status, 'ok', 'Thank you. We have your details and will call you shortly.');
+    } catch {
+      setStatus(
+        status,
+        'error',
+        'Something went wrong sending that. Please call or WhatsApp us instead.',
+      );
+    } finally {
+      submit.disabled = false;
     }
   });
 

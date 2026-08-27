@@ -69,6 +69,9 @@ async function buildJs() {
     outdir: join(OUT, 'js'),
     metafile: true,
     legalComments: 'none',
+    // Compile-time constant, so the dead branch is dropped from the bundle
+    // rather than shipped. Empty until there is a server (see site.config.mjs).
+    define: { FORM_ENDPOINT: JSON.stringify(env.formEndpoint ?? '') },
   });
   const [file] = Object.keys(result.metafile.outputs).filter((f) => f.endsWith('.js'));
   const buf = await readFile(file);
