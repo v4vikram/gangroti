@@ -40,6 +40,12 @@ const COLLECTIONS = [
 
 const hash = (buf) => createHash('sha256').update(buf).digest('hex').slice(0, 8);
 
+/** Built on dev, withheld from prod. Kept out of the sitemap either way. */
+const NON_PUBLIC = new Set(['styleguide.html']);
+
+/** No canonical URL, so no sitemap entry - these are not landing pages. */
+const UNLISTED = new Set(['404.html', ...NON_PUBLIC]);
+
 /* ------------------------------------------------------------------ steps */
 
 async function buildCss() {
@@ -228,6 +234,31 @@ async function expandIncludes(html, depth = 0) {
   return out;
 }
 
+/**
+ * Cuts the icon sprite down to the symbols a given page actually uses.
+ *
+ * The sprite is inlined into every page - which is right, an external sprite
+ * costs a blocking request before any icon paints - but all 52 symbols were
+ * going into all 12 pages, and no page references more than about half of
+ * them. Subsetting keeps the zero-request win and drops the rest.
+ *
+ * Safe because nothing builds a <use href> at runtime: the only references are
+ * the ones already in the markup at this point, after every partial and loop
+ * has been expanded.
+ */
+function subsetSprite(sprite, html) {
+  if (!sprite) return '';
+
+  const used = new Set([...html.matchAll(/href="#(i-[\w-]+)"/g)].map((m) => m[1]));
+  if (!used.size) return '';
+
+  const open = sprite.slice(0, sprite.indexOf('>') + 1);
+  const symbols = [...sprite.matchAll(/<symbol id="(i-[\w-]+)"[\s\S]*?<\/symbol>/g)];
+  const kept = symbols.filter(([, id]) => used.has(id)).map(([markup]) => markup);
+
+  return `${open}${kept.join('')}</svg>`;
+}
+
 async function buildHtml(assets) {
   const sprite = existsSync(join(SRC, 'icons/sprite.svg'))
     ? await readFile(join(SRC, 'icons/sprite.svg'), 'utf8')
@@ -237,6 +268,10 @@ async function buildHtml(assets) {
   // collection templates are the ones that become single-*.php in Phase 7.
   const jobs = (await readdir(SRC))
     .filter((f) => f.endsWith('.html'))
+    // The styleguide is a working reference for us, not a page for visitors.
+    // On dev it is handy and noindexed anyway; shipping it to prod would put
+    // 56 KB of component swatches in Google's index under a real URL.
+    .filter((f) => !(PROD && NON_PUBLIC.has(f)))
     .map((file) => ({ out: file, src: join(SRC, file) }));
 
   for (const { data, template, path } of COLLECTIONS) {
@@ -262,7 +297,7 @@ async function buildHtml(assets) {
     html = await expandOptions(html);
 
     html = html
-      .replace(/<!--\s*@sprite\s*-->/g, sprite)
+      .replace(/<!--\s*@sprite\s*-->/g, subsetSprite(sprite, html))
       .replace(/%%CSS%%/g, assets.css.path)
       .replace(/%%JS%%/g, assets.js.path)
       .replace(/%%SITE_URL%%/g, env.url)
@@ -289,7 +324,71 @@ async function buildHtml(assets) {
     total += Buffer.byteLength(html);
   }
 
-  return { pages: jobs.length, size: total };
+  return { pages: jobs.length, size: total, paths: jobs.map((j) => j.out) };
+}
+
+/**
+ * Deletes anything under dist/img that no built page or stylesheet points at.
+ *
+ * src/img holds working masters as well as shipped assets - logo.svg is a
+ * 1024px PNG in an SVG wrapper that build-logo.mjs slices into the real logos,
+ * and several .jpg twins lost their last reference when the markup moved to
+ * plain <img src="*.webp">. copyStatic cannot tell those apart, so it copies
+ * the lot and we sweep afterwards against what the output actually references.
+ *
+ * Nothing in src/js reaches for an image path, so the built HTML and CSS are
+ * the complete picture. If that ever changes, add the source to `haystack`.
+ */
+async function pruneAssets() {
+  const files = [];
+  const walk = async (dir) => {
+    for (const entry of await readdir(dir, { withFileTypes: true })) {
+      const full = join(dir, entry.name);
+      if (entry.isDirectory()) await walk(full);
+      else files.push(full);
+    }
+  };
+  await walk(OUT);
+
+  const haystack = (await Promise.all(
+    files.filter((f) => /\.(html|css)$/.test(f)).map((f) => readFile(f, 'utf8')),
+  )).join('\n');
+
+  const referenced = new Set(haystack.match(/\/img\/[A-Za-z0-9._/-]+/g) ?? []);
+
+  let freed = 0;
+  let dropped = 0;
+  for (const file of files) {
+    const url = '/' + file.split(/[\\/]/).slice(1).join('/');
+    if (!url.startsWith('/img/') || referenced.has(url)) continue;
+    freed += (await readFile(file)).length;
+    await rm(file);
+    dropped++;
+  }
+  return { dropped, freed };
+}
+
+/**
+ * robots.txt already promises a sitemap at this path; until now it 404ed.
+ * Built from the pages that were actually emitted, so it cannot list a URL
+ * that does not exist.
+ */
+async function buildSitemap(pages) {
+  const today = new Date().toISOString().slice(0, 10);
+
+  const urls = pages
+    .filter((p) => !UNLISTED.has(p))
+    // Must match the page's own <link rel="canonical"> character for character,
+    // or the two disagree about which URL is the real one.
+    .map((p) => (p === 'index.html' ? '/' : '/' + p.replace(/\\/g, '/').replace(/\.html$/, '')))
+    .sort()
+    .map((path) => `  <url>\n    <loc>${env.url}${path}</loc>\n    <lastmod>${today}</lastmod>\n  </url>`)
+    .join('\n');
+
+  await writeFile(
+    join(OUT, 'sitemap.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
+  );
 }
 
 async function buildRobots() {
@@ -341,10 +440,21 @@ ${noindex}
 </IfModule>
 
 # --- Compression ------------------------------------------------------------
+# Brotli first: it beats gzip by roughly 15-20% on this HTML, which is mostly
+# repeated markup and an inline SVG sprite. Apache picks whichever the browser
+# advertises, so the deflate block below stays as the fallback rather than a
+# duplicate. Images are already compressed - running them through either filter
+# burns CPU to add bytes.
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/css text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml application/xml
+</IfModule>
+
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
   AddOutputFilterByType DEFLATE application/javascript application/json
-  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
 </IfModule>
 
 # --- Caching ----------------------------------------------------------------
@@ -389,11 +499,15 @@ async function build() {
   const html = await buildHtml({ css, js });
   await buildRobots();
   await buildHtaccess();
+  await buildSitemap(html.paths);
+  // Last, so it sees every reference the finished output makes.
+  const pruned = await pruneAssets();
 
   const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
   console.log(
     `${PROD ? 'prod' : 'dev '} build  ${Date.now() - t0}ms  |  ` +
     `html ${html.pages}p ${kb(html.size)}  css ${kb(css.size)}  js ${kb(js.size)}` +
+    `  |  pruned ${pruned.dropped} asset(s) ${kb(pruned.freed)}` +
     `${PROD ? '' : '  |  noindex'}`
   );
 }

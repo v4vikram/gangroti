@@ -12,8 +12,12 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- The hero is the LCP element, so its image starts downloading before the
-       CSS has even finished parsing. -->
-  <link rel="preload" as="image" href="/img/hero/hero-1.webp" fetchpriority="high">
+       CSS has even finished parsing. The srcset here has to mirror the <img>
+       below exactly: preloading a bare 1920px href would make a phone fetch
+       that file AND the 960w one the srcset then picks. -->
+  <link rel="preload" as="image" href="/img/hero/hero-1.webp"
+        imagesrcset="/img/hero/hero-1-960w.webp 960w, /img/hero/hero-1-1440w.webp 1440w, /img/hero/hero-1.webp 1920w"
+        imagesizes="100vw" fetchpriority="high">
 
   <!--@include head-assets.html-->
 </head>
@@ -31,7 +35,12 @@
 
           <li class="slider-slide w-full relative">
             <div class="hero-media">
-              <img src="/img/hero/hero-1.webp" alt="Kedarnath temple below the snow-covered Kedarnath peak"
+              <img src="/img/hero/hero-1.webp"
+                   srcset="/img/hero/hero-1-960w.webp 960w,
+                           /img/hero/hero-1-1440w.webp 1440w,
+                           /img/hero/hero-1.webp 1920w"
+                   sizes="100vw"
+                   alt="Kedarnath temple below the snow-covered Kedarnath peak"
                    width="1920" height="1080" fetchpriority="high" decoding="async">
             </div>
             <div class="hero-overlay"></div>
@@ -58,7 +67,12 @@
 
           <li class="slider-slide w-full relative">
             <div class="hero-media">
-              <img src="/img/hero/hero-2.webp" alt="The ridge trail to Chandrashila summit above Chopta"
+              <img src="/img/hero/hero-2.webp"
+                   srcset="/img/hero/hero-2-960w.webp 960w,
+                           /img/hero/hero-2-1440w.webp 1440w,
+                           /img/hero/hero-2.webp 1920w"
+                   sizes="100vw"
+                   alt="The ridge trail to Chandrashila summit above Chopta"
                    width="1920" height="1080" loading="lazy" decoding="async">
             </div>
             <div class="hero-overlay"></div>
@@ -82,7 +96,12 @@
 
           <li class="slider-slide w-full relative">
             <div class="hero-media">
-              <img src="/img/hero/hero-3.webp" alt="The Bhagirathi river below the Himalayan range at Gangotri"
+              <img src="/img/hero/hero-3.webp"
+                   srcset="/img/hero/hero-3-960w.webp 960w,
+                           /img/hero/hero-3-1440w.webp 1440w,
+                           /img/hero/hero-3.webp 1920w"
+                   sizes="100vw"
+                   alt="The Bhagirathi river below the Himalayan range at Gangotri"
                    width="1920" height="1080" loading="lazy" decoding="async">
             </div>
             <div class="hero-overlay"></div>
