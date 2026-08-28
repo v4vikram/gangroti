@@ -5,3 +5,15 @@ dist/
 Thumbs.db
 .env
 .env.*
+
+# The theme's built assets - generated from src/ by `npm run build:theme`.
+# Committing them would duplicate every image the repo already carries, and a
+# stale copy is worse than no copy: inc/assets.php reads the manifest, so an
+# out-of-date pair would be served as if it were current.
+theme/*/assets/css/
+theme/*/assets/js/
+theme/*/assets/fonts/
+theme/*/assets/img/
+theme/*/assets/icons/
+theme/*/assets/manifest.json
+theme/*/data/

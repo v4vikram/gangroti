@@ -1,0 +1,21 @@
+/*
+Theme Name: Gangotri Expeditions
+Theme URI: https://gangotriexpeditions.in
+Author: Gangotri Expeditions
+Description: Custom theme for Gangotri Expeditions - Char Dham yatras and Himalayan treks in Uttarakhand. Packages are a custom post type with hand-rolled meta boxes; no page builder and no plugin dependencies.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: gangotri-expeditions
+Tags: travel, custom-post-type, accessibility-ready
+*/
+
+/*
+ * This file exists because WordPress identifies a theme by the header above.
+ * The stylesheet the browser actually loads is assets/css/main.<hash>.css,
+ * built from src/css/main.css by `npm run build:theme` and enqueued in
+ * inc/assets.php. Do not add rules here - nothing on the front end loads them.
+ */

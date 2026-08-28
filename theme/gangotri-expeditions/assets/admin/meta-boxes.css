@@ -1,0 +1,86 @@
+/*
+ * Package editor styling.
+ *
+ * Deliberately plain: it borrows the admin's own spacing and colours so the
+ * boxes read as part of WordPress rather than as a bolted-on panel.
+ */
+
+.ge-field {
+	margin-bottom: 1.25rem;
+}
+
+.ge-field:last-child {
+	margin-bottom: 0;
+}
+
+.ge-label {
+	display: block;
+	margin-bottom: 0.25rem;
+	font-weight: 600;
+}
+
+.ge-help {
+	margin: 0.35rem 0 0;
+}
+
+.ge-repeater {
+	margin-top: 0.5rem;
+}
+
+.ge-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	margin-bottom: 0.5rem;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.ge-row--group {
+	align-items: flex-start;
+}
+
+.ge-row-fields {
+	flex: 1;
+	min-width: 0;
+}
+
+.ge-sublabel {
+	display: block;
+	margin: 0.5rem 0 0.2rem;
+	font-size: 12px;
+	font-weight: 600;
+	color: #50575e;
+}
+
+.ge-row-fields .ge-sublabel:first-child {
+	margin-top: 0;
+}
+
+.ge-handle {
+	margin-top: 0.35rem;
+	color: #a7aaad;
+	cursor: default;
+}
+
+.ge-remove {
+	margin-top: 0.2rem;
+	color: #b32d2e;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.ge-remove:hover {
+	color: #8a2424;
+}
+
+.ge-add {
+	margin-top: 0.25rem;
+}
+
+/* The side box is narrow; stack its rows rather than squeezing them. */
+#ge-facts .ge-row {
+	flex-wrap: wrap;
+}

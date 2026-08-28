@@ -2,6 +2,9 @@
 @import "./fonts.css";
 
 @source "../**/*.{html,js}";
+/* The WordPress theme's markup lives outside src/, and a class that only ever
+   appears in PHP would otherwise be purged out of the stylesheet. */
+@source "../../theme/**/*.php";
 
 /* ==========================================================================
    Design tokens - from the Gangotri Expeditions brand guide.
@@ -1041,6 +1044,80 @@
     transition: opacity 0.6s var(--ease-out-soft), transform 0.6s var(--ease-out-soft);
   }
   [data-reveal].is-revealed { opacity: 1; transform: none; }
+
+  /* --- WordPress -------------------------------------------------------- */
+  /* Everything below only ever appears once the theme is running: markup the
+     editor produces, and the two controls WordPress renders for us. */
+
+  /* Editor output. Tailwind's reset strips heading and list styling, so a page
+     written in the block editor needs them handed back inside this wrapper. */
+  .prose-ge > * + * { margin-top: 1.25rem; }
+  .prose-ge h2 { font-size: 1.5rem; margin-top: 2.5rem; }
+  .prose-ge h3 { font-size: 1.25rem; margin-top: 2rem; }
+  .prose-ge p,
+  .prose-ge li { line-height: 1.75; color: rgb(34 34 34 / 0.75); }
+  .prose-ge ul,
+  .prose-ge ol { padding-left: 1.5rem; }
+  .prose-ge ul { list-style: disc; }
+  .prose-ge ol { list-style: decimal; }
+  .prose-ge li + li { margin-top: 0.5rem; }
+  .prose-ge a {
+    color: var(--color-brand-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .prose-ge img { border-radius: var(--radius-card); }
+  .prose-ge blockquote {
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--color-brand-200);
+    font-style: italic;
+  }
+  .prose-ge :where(figure, .wp-block-image) { margin-block: 2rem; }
+  .prose-ge figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    color: rgb(34 34 34 / 0.55);
+  }
+
+  .ge-pagination .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .ge-pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding-inline: 0.75rem;
+    justify-content: center;
+    border: 1.5px solid var(--color-brand-200);
+    border-radius: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-brand-700);
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+  .ge-pagination a.page-numbers:hover {
+    border-color: var(--color-brand-600);
+    background: var(--color-brand-50);
+  }
+  .ge-pagination .page-numbers.current {
+    background: var(--color-brand-600);
+    border-color: var(--color-brand-600);
+    color: #fff;
+  }
+  .ge-pagination .page-numbers.dots { border-color: transparent; }
+
+  /* The admin bar is fixed, and so is the site header - without this they
+     overlap for logged-in editors, which is who checks the site most. */
+  .admin-bar .site-header { top: 32px; }
+  @media (max-width: 782px) {
+    .admin-bar .site-header { top: 46px; }
+  }
 }
 
 /* ==========================================================================

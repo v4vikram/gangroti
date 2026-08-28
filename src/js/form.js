@@ -57,14 +57,19 @@ function validate(form) {
 }
 
 /**
- * Where submissions go. Injected at build time.
+ * Where submissions go.
  *
- * On the static build this is empty, because there is no server behind it.
- * In Phase 7 it becomes the WordPress admin-ajax endpoint and nothing else in
- * this file changes - the field names below are already the ones the PHP
- * handler will read out of $_POST.
+ * Two sources, checked in that order. FORM_ENDPOINT is substituted at build
+ * time and is what the static build used - empty there, because there was no
+ * server behind it. Under WordPress the URL is not known until runtime (it
+ * depends on the domain the theme is installed on), so inc/assets.php prints
+ * window.GE_AJAX ahead of this bundle and that wins.
+ *
+ * Still empty means no server at all, and send() is never reached - the form
+ * says so plainly rather than showing a success message for a submission that
+ * went nowhere.
  */
-const ENDPOINT = FORM_ENDPOINT;
+const ENDPOINT = FORM_ENDPOINT || globalThis.GE_AJAX?.url || '';
 
 function setStatus(status, state, message) {
   status.hidden = false;

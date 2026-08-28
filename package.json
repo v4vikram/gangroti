@@ -6,6 +6,8 @@
     "dev": "node scripts/build.mjs --watch --serve",
     "build": "node scripts/build.mjs",
     "build:prod": "node scripts/build.mjs --prod",
+    "build:theme": "node scripts/build-theme.mjs",
+    "build:theme:prod": "node scripts/build-theme.mjs --prod",
     "fonts": "node scripts/fetch-fonts.mjs",
     "icons": "node scripts/build-icons.mjs",
     "images": "node scripts/fetch-images.mjs",
