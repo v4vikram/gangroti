@@ -518,9 +518,20 @@
   .breadcrumb a:hover { color: var(--color-gold-400); }
   .breadcrumb [aria-current="page"] { color: #fff; }
 
+  /* Columns live here, not as utilities on the markup, so the single-card rule
+     below can actually override them - utilities outrank components. */
+  .card-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px)  { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+
   /* A single card stranded in a three-column grid reads as a broken layout.
-     Until the collection grows, centre it at a sensible width. */
+     Until the collection grows, give it the whole track and centre it. */
   .card-grid:has(> [data-yatra]:only-child) {
+    grid-template-columns: 1fr;
     max-width: 24rem;
     margin-inline: auto;
   }
