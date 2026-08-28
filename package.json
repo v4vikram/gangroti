@@ -9,7 +9,8 @@
     "fonts": "node scripts/fetch-fonts.mjs",
     "icons": "node scripts/build-icons.mjs",
     "images": "node scripts/fetch-images.mjs",
-    "assets": "npm run fonts && npm run icons && npm run images"
+    "images:optimize": "node scripts/optimize-images.mjs",
+    "assets": "npm run fonts && npm run icons && npm run images && npm run images:optimize"
   },
   "type": "module",
   "devDependencies": {
