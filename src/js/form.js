@@ -124,6 +124,8 @@ function initEnquiryForm(form) {
     try {
       await send(form);
       form.reset();
+      // Someone who has just enquired should not then be shown the popup.
+      markShown();
       setStatus(status, 'ok', 'Thank you. We have your details and will call you shortly.');
     } catch {
       setStatus(
@@ -163,16 +165,67 @@ function initMap() {
  * The enquiry popup. <dialog> gives us the backdrop, focus trapping, inert
  * background and Escape handling for free, so this only wires the triggers.
  */
+/**
+ * Auto-open settings.
+ *
+ * Deliberately not on page load. Google treats a popup that covers the content
+ * of a page arrived at from search as an intrusive interstitial, and demotes
+ * the page for it on mobile - which would work directly against the point of
+ * this site. Waiting for the visitor to show interest first (time on page, or
+ * scrolling into the page) sidesteps that, and converts better anyway.
+ */
+const AUTO = {
+  delay: 25000,   // ms on the page
+  scroll: 0.45,   // or this much of the page read, whichever comes first
+  key: 'ge-enquiry-seen',
+};
+
+/**
+ * Both thresholds can be overridden per site from the markup:
+ *   <dialog data-enquiry-modal data-auto-delay="25000" data-auto-scroll="0.45">
+ * In Phase 7 those two attributes are filled from the Theme Options page, so
+ * the client can retune the popup without a developer.
+ */
+function autoSettings(modal) {
+  return {
+    delay: Number(modal.dataset.autoDelay) || AUTO.delay,
+    scroll: Number(modal.dataset.autoScroll) || AUTO.scroll,
+  };
+}
+
+/** Once per browser session - not once per page view. */
+function alreadyShown() {
+  try {
+    return sessionStorage.getItem(AUTO.key) === '1';
+  } catch {
+    // Private mode or blocked storage: treat as shown, so a visitor who cannot
+    // be remembered is not hit by the popup on every single page.
+    return true;
+  }
+}
+
+function markShown() {
+  try {
+    sessionStorage.setItem(AUTO.key, '1');
+  } catch { /* nothing we can do, and nothing that needs saying */ }
+}
+
 function initEnquiryModal() {
   const modal = document.querySelector('[data-enquiry-modal]');
   if (!modal || typeof modal.showModal !== 'function') return;
 
+  function open({ auto = false } = {}) {
+    if (modal.open) return;
+    if (auto && alreadyShown()) return;
+
+    markShown();
+    modal.showModal();
+    // Land on the first real field, not on the close button.
+    modal.querySelector('input[name="name"]')?.focus();
+  }
+
   for (const trigger of document.querySelectorAll('[data-enquiry-open]')) {
-    trigger.addEventListener('click', () => {
-      modal.showModal();
-      // Land on the first real field, not on the close button.
-      modal.querySelector('input[name="name"]')?.focus();
-    });
+    trigger.addEventListener('click', () => open());
   }
 
   modal.querySelector('[data-enquiry-close]')?.addEventListener('click', () => modal.close());
@@ -181,6 +234,37 @@ function initEnquiryModal() {
   modal.addEventListener('click', (e) => {
     if (e.target === modal) modal.close();
   });
+
+  /* ---------------------------------------------------------- auto-open --- */
+
+  if (alreadyShown()) return;
+
+  const inlineForm = document.querySelector('#enquiry');
+  let inlineVisible = false;
+
+  // Never interrupt someone who is already looking at the enquiry form.
+  if (inlineForm) {
+    new IntersectionObserver(([entry]) => { inlineVisible = entry.isIntersecting; })
+      .observe(inlineForm);
+  }
+
+  const { delay, scroll } = autoSettings(modal);
+  const timer = setTimeout(tryOpen, delay);
+
+  function tryOpen() {
+    clearTimeout(timer);
+    removeEventListener('scroll', onScroll);
+
+    if (inlineVisible) return; // they found the form on their own
+    open({ auto: true });
+  }
+
+  function onScroll() {
+    const read = scrollY / Math.max(1, document.body.scrollHeight - innerHeight);
+    if (read >= scroll) tryOpen();
+  }
+
+  addEventListener('scroll', onScroll, { passive: true });
 }
 
 export function initForms() {
