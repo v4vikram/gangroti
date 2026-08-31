@@ -529,7 +529,7 @@
 
   /* Two cards: drop to two columns rather than leaving a hole on the right. */
   .card-grid:has(> [data-yatra]:nth-child(2):last-child) {
-    max-width: 56rem;
+    /* max-width: 56rem; */
     margin-inline: auto;
   }
   @media (min-width: 1024px) {
@@ -541,7 +541,7 @@
   /* One card: turn it side-on. A lone portrait card centred under a full-width
      heading looks stranded; a wide horizontal card looks deliberate. */
   .card-grid:has(> [data-yatra]:only-child) {
-    max-width: 46rem;
+    /* max-width: 46rem; */
     margin-inline: auto;
   }
   @media (min-width: 640px) {

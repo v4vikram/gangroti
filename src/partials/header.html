@@ -57,6 +57,11 @@
     </nav>
 
     <div class="mt-auto pb-8 pt-6 grid gap-3">
+      <!-- The header's Book Now is desktop-only, so the panel carries it on mobile. -->
+      <button type="button" class="btn btn-gold btn-lg" data-enquiry-open>
+        <svg class="icon" aria-hidden="true"><use href="#i-send"/></svg>
+        Get a Free Quote
+      </button>
       <a class="btn btn-primary btn-lg" href="tel:{{site.phoneRaw}}">
         <svg class="icon" aria-hidden="true"><use href="#i-phone-call"/></svg>
         Call {{site.phone}}
