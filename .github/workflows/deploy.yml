@@ -87,6 +87,15 @@ jobs:
           name: theme-${{ github.sha }}
           path: theme
 
+      - name: Guard - the theme path must be set and must be a theme folder
+        env:
+          THEME_PATH: ${{ secrets.DEV_FTP_THEME_PATH }}
+        run: |
+          case "$THEME_PATH" in
+            */wp-content/themes/*) echo "target ok" ;;
+            *) echo "DEV_FTP_THEME_PATH is empty or not a theme folder"; exit 1 ;;
+          esac
+
       # Only the theme folder is synced. WordPress core, uploads and the
       # database are the server's own - nothing here touches them.
       - name: Deploy theme over FTPS
@@ -117,6 +126,19 @@ jobs:
         with:
           name: theme-${{ github.sha }}
           path: theme
+
+      # An empty server-dir makes the action default to the account root, and
+      # it syncs by deleting whatever the artifact does not contain. On this
+      # host that root is the live site. The deploy is not allowed to start
+      # until the secret names an actual theme folder.
+      - name: Guard - the theme path must be set and must be a theme folder
+        env:
+          THEME_PATH: ${{ secrets.PROD_FTP_THEME_PATH }}
+        run: |
+          case "$THEME_PATH" in
+            */wp-content/themes/*) echo "target ok" ;;
+            *) echo "PROD_FTP_THEME_PATH is empty or not a theme folder"; exit 1 ;;
+          esac
 
       - name: Deploy theme over FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
