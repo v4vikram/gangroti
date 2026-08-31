@@ -60,7 +60,7 @@ ${faces.map(f => `@font-face {
   font-style: ${f.style};
   font-weight: ${f.weight};
   font-display: swap;
-  src: url('/fonts/${f.file}') format('woff2');
+  src: url('../fonts/${f.file}') format('woff2');
 }`).join('\n\n')}
 `);
 

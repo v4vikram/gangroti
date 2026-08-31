@@ -1,0 +1,96 @@
+/*
+ * Admin styling for the theme's meta boxes.
+ *
+ * Deliberately plain: it follows the WordPress admin's own spacing and colours
+ * rather than introducing a second visual language inside wp-admin.
+ */
+
+.ge-field {
+	margin-bottom: 16px;
+}
+
+.ge-field__label {
+	display: block;
+	margin-bottom: 4px;
+	font-weight: 600;
+}
+
+.ge-field__help {
+	margin: 4px 0 0;
+	font-style: normal;
+}
+
+/* Two-up for the short fields, so the box does not become a tall column. */
+#gangotri_facts .inside {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	gap: 0 20px;
+}
+
+/* --- repeater rows ------------------------------------------------------- */
+
+.ge-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin-bottom: 8px;
+}
+
+.ge-row--block {
+	padding: 12px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.ge-row--block.is-dragging {
+	opacity: 0.5;
+}
+
+.ge-row__body {
+	flex: 1;
+	min-width: 0;
+}
+
+.ge-row__body .ge-field:last-child {
+	margin-bottom: 0;
+}
+
+.ge-row__handle {
+	cursor: grab;
+	color: #8c8f94;
+	padding-top: 4px;
+}
+
+.ge-row__handle:active {
+	cursor: grabbing;
+}
+
+.ge-row__remove {
+	color: #b32d2e;
+	font-size: 20px;
+	line-height: 1;
+	padding: 2px 6px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.ge-row__remove:hover {
+	color: #8a2424;
+}
+
+/* --- image picker -------------------------------------------------------- */
+
+.ge-image__preview img {
+	max-width: 200px;
+	height: auto;
+	display: block;
+	margin-bottom: 8px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.ge-image__clear {
+	color: #b32d2e;
+	cursor: pointer;
+}

@@ -26,3 +26,5 @@ the same name into the same folder - no markup changes needed.
 | `img/gallery/gallery-5` | [Mt. Nandadevi.JPG](https://commons.wikimedia.org/wiki/File:Mt._Nandadevi.JPG) | Arupamdas | CC BY-SA 4.0 |
 | `img/gallery/gallery-6` | [Himalayas near Auli.jpg](https://commons.wikimedia.org/wiki/File:Himalayas_near_Auli.jpg) | Michael Scalet | CC BY-SA 2.0 |
 | `img/yatras/madmaheshwar-trek` | [Madhyamaheshwar village.JPG](https://commons.wikimedia.org/wiki/File:Madhyamaheshwar_village.JPG) | Bodhisattwa | CC BY-SA 4.0 |
+| `img/yatras/roopkund-trek` | [Bedini Bugyal 01.jpg](https://commons.wikimedia.org/wiki/File:Bedini_Bugyal_01.jpg) | Shaswat Nimesh | CC BY-SA 4.0 |
+| `img/yatras/kedarkantha-trek` | [Sun Rise View from Kedarkantha Summit.jpg](https://commons.wikimedia.org/wiki/File:Sun_Rise_View_from_Kedarkantha_Summit.jpg) | Atulbhats | CC BY-SA 4.0 |

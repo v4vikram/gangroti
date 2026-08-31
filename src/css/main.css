@@ -2,6 +2,11 @@
 @import "./fonts.css";
 
 @source "../**/*.{html,js}";
+/* The WordPress templates carry the same class names as the static pages. Both
+   builds scan both trees, so the stylesheet is identical either side of the
+   conversion and a class cannot be present in one build and purged from the
+   other. */
+@source "../../wp-theme/**/*.php";
 
 /* ==========================================================================
    Design tokens - from the Gangotri Expeditions brand guide.

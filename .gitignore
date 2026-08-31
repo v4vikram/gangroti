@@ -5,3 +5,6 @@ dist/
 Thumbs.db
 .env
 .env.*
+
+# Built by scripts/build-theme.mjs - CI rebuilds it on every deploy.
+wp-theme/gangotri/assets/

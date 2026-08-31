@@ -1,0 +1,21 @@
+/*
+Theme Name: Gangotri Expeditions
+Theme URI: https://gangotriexpeditions.in/
+Author: Codevani
+Description: Custom theme for Gangotri Expeditions - Himalayan treks and Char Dham yatras in Uttarakhand. Built on a Tailwind pipeline with no page builder and no framework bloat.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: gangotri
+Tags: travel, custom-menu, custom-logo, translation-ready
+*/
+
+/*
+ * WordPress requires this file to exist and to carry the header above, but the
+ * actual stylesheet is assets/css/main.<hash>.css, built by `npm run build:theme`
+ * and enqueued in inc/assets.php. Nothing should be added here - it would sit
+ * outside the build and outside the cache-busting hash.
+ */

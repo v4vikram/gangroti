@@ -1,5 +1,114 @@
 [
   {
+    "slug": "chopta-tungnath-chandrashila",
+    "title": "Chopta - Tungnath & Chandrashila Trek",
+    "destination": "Chopta",
+    "type": "Trek",
+    "image": "chopta-tungnath-yatra",
+    "alt": "Trekkers on the ridge trail to Chandrashila summit above Chopta",
+    "days": 3,
+    "nights": 2,
+    "price": 5500,
+    "difficulty": "Easy",
+    "altitude": "4,000 m",
+    "season": "All year",
+    "batch": "Every weekend",
+    "pickup": "Delhi",
+    "groupSize": "Max 15",
+    "summary": "The highest Shiva temple in the world, and a sunrise summit at 4,000 m that puts Nanda Devi, Trishul and Chaukhamba on the same horizon. The easiest big view in Garhwal.",
+    "featured": true,
+    "overview": "Tungnath sits at 3,680 m and is the third of the Panch Kedar, reached by a 3.5 km paved path from Chopta that most people walk in two to three hours. Another 1.5 km of steeper ground gets you to Chandrashila at 4,000 m, and on a clear morning that summit gives a genuine 360 degree panorama - Nanda Devi, Trishul, Chaukhamba and Kedar peak all at once. It runs all year: in winter the trail holds snow and needs microspikes, which we carry.",
+    "highlights": [
+      "Tungnath, the highest Shiva temple in the world",
+      "Sunrise from the Chandrashila summit at 4,000 m",
+      "The Chopta meadows, forested and quiet outside season",
+      "Optional Deoria Tal stop on the way down"
+    ],
+    "itinerary": [
+      { "title": "Delhi to Chopta", "text": "Overnight drive from Delhi, reaching Rishikesh by morning and climbing through Devprayag and Ukhimath to Chopta. Evening free in the meadows." },
+      { "title": "Tungnath and Chandrashila", "text": "Pre-dawn start for Tungnath, then the summit push to Chandrashila for sunrise. Descend to Chopta through the morning, afternoon at leisure." },
+      { "title": "Chopta to Delhi", "text": "Optional early walk to Deoria Tal, then the long drive back, arriving Delhi late." }
+    ],
+    "inclusions": [
+      "Return transport from Delhi in a private vehicle",
+      "Camp or guesthouse stay on twin sharing",
+      "Breakfast and dinner on both days",
+      "Trek leader and local support staff",
+      "Forest entry permits",
+      "First-aid kit, oximeter and oxygen support",
+      "Microspikes and gaiters in snow season"
+    ],
+    "exclusions": [
+      "Lunches and personal snacks",
+      "Personal trekking gear and clothing",
+      "Travel insurance",
+      "Costs from weather delays or road closures",
+      "Anything not listed under inclusions"
+    ],
+    "faqs": [
+      { "q": "Is the Tungnath trek difficult?", "a": "It is one of the gentlest Himalayan treks: 3.5 km on a paved path with a steady gradient, usually two to three hours up. The Chandrashila extension is steeper and can be icy between December and March." },
+      { "q": "Can I do this trek in winter?", "a": "Yes, and many people come specifically for the snow. December to March needs microspikes and proper layers, both of which we provide. The temple itself closes for winter, but the trail and the summit stay open." },
+      { "q": "Is it suitable for beginners and children?", "a": "It is the trek we most often recommend as a first one. Children from about eight upwards manage it comfortably, as do most people with ordinary fitness." }
+    ]
+  },
+  {
+    "slug": "roopkund-trek",
+    "title": "Roopkund Trek",
+    "destination": "Roopkund",
+    "type": "Trek",
+    "image": "roopkund-trek",
+    "alt": "The high alpine meadows on the approach to Roopkund",
+    "days": 8,
+    "nights": 7,
+    "price": 20000,
+    "difficulty": "Difficult",
+    "altitude": "4,800 m",
+    "season": "May - Jun, Sep - Oct",
+    "batch": "1st & 15th",
+    "pickup": "Kathgodam",
+    "groupSize": "Max 15",
+    "summary": "Eight days to a glacial lake at 4,800 m, across the Ali and Bedni Bugyal meadows with Trishul and Nanda Ghunti overhead. The hardest thing we run, and the one people talk about for years.",
+    "featured": true,
+    "overview": "Roopkund is a small glacial lake at 4,800 m, best known for the human remains found at its edge. Getting there means eight days through oak and rhododendron forest, then out onto Ali and Bedni Bugyal - two of the largest high-altitude meadows in the Himalaya - with Trishul and Nanda Ghunti standing over them the whole way. This is a genuinely hard trek: long days, real altitude, and snow on the final stretch well into June.",
+    "highlights": [
+      "Ali and Bedni Bugyal, among the largest alpine meadows in India",
+      "Trishul and Nanda Ghunti in view for most of the walk",
+      "The glacial lake at 4,800 m",
+      "Ancient Nanda Devi temples at Wan and Bedni"
+    ],
+    "itinerary": [
+      { "title": "Kathgodam to Lohajung", "text": "Long drive through Almora and Gwaldam to the trailhead village of Lohajung (2,300 m)." },
+      { "title": "Lohajung to Didna", "text": "Drive to Kulling, cross the Neel Ganga and climb through forest to Didna village." },
+      { "title": "Didna to Ali Bugyal", "text": "Steep climb out of the treeline into the first of the meadows. Camp with Trishul directly ahead." },
+      { "title": "Ali Bugyal to Patar Nachauni", "text": "A gentle traverse across Bedni Bugyal, past the Nanda Devi temple, to camp at 3,800 m." },
+      { "title": "Patar Nachauni to Bhagwabasa", "text": "Short but steep day over Kalu Vinayak pass to the last camp at 4,100 m. Deliberately short - this is the acclimatisation that makes the summit day possible." },
+      { "title": "Roopkund and back to Patar Nachauni", "text": "Pre-dawn start for the lake at 4,800 m, then a long descent all the way back to Patar Nachauni." },
+      { "title": "Patar Nachauni to Lohajung", "text": "Down through the meadows and forest to Lohajung." },
+      { "title": "Lohajung to Kathgodam", "text": "Drive out, reaching Kathgodam by evening." }
+    ],
+    "inclusions": [
+      "Return transport from Kathgodam",
+      "Camping and guesthouse stay throughout",
+      "All meals on trek",
+      "Trek leader, cook, porters and mules",
+      "Forest permits and camping charges",
+      "Tents, sleeping bags and mattresses",
+      "First-aid kit, oxygen cylinder and oximeter"
+    ],
+    "exclusions": [
+      "Transport to Kathgodam",
+      "Personal trekking gear and clothing",
+      "Travel insurance",
+      "Porter for personal bags",
+      "Anything not listed under inclusions"
+    ],
+    "faqs": [
+      { "q": "How hard is the Roopkund trek really?", "a": "It is the hardest trek we run. Expect six to eight hours of walking a day for a week, a summit day that starts before dawn and covers 1,000 m of climbing and descent, and camping above 4,000 m. You should be able to jog 5 km in under 35 minutes before you come." },
+      { "q": "Do I need previous trekking experience?", "a": "Yes. We ask for at least one Himalayan trek above 3,500 m beforehand. Roopkund is a poor choice for a first high-altitude trek, and we would rather put you on Chopta or Har Ki Dun first and have you come back for this one." },
+      { "q": "When can the trek run?", "a": "May to June and September to October. The monsoon makes the meadows dangerous and the winter buries the route. Snow on the final stretch is normal even in late May." }
+    ]
+  },
+  {
     "slug": "madmaheshwar-trek",
     "title": "Madmaheshwar Trek",
     "destination": "Madmaheshwar",
@@ -19,24 +128,15 @@
     "featured": true,
     "overview": "Madmaheshwar - Madhyamaheshwar on the survey maps - is where Shiva's navel is said to have appeared, making it the second of the Panch Kedar. It sits at 3,289 m at the head of a green valley, and the only way in is on foot: roughly 16 km from Ransi, taking most people 8 to 9 hours. That length is the whole reason it stays quiet. Kedarnath sees thousands a day in season; here you will pass a handful of people and a lot of forest.",
     "highlights": [
-      "Second temple of the Panch Kedar circuit",
+      "Second temple of the Panch Kedar",
       "Overnight at the temple for the morning aarti",
       "Budha Madmaheshwar viewpoint for Chaukhamba at sunrise",
       "Dhari Devi and Omkareshwar temples on the drive in"
     ],
     "itinerary": [
-      {
-        "title": "Delhi to Ransi",
-        "text": "Overnight drive from Delhi, reaching the hills by morning. Stops at Devprayag where the Alaknanda and Bhagirathi meet, Dhari Devi on the riverbank, and Omkareshwar temple at Ukhimath - the winter seat of Kedarnath. Overnight at Ransi village (2,150 m)."
-      },
-      {
-        "title": "Ransi to Madmaheshwar",
-        "text": "The long day. Walk down to Gaundhar, cross the river at Bantoli where two valleys meet, then climb steadily through Khatara and Nanu to the temple. Around 16 km and 8 to 9 hours. Evening aarti, and a night at 3,289 m."
-      },
-      {
-        "title": "Budha Madmaheshwar, then return",
-        "text": "Early climb to Budha Madmaheshwar for a clear line on Chaukhamba, Neelkanth and Kedar peak. Descend to Ransi through the afternoon and start the drive back to Delhi."
-      }
+      { "title": "Delhi to Ransi", "text": "Overnight drive from Delhi, reaching the hills by morning. Stops at Devprayag where the Alaknanda and Bhagirathi meet, Dhari Devi on the riverbank, and Omkareshwar temple at Ukhimath - the winter seat of Kedarnath. Overnight at Ransi village (2,150 m)." },
+      { "title": "Ransi to Madmaheshwar", "text": "The long day. Walk down to Gaundhar, cross the river at Bantoli where two valleys meet, then climb steadily through Khatara and Nanu to the temple. Around 16 km and 8 to 9 hours. Evening aarti, and a night at 3,289 m." },
+      { "title": "Budha Madmaheshwar, then return", "text": "Early climb to Budha Madmaheshwar for a clear line on Chaukhamba, Neelkanth and Kedar peak. Descend to Ransi through the afternoon and start the drive back to Delhi." }
     ],
     "inclusions": [
       "Return transport from Delhi in a private vehicle",
@@ -55,22 +155,173 @@
       "Anything not listed under inclusions"
     ],
     "faqs": [
-      {
-        "q": "How difficult is the Madmaheshwar trek?",
-        "a": "Moderate. It is not technical at any point, but 16 km with a steady climb takes most people 8 to 9 hours, and you do it with a day pack. If you can walk 5 km comfortably on a slope, you will manage - just slowly."
-      },
-      {
-        "q": "How is it different from Kedarnath?",
-        "a": "Same deity, a fraction of the crowd. Kedarnath handles thousands of pilgrims a day in season and has a paved path the whole way. Madmaheshwar has a forest trail, a handful of tea shops, and on most days you will have long stretches to yourself."
-      },
-      {
-        "q": "When is the best time to go?",
-        "a": "May and June, then September and October. The temple closes for winter around November when the deity moves to Ukhimath. July and August bring heavy monsoon rain and leeches on the forest section, so we do not run departures then."
-      },
-      {
-        "q": "Where does the trip start from?",
-        "a": "Delhi, with an overnight drive on day zero. If you are coming from Haridwar, Rishikesh or Dehradun we can pick you up en route instead - tell us when you enquire and we will adjust the price."
-      }
+      { "q": "How difficult is the Madmaheshwar trek?", "a": "Moderate. It is not technical at any point, but 16 km with a steady climb takes most people 8 to 9 hours, and you do it with a day pack. If you can walk 5 km comfortably on a slope, you will manage - just slowly." },
+      { "q": "How is it different from Kedarnath?", "a": "Same deity, a fraction of the crowd. Kedarnath handles thousands of pilgrims a day in season and has a paved path the whole way. Madmaheshwar has a forest trail, a handful of tea shops, and on most days you will have long stretches to yourself." },
+      { "q": "When is the best time to go?", "a": "May and June, then September and October. The temple closes for winter around November when the deity moves to Ukhimath. July and August bring heavy monsoon rain and leeches on the forest section, so we do not run departures then." },
+      { "q": "Where does the trip start from?", "a": "Delhi, with an overnight drive on day zero. If you are coming from Haridwar, Rishikesh or Dehradun we can pick you up en route instead - tell us when you enquire and we will adjust the price." }
+    ]
+  },
+  {
+    "slug": "har-ki-dun-trek",
+    "title": "Har Ki Dun Trek",
+    "destination": "Har Ki Dun",
+    "type": "Trek",
+    "image": "har-ki-dun-trek",
+    "alt": "The wide green cradle of the Har Ki Dun valley ringed by peaks",
+    "days": 6,
+    "nights": 5,
+    "price": 11500,
+    "difficulty": "Moderate",
+    "altitude": "3,566 m",
+    "season": "Apr - Nov",
+    "batch": "1st & 3rd Sat",
+    "pickup": "Dehradun",
+    "groupSize": "Max 15",
+    "summary": "A hanging valley in the Govind National Park, reached through the old wooden villages of Osla and Seema, with the Swargarohini massif standing at its head.",
+    "featured": true,
+    "overview": "Har Ki Dun is a wide cradle-shaped valley at 3,566 m, walked into over two days from the roadhead at Sankri. The route follows the Supin river through Govind National Park, past villages built in a timber style that has not changed in centuries. It is a moderate trek rather than a hard one - the days are long instead of steep - which makes it a good first multi-day Himalayan walk.",
+    "highlights": [
+      "Ancient timber villages of Osla and Gangaad",
+      "Govind National Park forest and river walking",
+      "Swargarohini and Bandarpoonch at the head of the valley",
+      "Camping beside the Supin river"
+    ],
+    "itinerary": [
+      { "title": "Dehradun to Sankri", "text": "Long drive through Mussoorie and Purola to the trailhead village of Sankri (1,950 m)." },
+      { "title": "Sankri to Seema", "text": "Drive to Taluka, then walk 11 km along the Supin river to Seema." },
+      { "title": "Seema to Har Ki Dun", "text": "Climb 11 km through Osla and its terraced fields into the valley itself." },
+      { "title": "Har Ki Dun and back to Seema", "text": "Morning walk towards the Jaundhar glacier and the base of Swargarohini, then retrace the route down to Seema." },
+      { "title": "Seema to Sankri", "text": "Walk to Taluka and drive back to Sankri." },
+      { "title": "Sankri to Dehradun", "text": "Drive out, arriving Dehradun in the evening." }
+    ],
+    "inclusions": [
+      "Return transport from Dehradun",
+      "Camping and guesthouse stay",
+      "All meals on trek",
+      "Trek leader, cook and porters",
+      "Forest permits and camping charges",
+      "Tents, sleeping bags and mattresses",
+      "First-aid kit, oxygen and oximeter"
+    ],
+    "exclusions": [
+      "Transport to Dehradun",
+      "Personal trekking gear and clothing",
+      "Travel insurance",
+      "Porter for personal bags",
+      "Anything not listed under inclusions"
+    ],
+    "faqs": [
+      { "q": "Do I need trekking experience for Har Ki Dun?", "a": "No, but you do need fitness. The days are long rather than technical, typically six to seven hours of walking. We ask that you can jog 4 km in under 30 minutes before the trek." },
+      { "q": "When is Har Ki Dun open?", "a": "April to November. April and May bring the rhododendron bloom, September and October give the clearest views, and the valley holds snow into early spring." }
+    ]
+  },
+  {
+    "slug": "kedarkantha-trek",
+    "title": "Kedarkantha Trek",
+    "destination": "Kedarkantha",
+    "type": "Trek",
+    "image": "kedarkantha-trek",
+    "alt": "Snow-covered pine forest on the Kedarkantha trail",
+    "days": 5,
+    "nights": 4,
+    "price": 7999,
+    "difficulty": "Moderate",
+    "altitude": "3,810 m",
+    "season": "Dec - Apr",
+    "batch": "Every Saturday",
+    "pickup": "Delhi",
+    "groupSize": "Max 15",
+    "summary": "The winter trek most people start with: pine forest under deep snow, a camp at Juda ka Talab, and a summit at 3,810 m that gives you the whole Garhwal range at sunrise.",
+    "featured": true,
+    "overview": "Kedarkantha is the best-known winter trek in India, and deservedly so - it gives you a genuine snow summit at 3,810 m without needing any technical skill. The route climbs from Sankri through pine forest to the frozen lake at Juda ka Talab, then up open meadows to a summit that looks across at Swargarohini, Bandarpoonch and Black Peak. Between December and March there is snow underfoot for most of it.",
+    "highlights": [
+      "Snow summit at 3,810 m, no technical skill needed",
+      "Juda ka Talab, frozen through the winter months",
+      "Swargarohini, Bandarpoonch and Black Peak from the top",
+      "Camping in snow with tents and bags provided"
+    ],
+    "itinerary": [
+      { "title": "Delhi to Sankri", "text": "Overnight drive to Dehradun, then the long road through Mussoorie and Purola to Sankri (1,950 m)." },
+      { "title": "Sankri to Juda ka Talab", "text": "Four km climb through pine and oak to the lake at 2,700 m. Camp on its edge." },
+      { "title": "Juda ka Talab to Kedarkantha base", "text": "A short day out of the treeline to the base camp meadow at 3,400 m, with the summit visible above." },
+      { "title": "Summit and descend to Sankri", "text": "Pre-dawn start for the 3,810 m summit, then a long descent all the way back to Sankri." },
+      { "title": "Sankri to Delhi", "text": "Drive out, arriving Delhi late in the evening." }
+    ],
+    "inclusions": [
+      "Return transport from Delhi",
+      "Camping and guesthouse stay",
+      "All meals on trek",
+      "Trek leader, cook and support staff",
+      "Forest permits and camping charges",
+      "Tents, sleeping bags rated for snow, and mattresses",
+      "Microspikes and gaiters",
+      "First-aid kit, oxygen and oximeter"
+    ],
+    "exclusions": [
+      "Personal trekking gear and clothing",
+      "Travel insurance",
+      "Porter for personal bags",
+      "Costs from weather delays or road closures",
+      "Anything not listed under inclusions"
+    ],
+    "faqs": [
+      { "q": "Is Kedarkantha good for a first trek?", "a": "It is probably the best first Himalayan trek there is. The days are short, the gradient is kind, and the summit feels like a real one. The only thing to prepare for is the cold - nights at base camp go well below freezing." },
+      { "q": "How cold does it get?", "a": "Minus 5 to minus 10 degrees at night at base camp in January, colder with wind. We provide tents and sleeping bags rated for it; you need to bring layers, a down jacket, gloves and a proper hat." },
+      { "q": "Will there definitely be snow?", "a": "From late December through March, almost always. Early December and April are less certain - the trek is still worth doing then, but come for the walk rather than for the snow." }
+    ]
+  },
+  {
+    "slug": "valley-of-flowers",
+    "title": "Valley of Flowers & Hemkund Sahib",
+    "destination": "Valley of Flowers",
+    "type": "Trek",
+    "image": "valley-of-flowers",
+    "alt": "Alpine flowers carpeting the Valley of Flowers national park",
+    "days": 6,
+    "nights": 5,
+    "price": 8500,
+    "difficulty": "Moderate",
+    "altitude": "4,632 m",
+    "season": "Jul - Sep",
+    "batch": "Every Sunday",
+    "pickup": "Haridwar",
+    "groupSize": "Max 15",
+    "summary": "A UNESCO World Heritage site that only opens for the monsoon, when around 300 species of alpine flower bloom at once. Paired with Hemkund Sahib at 4,632 m.",
+    "featured": true,
+    "overview": "The Valley of Flowers is a national park in the Bhyundar valley that spends most of the year under snow and comes alive for roughly ten weeks of monsoon. Around 300 species flower there, many of them found nowhere else at that density. The base is Ghangaria, reached on a 9 km walk from Govindghat, and from there the valley is a day walk and Hemkund Sahib - a glacial lake and gurudwara at 4,632 m - is a steeper one.",
+    "highlights": [
+      "UNESCO World Heritage national park",
+      "Peak bloom from mid July to late August",
+      "Hemkund Sahib at 4,632 m",
+      "Monsoon walking through the Bhyundar valley"
+    ],
+    "itinerary": [
+      { "title": "Haridwar to Joshimath", "text": "Drive up the Alaknanda valley through Devprayag, Rudraprayag and Karnaprayag." },
+      { "title": "Joshimath to Ghangaria", "text": "Drive to Govindghat, then walk 9 km to Ghangaria (3,050 m)." },
+      { "title": "Valley of Flowers", "text": "Day walk into the valley, several hours among the bloom, returning to Ghangaria by evening." },
+      { "title": "Hemkund Sahib", "text": "A 6 km climb to the glacial lake and gurudwara at 4,632 m, then back down to Ghangaria." },
+      { "title": "Ghangaria to Joshimath", "text": "Walk down to Govindghat and drive to Joshimath." },
+      { "title": "Return to Haridwar", "text": "Long drive down the valley, arriving Haridwar by evening." }
+    ],
+    "inclusions": [
+      "Return transport from Haridwar",
+      "Accommodation on twin sharing",
+      "Breakfast and dinner daily",
+      "Guide throughout",
+      "National park entry permits",
+      "First-aid kit, oxygen and oximeter"
+    ],
+    "exclusions": [
+      "Lunches and personal expenses",
+      "Pony or porter charges",
+      "Travel insurance",
+      "Costs from weather delays or road closures",
+      "Anything not listed under inclusions"
+    ],
+    "faqs": [
+      { "q": "When is the best time to see the flowers?", "a": "Mid July to late August is peak bloom. The park opens on 1 June and closes on 4 October, but early June and late September have far fewer flowers." },
+      { "q": "How hard is the walk to Ghangaria?", "a": "It is 9 km with a steady climb from Govindghat, usually five to six hours. Ponies and porters are available at the trailhead if you would rather not carry a pack." },
+      { "q": "Is Hemkund Sahib compulsory?", "a": "No. It is an optional day and a hard one - 6 km of steep climbing to 4,632 m. Plenty of people spend that day back in the valley instead, and that is a perfectly good choice." }
     ]
   }
 ]

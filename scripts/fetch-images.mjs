@@ -43,6 +43,8 @@ const WANTED = [
 
   // Packages
   { slug: 'madmaheshwar-trek', dir: 'yatras', w: 800, h: 600, q: 'Madhyamaheshwar temple Uttarakhand' },
+  { slug: 'roopkund-trek',     dir: 'yatras', w: 800, h: 600, q: 'Bedni Bugyal Roopkund Uttarakhand' },
+  { slug: 'kedarkantha-trek',  dir: 'yatras', w: 800, h: 600, q: 'Kedarkantha summit snow Uttarakhand' },
 ];
 
 const strip = (html = '') => html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();

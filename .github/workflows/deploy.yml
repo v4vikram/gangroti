@@ -55,6 +55,24 @@ jobs:
           path: dist
           retention-days: 7
 
+      # The theme ships the same CSS/JS, built into wp-theme/gangotri/assets.
+      - name: Build theme assets
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            npm run build:theme:prod
+          else
+            npm run build:theme
+          fi
+
+      - name: Guard - theme manifest must exist
+        run: test -s wp-theme/gangotri/assets/manifest.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: theme-${{ github.sha }}
+          path: wp-theme/gangotri
+          retention-days: 7
+
   # gangotri.codevani.com - auto-deploys on every push to develop
   deploy-dev:
     needs: build
@@ -66,19 +84,20 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: dist-${{ github.sha }}
-          path: dist
+          name: theme-${{ github.sha }}
+          path: theme
 
-      - name: Deploy over FTPS
+      # Only the theme folder is synced. WordPress core, uploads and the
+      # database are the server's own - nothing here touches them.
+      - name: Deploy theme over FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.DEV_FTP_SERVER }}
           username: ${{ secrets.DEV_FTP_USERNAME }}
           password: ${{ secrets.DEV_FTP_PASSWORD }}
           protocol: ftps
-          local-dir: ./dist/
-          server-dir: ${{ secrets.DEV_FTP_PATH }}
-          # Keeps anything the build does not own (e.g. WordPress in Phase 7).
+          local-dir: ./theme/
+          server-dir: ${{ secrets.DEV_FTP_THEME_PATH }}
           exclude: |
             **/.git*
             **/.git*/**
@@ -96,18 +115,18 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: dist-${{ github.sha }}
-          path: dist
+          name: theme-${{ github.sha }}
+          path: theme
 
-      - name: Deploy over FTPS
+      - name: Deploy theme over FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.PROD_FTP_SERVER }}
           username: ${{ secrets.PROD_FTP_USERNAME }}
           password: ${{ secrets.PROD_FTP_PASSWORD }}
           protocol: ftps
-          local-dir: ./dist/
-          server-dir: ${{ secrets.PROD_FTP_PATH }}
+          local-dir: ./theme/
+          server-dir: ${{ secrets.PROD_FTP_THEME_PATH }}
           exclude: |
             **/.git*
             **/.git*/**

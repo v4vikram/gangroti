@@ -1,0 +1,217 @@
+{
+  "home": {
+    "meta": {
+      "ge_home_slides": [
+        {
+          "image": "img/hero/hero-1.webp",
+          "eyebrow": "Char Dham 2026",
+          "title": "Spiritual Journeys.\nTimeless Memories.",
+          "text": "Curated yatras to the most sacred destinations in the Himalayas, led by guides who have walked these trails for years.",
+          "link": "/yatras/",
+          "link_text": "Explore Yatras"
+        },
+        {
+          "image": "img/hero/hero-2.webp",
+          "eyebrow": "Weekend Treks",
+          "title": "Trails most people\nnever walk.",
+          "text": "Panch Kedar temples and Garhwal ridges that stay quiet even in season - walked at a pace that leaves room to look around.",
+          "link": "/yatras/",
+          "link_text": "See Packages"
+        },
+        {
+          "image": "img/hero/hero-3.webp",
+          "eyebrow": "Small Groups",
+          "title": "Where the Ganga\nBegins.",
+          "text": "Gangotri, Yamunotri and everything between - planned at a pace that leaves room to actually be there.",
+          "link": "/yatras/",
+          "link_text": "All Journeys"
+        }
+      ],
+      "ge_home_faqs": [
+        {
+          "q": "When does the Char Dham Yatra open and close?",
+          "a": "The temple portals open on Akshaya Tritiya, usually late April or early May, and close around Bhai Dooj in the first week of November. Exact dates are announced each year by the temple committees, normally in February or March."
+        },
+        {
+          "q": "Which month is best for the yatra?",
+          "a": "May, June, September and October. July and August bring heavy monsoon rain and a genuine risk of landslides on the Kedarnath and Badrinath roads. The exception is the Valley of Flowers, which only blooms during the monsoon."
+        },
+        {
+          "q": "Do I need to register for the Char Dham Yatra?",
+          "a": "Yes. Uttarakhand requires every traveller to hold a Char Dham registration and Yatra e-pass, and it is checked at barriers on each route. Send us a photo ID and we file it for you before you arrive."
+        },
+        {
+          "q": "How do I avoid altitude sickness?",
+          "a": "Climb slowly, drink far more water than feels necessary, and skip alcohol for the first few days. Our itineraries include acclimatisation nights for exactly this reason. Tell your guide immediately about headache, nausea or breathlessness - going down 500 m usually fixes it, and every group carries oxygen and an oximeter."
+        }
+      ]
+    }
+  },
+
+  "about": {
+    "excerpt": "We are a Uttarakhand-based travel company running Char Dham yatras and Himalayan treks, with guides who grew up in these valleys.",
+    "content": "<p>Gangotri Expeditions runs Char Dham yatras and Garhwal treks out of Rishikesh - Chopta and Chandrashila, Madmaheshwar, Roopkund, Har Ki Dun, Valley of Flowers and the four dhams themselves.</p>\n<p>What matters more than the route list is who runs the trips. Our team is from Rudraprayag, Uttarkashi and Rishikesh. They know which stretch of trail turns treacherous after rain, which tea shop is worth the stop, and when the darshan queue actually moves.</p>",
+    "meta": {
+      "ge_page_values": [
+        {
+          "icon": "shield-check",
+          "title": "Safety over the summit",
+          "text": "Every group carries oxygen, a pulse oximeter and a stocked medical kit, and every guide is trained in high-altitude first aid. If the weather turns, we turn back - and we have done it often enough to mean it."
+        },
+        {
+          "icon": "users",
+          "title": "Groups capped at 15",
+          "text": "Small enough that the slowest walker is never alone at the back, and that a guide can actually answer your questions instead of shouting instructions at a crowd."
+        },
+        {
+          "icon": "badge-check",
+          "title": "Prices you can check",
+          "text": "Inclusions and exclusions are published in full on every itinerary. There is no local charge waiting for you at Gaurikund, and no surcharge invented at the hotel."
+        },
+        {
+          "icon": "footprints",
+          "title": "Leave the trail cleaner",
+          "text": "We carry our waste out, refill rather than buy bottled water where we can, and hire porters and drivers from the villages the route passes through."
+        }
+      ]
+    }
+  },
+
+  "services": {
+    "excerpt": "A yatra has a lot of moving parts - permits, vehicles, rooms at 3,000 m, a guide who knows the route. We handle all of it, and tell you exactly what each piece costs.",
+    "meta": {
+      "ge_page_services": [
+        {
+          "icon": "bus",
+          "title": "Private Transport",
+          "text": "Innova, Tempo Traveller or bus depending on group size, with drivers who have run the Rishikesh - Kedarnath road for years. Pickup from Haridwar, Rishikesh, Dehradun or Jolly Grant airport."
+        },
+        {
+          "icon": "bed",
+          "title": "Stays and Camps",
+          "text": "Hotels we have personally checked, plus fixed camps on the trekking routes. Rooms are blocked months ahead, so nobody ends up in whatever is left at 9pm in Sonprayag."
+        },
+        {
+          "icon": "compass",
+          "title": "Certified Guides",
+          "text": "Local guides trained in high-altitude first aid, on every departure. They carry the oxygen and the oximeter, and they make the call on whether the group goes up."
+        },
+        {
+          "icon": "ticket",
+          "title": "Registration and Permits",
+          "text": "Char Dham Yatra registration and the Uttarakhand e-pass, plus forest permits for Har Ki Dun and Valley of Flowers. Send a photo ID and we file everything."
+        },
+        {
+          "icon": "route",
+          "title": "Helicopter and Palki",
+          "text": "Helicopter transfers to Kedarnath from Phata, Sirsi or Guptkashi, and pony or palki arrangements for anyone who should not be walking 16 km. Booked in advance, at the published rate."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Medical Support",
+          "text": "Oxygen cylinders, first-aid kits and an evacuation plan on every trip, with a standing arrangement with hospitals in Rudraprayag and Dehradun."
+        }
+      ],
+      "ge_page_rates": [
+        { "service": "Helicopter transfer", "route": "Phata to Kedarnath, return", "cost": "₹ 7,500 - 8,500" },
+        { "service": "Pony / horse", "route": "Gaurikund to Kedarnath, return", "cost": "₹ 4,000 - 5,000" },
+        { "service": "Palki (4 bearers)", "route": "Gaurikund to Kedarnath, return", "cost": "₹ 9,000 - 11,000" },
+        { "service": "Airport pickup", "route": "Jolly Grant to Haridwar", "cost": "₹ 1,800 per vehicle" },
+        { "service": "Extra hotel night", "route": "Haridwar or Rishikesh", "cost": "₹ 1,500 - 3,000 per room" }
+      ],
+      "ge_page_faqs": [
+        {
+          "section": "",
+          "q": "Can you arrange a completely custom itinerary?",
+          "a": "Yes. Send us your dates, group size and which dhams or peaks matter most, and we will build the route around that - including private departures for families and corporate groups."
+        },
+        {
+          "section": "",
+          "q": "Where do you pick up from?",
+          "a": "Haridwar, Rishikesh, Dehradun and Jolly Grant airport are all standard and included in most packages. Delhi pickup can be arranged at extra cost, usually as an overnight Volvo to Haridwar."
+        },
+        {
+          "section": "",
+          "q": "Is travel insurance included?",
+          "a": "It is not included, and we strongly recommend arranging it yourself for any trek above 3,000 m. Check that your policy covers high-altitude trekking specifically - many standard travel policies exclude it."
+        },
+        {
+          "section": "",
+          "q": "How far in advance should I book?",
+          "a": "For May, June and September departures, six to eight weeks. Helicopter slots to Kedarnath and rooms near Sonprayag are the first things to run out. Weekend treks like Chopta can usually be arranged with two weeks of notice."
+        }
+      ]
+    }
+  },
+
+  "faq": {
+    "excerpt": "Planning, permits, altitude, money. If your question is not here, ask us - a real person answers.",
+    "meta": {
+      "ge_page_faqs": [
+        {
+          "section": "Planning your yatra",
+          "q": "When does the Char Dham Yatra open and close?",
+          "a": "The temple portals open on Akshaya Tritiya, usually late April or early May, and close around Bhai Dooj in the first week of November. Exact dates are announced each year by the temple committees, normally in February or March."
+        },
+        {
+          "section": "Planning your yatra",
+          "q": "Which month is best for the yatra?",
+          "a": "May, June, September and October. July and August bring heavy monsoon rain and a genuine risk of landslides on the Kedarnath and Badrinath roads. The exception is the Valley of Flowers, which only blooms during the monsoon."
+        },
+        {
+          "section": "Planning your yatra",
+          "q": "How far in advance should I book?",
+          "a": "Six to eight weeks for May, June and September departures. Helicopter slots to Kedarnath and rooms near Sonprayag run out first. Short treks such as Chopta can usually be arranged with two weeks of notice."
+        },
+        {
+          "section": "Planning your yatra",
+          "q": "Do I need to register for the Char Dham Yatra?",
+          "a": "Yes. Uttarakhand requires every traveller to hold a Char Dham registration and Yatra e-pass, and it is checked at barriers on each route. Send us a photo ID and we file it for you before you arrive."
+        },
+        {
+          "section": "Health and altitude",
+          "q": "How do I avoid altitude sickness?",
+          "a": "Climb slowly, drink far more water than feels necessary, and skip alcohol for the first few days. Our itineraries include acclimatisation nights for exactly this reason. Tell your guide immediately about headache, nausea or breathlessness - going down 500 m usually fixes it, and every group carries oxygen and an oximeter."
+        },
+        {
+          "section": "Health and altitude",
+          "q": "Can senior citizens do the yatra?",
+          "a": "Regularly, yes. Badrinath, Gangotri and Yamunotri are largely road journeys. For Kedarnath we arrange a pony, palki or helicopter. We do ask anyone over 60, or with a heart or respiratory condition, to bring a doctor's clearance."
+        },
+        {
+          "section": "Health and altitude",
+          "q": "What should I pack?",
+          "a": "Warm layers including a down jacket, a waterproof shell, broken-in walking shoes, a torch, sunscreen, a reusable water bottle and personal medication. Even in June, nights above 3,000 m drop close to freezing. We send a full checklist once you book."
+        },
+        {
+          "section": "Booking and payment",
+          "q": "What is included in the package price?",
+          "a": "Accommodation on twin sharing, breakfast and dinner, all transfers in a private vehicle, a guide throughout, permits and registration, and first-aid and oxygen support. Airfare, lunches, pony or palki charges and personal expenses are not included. Every itinerary page lists both sides in full."
+        },
+        {
+          "section": "Booking and payment",
+          "q": "How do I pay, and is an advance required?",
+          "a": "We hold your seat while dates are confirmed, at no cost. To lock it in we take 25 percent by UPI or bank transfer, with the balance due seven days before departure. You will get a receipt for every payment."
+        },
+        {
+          "section": "Booking and payment",
+          "q": "What happens if I cancel?",
+          "a": "Cancel more than 30 days out and the advance is refunded in full minus transfer charges. Between 30 and 15 days we retain 25 percent, and inside 15 days 50 percent. See the cancellation policy for the full terms, including weather cancellations."
+        },
+        {
+          "section": "Booking and payment",
+          "q": "What if the trip is called off because of weather?",
+          "a": "If we cancel a departure for weather or a road closure, you can move to another date within the same season or take a refund of everything except non-recoverable costs already paid to hotels and helicopter operators. We will always show you what those were."
+        }
+      ]
+    }
+  },
+
+  "gallery": {
+    "excerpt": "Photographs from our departures across Garhwal - the dhams, the ridges, and the people who walk them with us."
+  },
+
+  "contact": {
+    "excerpt": "Call, message on WhatsApp, or send us your dates. A real person answers, usually the same day."
+  }
+}

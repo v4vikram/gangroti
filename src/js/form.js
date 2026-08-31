@@ -64,7 +64,14 @@ function validate(form) {
  * this file changes - the field names below are already the ones the PHP
  * handler will read out of $_POST.
  */
-const ENDPOINT = FORM_ENDPOINT;
+/**
+ * WordPress hands the endpoint and nonce over at runtime via
+ * wp_localize_script, so one bundle works on staging and production without a
+ * rebuild. The static build has no server, so it falls back to the build-time
+ * constant - which is empty, and the form says so rather than pretending.
+ */
+const WP = globalThis.gangotriData;
+const ENDPOINT = WP?.endpoint ?? FORM_ENDPOINT;
 
 function setStatus(status, state, message) {
   status.hidden = false;
@@ -75,6 +82,13 @@ function setStatus(status, state, message) {
 async function send(form) {
   const body = new FormData(form);
   body.append('action', 'ge_enquiry'); // WordPress dispatches on this
+
+  // check_ajax_referer() rejects the request without this.
+  if (WP?.nonce) body.append('nonce', WP.nonce);
+
+  // Which page the enquiry came from - the difference between "someone asked"
+  // and "someone asked while reading the Madmaheshwar itinerary".
+  body.append('source', location.href);
 
   const res = await fetch(ENDPOINT, {
     method: 'POST',
@@ -237,6 +251,8 @@ function initEnquiryModal() {
 
   /* ---------------------------------------------------------- auto-open --- */
 
+  // Switched off in Theme Options: the popup still opens from its buttons.
+  if (modal.hasAttribute('data-auto-off')) return;
   if (alreadyShown()) return;
 
   const inlineForm = document.querySelector('#enquiry');
