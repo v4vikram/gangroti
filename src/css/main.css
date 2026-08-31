@@ -518,11 +518,48 @@
   .breadcrumb a:hover { color: var(--color-gold-400); }
   .breadcrumb [aria-current="page"] { color: #fff; }
 
-  /* A single card stranded in a three-column grid reads as a broken layout.
-     Until the collection grows, centre it at a sensible width. */
-  .card-grid:has(> [data-yatra]:only-child) {
-    max-width: 24rem;
+  /* --- Sparse grids ------------------------------------------------------
+     A three-column grid holding one or two cards reads as a broken layout, and
+     while the catalogue is being built that is the normal state. These rules
+     narrow the grid to the number of cards actually in it, so the row stays
+     balanced instead of trailing off into empty columns.
+
+     `:has()` does the counting, so nothing needs a class or a count passed in
+     from the build - add a third package and the plain grid takes over again. */
+
+  /* Two cards: drop to two columns rather than leaving a hole on the right. */
+  .card-grid:has(> [data-yatra]:nth-child(2):last-child) {
+    max-width: 56rem;
     margin-inline: auto;
+  }
+  @media (min-width: 1024px) {
+    .card-grid:has(> [data-yatra]:nth-child(2):last-child) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* One card: turn it side-on. A lone portrait card centred under a full-width
+     heading looks stranded; a wide horizontal card looks deliberate. */
+  .card-grid:has(> [data-yatra]:only-child) {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+  @media (min-width: 640px) {
+    .card-grid:has(> [data-yatra]:only-child) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .card-grid:has(> [data-yatra]:only-child) > [data-yatra] {
+      display: grid;
+      grid-template-columns: 16rem minmax(0, 1fr);
+      align-items: stretch;
+    }
+    /* The media box is fixed at 4:3 in the normal card; side-on it should fill
+       whatever height the copy column ends up being. */
+    .card-grid:has(> [data-yatra]:only-child) > [data-yatra] .media-4-3 {
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 15rem;
+    }
   }
 
   /* --- Listing filters -------------------------------------------------- */
