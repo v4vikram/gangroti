@@ -60,14 +60,28 @@ missing.
 
 ## Deployment
 
-GitHub Actions builds on every push and PR, then deploys over FTPS.
+GitHub Actions builds on every push and PR, then deploys the WordPress theme
+over FTPS. Only `wp-content/themes/gangotri/` is synced - WordPress core, the
+uploads folder and the database belong to the server.
 
-Required repository secrets:
+Required secrets. Add them as **repository** secrets: the deploy jobs declare a
+GitHub environment, and a secret stored in the wrong environment is not an
+error - the step just receives an empty string and fails with
+`Input required and not supplied: server`.
 
 | Secret | Used by |
 | --- | --- |
-| `DEV_FTP_SERVER`, `DEV_FTP_USERNAME`, `DEV_FTP_PASSWORD`, `DEV_FTP_PATH` | `develop` -> dev |
-| `PROD_FTP_SERVER`, `PROD_FTP_USERNAME`, `PROD_FTP_PASSWORD`, `PROD_FTP_PATH` | `main` -> prod |
+| `DEV_FTP_SERVER`, `DEV_FTP_USERNAME`, `DEV_FTP_PASSWORD`, `DEV_FTP_THEME_PATH` | `develop` -> dev |
+| `PROD_FTP_SERVER`, `PROD_FTP_USERNAME`, `PROD_FTP_PASSWORD`, `PROD_FTP_THEME_PATH` | `main` -> prod |
+
+The `*_THEME_PATH` values are relative to where the FTP account lands, not to
+the server root. A cPanel FTP account created for a domain opens inside that
+domain's folder already, so the path is `/wp-content/themes/gangotri/` - adding
+the domain name again points at a folder that does not exist.
+
+Server and username come from cPanel -> FTP Accounts -> Configure FTP Client.
+Passwords are not recorded anywhere in this repository and cannot be read back
+out of GitHub; reset one in cPanel and update the secret.
 
 Add required reviewers to the `production` environment in repo settings so live
 deploys need an approval.

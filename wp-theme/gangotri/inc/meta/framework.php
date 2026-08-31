@@ -300,8 +300,12 @@ function gangotri_register_meta_box( string $id, string $title, string $screen, 
 					wp_nonce_field( $id, $id . '_nonce' );
 
 					foreach ( $fields as $key => $field ) {
-						$single = ! in_array( $field['type'] ?? 'text', array( 'list', 'repeater' ), true );
-						gangotri_render_field( $field, get_post_meta( $post->ID, $key, $single ), $key );
+						// Always single. A list or repeater is stored as one
+						// serialised array under one key, so asking for all
+						// values returns that array wrapped in another one -
+						// which renders as the string "Array" in the first row
+						// and loses every row after it.
+						gangotri_render_field( $field, get_post_meta( $post->ID, $key, true ), $key );
 					}
 				},
 				$screen,

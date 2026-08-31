@@ -21,7 +21,7 @@ $nights = (int) get_post_meta( get_the_ID(), 'ge_nights', true );
 $price  = (int) get_post_meta( get_the_ID(), 'ge_price', true );
 ?>
 
-<article class="card card-hover flex flex-col group" data-yatra
+<article class="card card-hover flex flex-col group relative" data-yatra
          data-type="<?php echo esc_attr( $type ); ?>"
          data-destination="<?php echo esc_attr( $destination ); ?>"
          data-days="<?php echo esc_attr( (string) $days ); ?>"
@@ -46,7 +46,7 @@ $price  = (int) get_post_meta( get_the_ID(), 'ge_price', true );
 
 	<div class="p-5 flex flex-col flex-1">
 		<h3 class="text-lg">
-			<a href="<?php the_permalink(); ?>" class="after:absolute after:inset-0 relative">
+			<a href="<?php the_permalink(); ?>" class="after:absolute after:inset-0">
 				<?php the_title(); ?>
 			</a>
 		</h3>

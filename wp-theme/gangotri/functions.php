@@ -21,6 +21,7 @@ define( 'GANGOTRI_URI', get_template_directory_uri() );
 $gangotri_modules = array(
 	'inc/setup.php',      // theme supports, menus, image sizes
 	'inc/assets.php',     // enqueue the built CSS and JS
+	'inc/admin-assets.php', // the repeater and image-picker scripts
 	'inc/nav.php',        // menu walker and fallbacks
 	'inc/cpt.php',        // the `yatra` post type and its taxonomies
 	'inc/meta/framework.php', // the small custom field API
