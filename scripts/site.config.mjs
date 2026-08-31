@@ -8,8 +8,10 @@
 export const site = {
   name: 'Gangotri Expeditions',
   tagline: 'Spiritual Journeys. Timeless Memories.',
+  // Kept general rather than naming specific treks: the previous wording listed
+  // four packages that no longer have pages behind them.
   description:
-    'Curated Char Dham yatras and Himalayan treks in Uttarakhand - Kedarnath, Badrinath, Chopta Tungnath and Har Ki Dun - with expert guides, comfortable stays and safe, well-planned itineraries.',
+    'Himalayan treks and Char Dham yatras in Uttarakhand, run by local guides - published itineraries, honest difficulty ratings, small groups and altitude taken seriously.',
 
   phone: '+91 8076 378 331',
   phoneRaw: '+918076378331',

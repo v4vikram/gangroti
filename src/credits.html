@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+  <title>Photo Credits - {{site.name}}</title>
+  <meta name="description" content="Attribution for the Creative Commons photography used on this website.">
+  <link rel="canonical" href="%%SITE_URL%%/credits.html">
+  <meta name="robots" content="noindex, follow">
+  <!--@include head-assets.html-->
+</head>
+<body class="min-h-screen flex flex-col">
+<!--@sprite-->
+<!--@include header.html-->
+
+<main id="main" class="flex-1">
+  <section class="page-head">
+    <div class="container-page">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol><li><a href="/">Home</a></li><li aria-current="page">Photo Credits</li></ol>
+      </nav>
+      <h1 class="text-3xl lg:text-5xl mt-3 text-white">Photo Credits</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-page max-w-4xl">
+      <p class="text-ink/70 leading-relaxed">
+        Some of the photography on this site comes from Wikimedia Commons under Creative
+        Commons licences, which ask that the photographer and licence be named wherever the
+        work appears. This page is that notice. Images are replaced with our own photography
+        over time, and this list shrinks as that happens.
+      </p>
+
+      <div class="table-wrap mt-8">
+        <table class="data-table">
+          <caption class="sr-only">Photography attribution</caption>
+          <thead>
+            <tr>
+              <th scope="col">Used as</th>
+              <th scope="col">Source file</th>
+              <th scope="col">Photographer</th>
+              <th scope="col">Licence</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--@credits-->
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-6 text-sm text-ink/60">
+        Licence terms:
+        <a class="text-brand-600 underline underline-offset-2" href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener nofollow">CC BY-SA 4.0</a>,
+        <a class="text-brand-600 underline underline-offset-2" href="https://creativecommons.org/licenses/by-sa/3.0/" rel="noopener nofollow">CC BY-SA 3.0</a>,
+        <a class="text-brand-600 underline underline-offset-2" href="https://creativecommons.org/licenses/by/3.0/" rel="noopener nofollow">CC BY 3.0</a>.
+        Public domain images carry no restriction.
+      </p>
+    </div>
+  </section>
+</main>
+
+<!--@include footer.html-->
+</body>
+</html>

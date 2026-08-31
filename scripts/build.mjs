@@ -237,6 +237,8 @@ async function buildHtml(assets) {
   // collection templates are the ones that become single-*.php in Phase 7.
   const jobs = (await readdir(SRC))
     .filter((f) => f.endsWith('.html'))
+    // The style guide is an internal reference, not a page of the site.
+    .filter((f) => !(PROD && f === 'styleguide.html'))
     .map((file) => ({ out: file, src: join(SRC, file) }));
 
   for (const { data, template, path } of COLLECTIONS) {
@@ -260,6 +262,7 @@ async function buildHtml(assets) {
     html = await expandIncludes(html);
     html = await expandEach(html);
     html = await expandOptions(html);
+    html = await expandCredits(html);
 
     html = html
       .replace(/<!--\s*@sprite\s*-->/g, sprite)
@@ -289,7 +292,135 @@ async function buildHtml(assets) {
     total += Buffer.byteLength(html);
   }
 
-  return { pages: jobs.length, size: total };
+  return { pages: jobs.length, size: total, routes: jobs.map((j) => j.out) };
+}
+
+/** Pages that should never appear in the sitemap. */
+const NOT_INDEXED = new Set(['404.html', 'styleguide.html', 'thank-you.html', 'credits.html']);
+
+function routeToUrl(route) {
+  // Extensionless, matching the .htaccess rewrite and the future WP permalinks.
+  const clean = route === 'index.html' ? '' : route.replace(/\.html$/, '');
+  return `${env.url}/${clean}`;
+}
+
+async function buildSitemap(routes) {
+  const pages = routes.filter((r) => !NOT_INDEXED.has(r));
+  const today = new Date().toISOString().slice(0, 10);
+
+  // Home first, then packages, then the rest - priority reflects the same order.
+  const priority = (r) =>
+    r === 'index.html' ? '1.0'
+    : r.startsWith('yatras') ? '0.8'
+    : ['privacy.html', 'terms.html', 'cancellation.html'].includes(r) ? '0.3'
+    : '0.6';
+
+  const body = pages
+    .map((r) => `  <url>
+    <loc>${routeToUrl(r)}</loc>
+    <lastmod>${today}</lastmod>
+    <priority>${priority(r)}</priority>
+  </url>`)
+    .join('\n');
+
+  await writeFile(
+    join(OUT, 'sitemap.xml'),
+    `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${body}
+</urlset>
+`,
+  );
+
+  return pages.length;
+}
+
+/**
+ * llms.txt - a plain-text brief for AI assistants and answer engines.
+ *
+ * Same intent as robots.txt but for models rather than crawlers: it states
+ * plainly what this business does, what it sells and how to reach it, so an
+ * assistant answering "who runs Madmaheshwar treks" has something citable
+ * instead of guessing from marketing copy.
+ */
+async function buildLlmsTxt() {
+  const packages = await loadData('yatras');
+
+  const lines = [
+    `# ${site.name}`,
+    '',
+    `> ${site.description}`,
+    '',
+    `Website: ${env.url}/`,
+    `Phone / WhatsApp: ${site.phone}`,
+    `Email: ${site.email}`,
+    `Based in: ${site.address}`,
+    '',
+    '## Packages',
+    '',
+    ...packages.map(
+      (p) =>
+        `- [${p.title}](${env.url}/yatras/${p.slug}): ${p.days} days / ${p.nights} nights, ` +
+        `from INR ${p.price} per person. Max altitude ${p.altitude}. ` +
+        `Difficulty ${p.difficulty}. Season ${p.season}. Departs from ${p.pickup}.`,
+    ),
+    '',
+    '## Pages',
+    '',
+    `- [Packages](${env.url}/yatras): every trek and yatra we run`,
+    `- [Services](${env.url}/services): transport, stays, guides, permits, helicopter and palki`,
+    `- [About](${env.url}/about): who we are and how we work`,
+    `- [FAQ](${env.url}/faq): registration, altitude, packing, payment and cancellation`,
+    `- [Contact](${env.url}/contact): enquiry form and phone`,
+    `- [Cancellation policy](${env.url}/cancellation): refund terms in full`,
+    '',
+    '## Notes',
+    '',
+    '- All prices are per person in Indian Rupees, on twin sharing, and exclude airfare.',
+    '- Uttarakhand requires a Char Dham registration and Yatra e-pass; we file it for travellers.',
+    '- Group sizes are capped at 15 people.',
+    '',
+  ];
+
+  await writeFile(join(OUT, 'llms.txt'), lines.join('\n'));
+}
+
+/**
+ * Photo credits page, generated from src/img/CREDITS.md.
+ *
+ * Not decorative: most of the photography is CC BY-SA, which requires the
+ * author and licence to be named wherever the work is published. This is that
+ * notice. It disappears on its own as client photography replaces the
+ * placeholders and the table empties.
+ */
+async function expandCredits(html) {
+  if (!html.includes('<!--@credits-->')) return html;
+
+  const path = join(SRC, 'img/CREDITS.md');
+  const ROW = /^\| `img\/([\w-]+\/[\w-]+)` \| \[([^\]]+)\]\(([^)]+)\) \| ([^|]+) \| ([^|]+) \|/;
+  const rows = [];
+
+  if (existsSync(path)) {
+    for (const line of (await readFile(path, 'utf8')).split('\n')) {
+      const m = line.match(ROW);
+      if (m) rows.push({ file: m[1], title: m[2], url: m[3], author: m[4].trim(), licence: m[5].trim() });
+    }
+  }
+
+  const body = rows.length
+    ? rows
+        .map(
+          (r) => `<tr>
+              <th scope="row"><code>${r.file}</code></th>
+              <td><a href="${r.url}" rel="noopener nofollow">${r.title}</a></td>
+              <td>${r.author}</td>
+              <td>${r.licence}</td>
+            </tr>`,
+        )
+        .join('\n            ')
+    : '<tr><td colspan="4">All photography on this site is our own.</td></tr>';
+
+  return html.replace('<!--@credits-->', body);
 }
 
 async function buildRobots() {
@@ -389,11 +520,14 @@ async function build() {
   const html = await buildHtml({ css, js });
   await buildRobots();
   await buildHtaccess();
+  await buildLlmsTxt();
+  const urls = await buildSitemap(html.routes);
 
   const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
   console.log(
     `${PROD ? 'prod' : 'dev '} build  ${Date.now() - t0}ms  |  ` +
-    `html ${html.pages}p ${kb(html.size)}  css ${kb(css.size)}  js ${kb(js.size)}` +
+    `html ${html.pages}p ${kb(html.size)}  css ${kb(css.size)}  js ${kb(js.size)}  ` +
+    `sitemap ${urls}u` +
     `${PROD ? '' : '  |  noindex'}`
   );
 }
