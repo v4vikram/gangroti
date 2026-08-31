@@ -31,10 +31,21 @@
 			return;
 		}
 
-		// The template is stored escaped so it cannot be submitted as real
-		// fields; textContent unescapes it back to markup.
+		// PHP escapes the blank row before printing it, so the <template> holds
+		// one text node reading "<div ...>" rather than the elements
+		// themselves. innerHTML gives that text back still escaped, which
+		// parses to nothing - textContent is what unescapes it.
+		//
+		// Both shapes are handled because the escaping is a detail of the PHP
+		// side: if it ever stops escaping, the template carries real elements
+		// and this must not start feeding their markup through a second parse.
+		const frag = template.content;
+		const escaped = ! frag || ! frag.querySelector( '[data-ge-row]' );
+
 		const holder = document.createElement( 'div' );
-		holder.innerHTML = template.content ? template.innerHTML : template.textContent;
+		holder.innerHTML = escaped
+			? ( frag ? frag.textContent : template.textContent ) || ''
+			: template.innerHTML;
 
 		const row = holder.querySelector( '[data-ge-row]' );
 		if ( ! row ) {
