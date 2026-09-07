@@ -76,7 +76,7 @@ jobs:
   # gangotri.codevani.com - auto-deploys on every push to develop
   deploy-dev:
     needs: build
-    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/develop' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: development
@@ -116,7 +116,7 @@ jobs:
   # `production` environment (set required reviewers in repo settings).
   deploy-prod:
     needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     environment:
       name: production
