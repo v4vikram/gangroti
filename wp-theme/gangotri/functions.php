@@ -29,6 +29,7 @@ $gangotri_modules = array(
 	'inc/meta/page-fields.php',
 	'inc/options.php',    // Theme Options page (phone, email, social)
 	'inc/enquiry.php',    // enquiry form handler and the enquiry record
+	'inc/smtp.php',       // route wp_mail() through authenticated SMTP
 	'inc/schema.php',     // JSON-LD output
 	'inc/template-tags.php',
 );
