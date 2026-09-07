@@ -66,9 +66,9 @@ while ( have_posts() ) :
 		</section>
 
 		<section class="section">
-			<div class="container-page grid gap-10 lg:grid-cols-[1fr_21rem] lg:gap-12 lg:items-start">
+			<div class="container-page grid gap-10 lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-12 lg:items-start">
 
-				<div>
+				<div class="min-w-0">
 					<div class="media-16-9 rounded-card">
 						<?php
 						echo gangotri_package_image( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
